@@ -5,9 +5,9 @@
 const PRODUCTS = [
     {
         id: 1,
-        name: "Royal Envoy 3",
+        name: "Royal Envoy 3 Mode",
         category: "modes",
-        description: "My game description.",
+        description: "",
         version: "v1.0.0",
         size: "38 MB",
         platform: "Windows",
