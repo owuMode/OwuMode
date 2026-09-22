@@ -4,7 +4,7 @@ const PRODUCTS_DATA = [
         id: 1,
         name: "Royal Envoy 3",
         category: "modes",
-        description: "My game description.",
+        description: "How to use : \n1. Download Original Game \n2. Download this Mode \n3. First run game then open Mode \n4. Enjoy",
         version: "v1.0.0",
         size: "38 MB",
         platform: "Windows",
