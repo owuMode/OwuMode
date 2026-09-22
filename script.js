@@ -353,7 +353,7 @@ function closeGameDetails() {
 
 
 /* =========================================================
-   DOWNLOAD GAME
+   DOWNLOAD MODE
    ========================================================= */
 
 function downloadGame(gameId) {
