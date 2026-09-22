@@ -1,8 +1,25 @@
 /* =========================================================
    OwuMode - Main Script
+   JSONBin.io se counts load/save karta hai
    ========================================================= */
 
 let PRODUCTS = [];
+
+// Cache
+const DOWNLOAD_COUNTS = {};
+let VISITOR_COUNT = 0;
+
+
+/* =========================================================
+   JSONBIN SETTINGS (aapki values)
+   ========================================================= */
+
+const JSONBIN_BIN_ID = "6ab26f19ffd5d1605322e359";
+const JSONBIN_API_KEY = "$2a$10$RLbYDBBgLAt9fbfPwm4ORe5LBvZF82w/VcDM0PcHeLnNwNt02r/gu";
+
+const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
+
+const VISITOR_STORAGE_KEY = "owumode_visited";
 
 
 /* =========================================================
@@ -35,7 +52,7 @@ const navMenu = document.getElementById("navMenu");
 const toast = document.getElementById("toast");
 const toastMessage = document.getElementById("toastMessage");
 
-const visitorCount = document.getElementById("visitorCount");
+const visitorCountEl = document.getElementById("visitorCount");
 
 
 /* =========================================================
@@ -66,7 +83,7 @@ function getDownloadURL(game) {
 
 
 /* =========================================================
-   GAME CARD
+   GAME CARD (download count sirf number)
    ========================================================= */
 
 function createGameCard(game) {
@@ -76,6 +93,8 @@ function createGameCard(game) {
         : "https://via.placeholder.com/600x350?text=Game";
 
     const hasLink = game.link && game.link.trim() !== "";
+
+    const downloadCount = DOWNLOAD_COUNTS[game.id] || 0;
 
     return `
         <article class="game-card">
@@ -95,6 +114,14 @@ function createGameCard(game) {
                 <h3 class="game-title">
                     ${escapeHTML(game.name)}
                 </h3>
+
+                <div class="download-count-row">
+                    <span class="download-count-icon">Downloads :</span>
+                    <span
+                        class="download-count-number"
+                        id="count-${game.id}"
+                    >${downloadCount}</span>
+                </div>
 
                 <div class="game-actions">
 
@@ -124,7 +151,7 @@ function createGameCard(game) {
                         rel="noopener noreferrer"
                         class="game-link-btn"
                     >
-                        Download Orginal Game
+                        Download Original Game
                     </a>
                 </div>
                 ` : ""}
@@ -253,34 +280,13 @@ function openGameDetails(gameId) {
         return;
     }
 
-
-    if (modalTitle) {
-        modalTitle.textContent = game.name || "";
-    }
-
-    if (modalCategory) {
-        modalCategory.textContent = game.category || "";
-    }
-
-    if (modalPlatform) {
-        modalPlatform.textContent = game.platform || "";
-    }
-
-    if (modalDescription) {
-        modalDescription.textContent = game.description || "";
-    }
-
-    if (modalVersion) {
-        modalVersion.textContent = game.version || "";
-    }
-
-    if (modalSize) {
-        modalSize.textContent = game.size || "";
-    }
-
-    if (modalFile) {
-        modalFile.textContent = game.fileName || "";
-    }
+    if (modalTitle) modalTitle.textContent = game.name || "";
+    if (modalCategory) modalCategory.textContent = game.category || "";
+    if (modalPlatform) modalPlatform.textContent = game.platform || "";
+    if (modalDescription) modalDescription.textContent = game.description || "";
+    if (modalVersion) modalVersion.textContent = game.version || "";
+    if (modalSize) modalSize.textContent = game.size || "";
+    if (modalFile) modalFile.textContent = game.fileName || "";
 
     if (modalImage) {
         modalImage.src = game.image || "";
@@ -345,7 +351,191 @@ function downloadGame(gameId) {
         "noopener,noreferrer"
     );
 
+    incrementDownloadCount(gameId);
+
     showToast(`Downloading ${game.name}...`);
+}
+
+
+/* =========================================================
+   READ FROM JSONBIN
+   ========================================================= */
+
+async function readBin() {
+
+    const response = await fetch(
+        `${JSONBIN_URL}/latest`,
+        {
+            method: "GET",
+            headers: {
+                "X-Master-Key": JSONBIN_API_KEY,
+                "X-Bin-Meta": "false"
+            }
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Failed to read bin");
+    }
+
+    return await response.json();
+}
+
+
+/* =========================================================
+   WRITE TO JSONBIN
+   ========================================================= */
+
+async function writeBin(data) {
+
+    const response = await fetch(
+        JSONBIN_URL,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Master-Key": JSONBIN_API_KEY
+            },
+            body: JSON.stringify(data)
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Failed to write bin");
+    }
+
+    return await response.json();
+}
+
+
+/* =========================================================
+   INITIALIZE COUNTS (downloads + visitors)
+   ========================================================= */
+
+async function initializeCounts() {
+
+    try {
+
+        const data = await readBin();
+
+        // Downloads load karo
+        const downloads = data.downloads || {};
+
+        PRODUCTS.forEach((game) => {
+            DOWNLOAD_COUNTS[game.id] = downloads[game.id] || 0;
+            updateCountUI(game.id, DOWNLOAD_COUNTS[game.id]);
+        });
+
+        // Visitors handle karo
+        let visitors = data.visitors || 0;
+
+        const hasVisited = localStorage.getItem(VISITOR_STORAGE_KEY);
+
+        if (!hasVisited) {
+            // Pehli visit → +1
+            visitors += 1;
+
+            data.visitors = visitors;
+
+            // Save back to JSONBin
+            await writeBin(data);
+
+            localStorage.setItem(VISITOR_STORAGE_KEY, "1");
+        }
+
+        VISITOR_COUNT = visitors;
+
+        updateVisitorUI(VISITOR_COUNT);
+
+        console.log("✅ Counts loaded:", {
+            downloads: DOWNLOAD_COUNTS,
+            visitors: VISITOR_COUNT
+        });
+
+    } catch (error) {
+
+        console.error("Initialize counts error:", error);
+
+        // Fallback: sab 0
+        PRODUCTS.forEach((game) => {
+            DOWNLOAD_COUNTS[game.id] = 0;
+            updateCountUI(game.id, 0);
+        });
+
+        updateVisitorUI(0);
+    }
+}
+
+
+/* =========================================================
+   INCREMENT DOWNLOAD COUNT
+   ========================================================= */
+
+async function incrementDownloadCount(gameId) {
+
+    // Optimistic UI
+    DOWNLOAD_COUNTS[gameId] =
+        (DOWNLOAD_COUNTS[gameId] || 0) + 1;
+
+    updateCountUI(gameId, DOWNLOAD_COUNTS[gameId]);
+
+    try {
+
+        const data = await readBin();
+
+        if (!data.downloads) {
+            data.downloads = {};
+        }
+
+        data.downloads[gameId] =
+            (data.downloads[gameId] || 0) + 1;
+
+        const saved = await writeBin(data);
+
+        const serverCount =
+            saved.record.downloads[gameId];
+
+        DOWNLOAD_COUNTS[gameId] = serverCount;
+
+        updateCountUI(gameId, serverCount);
+
+        console.log(
+            `✅ Download count saved for game ${gameId}: ${serverCount}`
+        );
+
+    } catch (error) {
+
+        console.error("Increment download error:", error);
+    }
+}
+
+
+/* =========================================================
+   UPDATE UI
+   ========================================================= */
+
+function updateCountUI(gameId, count) {
+
+    const homeEl = document.getElementById(`count-${gameId}`);
+    if (homeEl) {
+        homeEl.textContent = Number(count).toLocaleString();
+    }
+
+    const modesPageEl = document.querySelector(
+        `#modesPageGrid #count-${gameId}`
+    );
+    if (modesPageEl) {
+        modesPageEl.textContent = Number(count).toLocaleString();
+    }
+}
+
+
+function updateVisitorUI(count) {
+
+    if (visitorCountEl) {
+        visitorCountEl.textContent =
+            Number(count).toLocaleString();
+    }
 }
 
 
@@ -472,6 +662,13 @@ function setupNavigation() {
 
                 rendermodesPage();
 
+                PRODUCTS.forEach((game) => {
+                    updateCountUI(
+                        game.id,
+                        DOWNLOAD_COUNTS[game.id] || 0
+                    );
+                });
+
                 window.scrollTo({ top: 0, behavior: "smooth" });
 
             } else if (href === "#home") {
@@ -572,102 +769,10 @@ function loadProducts() {
 
 
 /* =========================================================
-   VISITOR COUNTER (CounterAPI.dev - GitHub Pages Ready)
-
-   - Ek user sirf EK BAAR count hoga (localStorage)
-   - Same count SAB users ko dikhega
-   ========================================================= */
-
-async function loadVisitorCount() {
-
-    if (!visitorCount) {
-        return;
-    }
-
-    // ⚠️ Apna unique namespace + key yahan daalo
-    // Format: https://api.counterapi.dev/v1/{NAMESPACE}/{KEY}/up
-    const NAMESPACE = "owumode";
-    const KEY = "visitors";
-
-    const STORAGE_KEY = "owumode_has_visited";
-
-    try {
-
-        let endpoint;
-
-        // Agar user pehle visit kar chuka hai → sirf count read karo
-        if (localStorage.getItem(STORAGE_KEY)) {
-
-            endpoint =
-                `https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}/`;
-
-        } else {
-
-            // Pehli visit → count +1
-            endpoint =
-                `https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}/up`;
-
-            localStorage.setItem(STORAGE_KEY, "1");
-        }
-
-        const response = await fetch(endpoint);
-
-        if (!response.ok) {
-            throw new Error("Counter API failed");
-        }
-
-        const data = await response.json();
-
-        // CounterAPI.dev response: { count: 123 }
-        const count =
-            data.count !== undefined
-                ? data.count
-                : data.value;
-
-        visitorCount.textContent =
-            Number(count).toLocaleString();
-
-    } catch (error) {
-
-        console.error(
-            "Visitor counter error:",
-            error
-        );
-
-        // Fallback: localStorage me last saved count dikhao
-        const fallback =
-            localStorage.getItem("owumode_last_count");
-
-        visitorCount.textContent =
-            fallback ? Number(fallback).toLocaleString() : "—";
-    }
-}
-
-// Success hone pe last count save karo (optional improvement)
-const originalFetch = window.fetch;
-window.fetch = async function (...args) {
-    const response = await originalFetch.apply(this, args);
-    if (args[0] && args[0].includes("counterapi.dev")) {
-        try {
-            const clone = response.clone();
-            const data = await clone.json();
-            if (data.count !== undefined) {
-                localStorage.setItem(
-                    "owumode_last_count",
-                    data.count
-                );
-            }
-        } catch (e) {}
-    }
-    return response;
-};
-
-
-/* =========================================================
    INITIALIZE
    ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
     loadProducts();
 
@@ -683,6 +788,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setupNavigation();
 
-    loadVisitorCount();
+    // JSONBin se counts load karo
+    await initializeCounts();
 
 });
