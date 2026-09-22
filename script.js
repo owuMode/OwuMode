@@ -1,6 +1,5 @@
 /* =========================================================
    OwuMode - Main Script
-   Data data.js se load hota hai (PRODUCTS_DATA)
    ========================================================= */
 
 let PRODUCTS = [];
@@ -35,6 +34,8 @@ const navMenu = document.getElementById("navMenu");
 
 const toast = document.getElementById("toast");
 const toastMessage = document.getElementById("toastMessage");
+
+const visitorCount = document.getElementById("visitorCount");
 
 
 /* =========================================================
@@ -123,7 +124,7 @@ function createGameCard(game) {
                         rel="noopener noreferrer"
                         class="game-link-btn"
                     >
-                      🔗 Orginal Game Link
+                        🔗 Get Link
                     </a>
                 </div>
                 ` : ""}
@@ -552,7 +553,7 @@ function loadProducts() {
     if (!Array.isArray(PRODUCTS_DATA)) {
 
         console.error(
-            "❌ PRODUCTS_DATA array nahi hai. data.js check karo."
+            "❌ PRODUCTS_DATA array nahi hai."
         );
 
         PRODUCTS = [];
@@ -563,11 +564,103 @@ function loadProducts() {
     PRODUCTS = PRODUCTS_DATA;
 
     console.log(
-        `✅ Loaded ${PRODUCTS.length} product(s) from data.js`
+        `✅ Loaded ${PRODUCTS.length} product(s)`
     );
 
     return true;
 }
+
+
+/* =========================================================
+   VISITOR COUNTER (CounterAPI.dev - GitHub Pages Ready)
+
+   - Ek user sirf EK BAAR count hoga (localStorage)
+   - Same count SAB users ko dikhega
+   ========================================================= */
+
+async function loadVisitorCount() {
+
+    if (!visitorCount) {
+        return;
+    }
+
+    // ⚠️ Apna unique namespace + key yahan daalo
+    // Format: https://api.counterapi.dev/v1/{NAMESPACE}/{KEY}/up
+    const NAMESPACE = "owumode";
+    const KEY = "visitors";
+
+    const STORAGE_KEY = "owumode_has_visited";
+
+    try {
+
+        let endpoint;
+
+        // Agar user pehle visit kar chuka hai → sirf count read karo
+        if (localStorage.getItem(STORAGE_KEY)) {
+
+            endpoint =
+                `https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}/`;
+
+        } else {
+
+            // Pehli visit → count +1
+            endpoint =
+                `https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}/up`;
+
+            localStorage.setItem(STORAGE_KEY, "1");
+        }
+
+        const response = await fetch(endpoint);
+
+        if (!response.ok) {
+            throw new Error("Counter API failed");
+        }
+
+        const data = await response.json();
+
+        // CounterAPI.dev response: { count: 123 }
+        const count =
+            data.count !== undefined
+                ? data.count
+                : data.value;
+
+        visitorCount.textContent =
+            Number(count).toLocaleString();
+
+    } catch (error) {
+
+        console.error(
+            "Visitor counter error:",
+            error
+        );
+
+        // Fallback: localStorage me last saved count dikhao
+        const fallback =
+            localStorage.getItem("owumode_last_count");
+
+        visitorCount.textContent =
+            fallback ? Number(fallback).toLocaleString() : "—";
+    }
+}
+
+// Success hone pe last count save karo (optional improvement)
+const originalFetch = window.fetch;
+window.fetch = async function (...args) {
+    const response = await originalFetch.apply(this, args);
+    if (args[0] && args[0].includes("counterapi.dev")) {
+        try {
+            const clone = response.clone();
+            const data = await clone.json();
+            if (data.count !== undefined) {
+                localStorage.setItem(
+                    "owumode_last_count",
+                    data.count
+                );
+            }
+        } catch (e) {}
+    }
+    return response;
+};
 
 
 /* =========================================================
@@ -589,5 +682,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupMobileMenu();
 
     setupNavigation();
+
+    loadVisitorCount();
 
 });
