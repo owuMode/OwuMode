@@ -7,7 +7,7 @@ const PRODUCTS = [
         id: 1,
         name: "Royal Envoy 3 Mode",
         category: "modes",
-        description: "",
+        description: "You can change your Coins, Woods, Foods and Happiness ",
         version: "v1.0.0",
         size: "38 MB",
         platform: "Windows",
