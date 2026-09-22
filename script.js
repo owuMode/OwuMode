@@ -124,7 +124,7 @@ function createGameCard(game) {
                         rel="noopener noreferrer"
                         class="game-link-btn"
                     >
-                        🔗 Get Link
+                        Download Orginal Game
                     </a>
                 </div>
                 ` : ""}
