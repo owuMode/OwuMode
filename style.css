@@ -173,36 +173,27 @@ img {
 
 
 /* =========================================================
-   VISITOR BADGE (Header)
+   VISITOR COUNTER (Header)
    ========================================================= */
 
-.visitor-badge {
+.visitor-counter {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 8px 14px;
-    background: var(--yellow);
-    color: var(--black);
-    border: 1px solid var(--yellow-dark);
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 800;
-    white-space: nowrap;
+    gap: 4px;
     flex-shrink: 0;
-    transition: transform 0.2s ease;
-}
-
-.visitor-badge:hover {
-    transform: scale(1.05);
+    font-size: 14px;
+    font-weight: 900;
+    color: var(--black);
+    white-space: nowrap;
 }
 
 .visitor-icon {
     font-size: 14px;
 }
 
-.visitor-count {
-    color: var(--black);
+.visitor-number {
     font-weight: 900;
+    color: var(--black);
 }
 
 
@@ -433,8 +424,7 @@ img {
 }
 
 
-/* =========================================================
-   GAME GRID
+/* =========================================================   GAME GRID
    ========================================================= */
 
 .game-grid {
@@ -487,7 +477,7 @@ img {
 }
 
 .game-title {
-    margin: 0 0 14px;
+    margin: 0 0 10px;
     color: var(--text);
     font-size: 17px;
     font-weight: 800;
@@ -496,6 +486,37 @@ img {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+
+/* =========================================================
+   DOWNLOAD COUNT (Sirf number - koi box nahi)
+   ========================================================= */
+
+.download-count-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.download-count-icon {
+    font-size: 12px;
+    color: var(--blue);
+}
+
+.download-count-number {
+    font-weight: 900;
+    color: var(--blue);
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
 
 .game-actions {
     display: grid;
@@ -1025,9 +1046,8 @@ img {
         display: none;
     }
 
-    .visitor-badge {
-        padding: 6px 10px;
-        font-size: 11px;
+    .visitor-counter {
+        font-size: 12px;
     }
 
     .visitor-icon {
