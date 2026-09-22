@@ -94,7 +94,7 @@ img {
     height: 100%;
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 20px;
 }
 
 .brand {
@@ -146,7 +146,7 @@ img {
 
 .header-search {
     margin-left: auto;
-    width: 250px;
+    width: 220px;
 }
 
 .header-search input {
@@ -170,6 +170,43 @@ img {
 .header-search input::placeholder {
     color: #98a2b3;
 }
+
+
+/* =========================================================
+   VISITOR BADGE (Header)
+   ========================================================= */
+
+.visitor-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--yellow);
+    color: var(--black);
+    border: 1px solid var(--yellow-dark);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.visitor-badge:hover {
+    transform: scale(1.05);
+}
+
+.visitor-icon {
+    font-size: 14px;
+}
+
+.visitor-count {
+    color: var(--black);
+    font-weight: 900;
+}
+
+
+/* Mobile menu */
 
 .mobile-menu-btn {
     display: none;
@@ -890,7 +927,7 @@ img {
     }
 
     .header-inner {
-        gap: 12px;
+        gap: 10px;
     }
 
     .nav-menu {
@@ -986,6 +1023,15 @@ img {
 
     .header-search {
         display: none;
+    }
+
+    .visitor-badge {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+
+    .visitor-icon {
+        font-size: 12px;
     }
 
     .hero {
