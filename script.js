@@ -1,22 +1,9 @@
 /* =========================================================
-   OwuMode GAME DATA
+   OwuMode - Main Script
+   Data data.js se load hota hai (PRODUCTS_DATA)
    ========================================================= */
 
-const PRODUCTS = [
-    {
-        id: 1,
-        name: "Royal Envoy 3 Mode",
-        category: "modes",
-        description: "You can change your Coins, Woods, Foods and Happiness ",
-        version: "v1.0.0",
-        size: "38 MB",
-        platform: "Windows",
-        fileName: "RoyalEnvoy3_ModMenu.exe",
-        fileId: "1EvvlLFqoC4COK5wCFKLJ7YzUcYb098QN",
-        image: "https://alawarland.com/upload/information_system_1/1/0/5/item_1059/information_items_1059.jpg",
-        badge: "New"
-    }
-];
+let PRODUCTS = [];
 
 
 /* =========================================================
@@ -25,7 +12,7 @@ const PRODUCTS = [
 
 const gameGrid = document.getElementById("gameGrid");
 const modesPageGrid = document.getElementById("modesPageGrid");
-const nomodes = document.getElementById("nomodes");
+const nomodes = document.getElementById("noModes");
 const gameCount = document.getElementById("gameCount");
 
 const gameModal = document.getElementById("gameModal");
@@ -41,7 +28,7 @@ const modalImage = document.getElementById("modalImage");
 const modalDownload = document.getElementById("modalDownload");
 
 const headerSearch = document.getElementById("headerSearch");
-const modesSearch = document.getElementById("modesSearch");
+const modesSearch = document.getElementById("ModesSearch");
 
 const mobileMenuBtn = document.getElementById("mobileMenuBtn");
 const navMenu = document.getElementById("navMenu");
@@ -79,11 +66,6 @@ function getDownloadURL(game) {
 
 /* =========================================================
    GAME CARD
-   ONLY:
-   IMAGE
-   NAME
-   VIEW DETAILS
-   DOWNLOAD
    ========================================================= */
 
 function createGameCard(game) {
@@ -91,6 +73,8 @@ function createGameCard(game) {
     const image = game.image
         ? escapeHTML(game.image)
         : "https://via.placeholder.com/600x350?text=Game";
+
+    const hasLink = game.link && game.link.trim() !== "";
 
     return `
         <article class="game-card">
@@ -131,6 +115,19 @@ function createGameCard(game) {
 
                 </div>
 
+                ${hasLink ? `
+                <div class="game-link-row">
+                    <a
+                        href="${escapeHTML(game.link)}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="game-link-btn"
+                    >
+                      🔗 Orginal Game Link
+                    </a>
+                </div>
+                ` : ""}
+
             </div>
 
         </article>
@@ -139,7 +136,7 @@ function createGameCard(game) {
 
 
 /* =========================================================
-   RENDER modes
+   RENDER
    ========================================================= */
 
 function rendermodes(
@@ -187,7 +184,7 @@ function updateGameCount(count) {
 
 
 /* =========================================================
-   HOME GAME SEARCH
+   HOME SEARCH
    ========================================================= */
 
 function renderHomemodes(searchTerm = "") {
@@ -217,7 +214,7 @@ function renderHomemodes(searchTerm = "") {
 
 
 /* =========================================================
-   modes PAGE SEARCH
+   MODES PAGE SEARCH
    ========================================================= */
 
 function rendermodesPage(searchTerm = "") {
@@ -242,7 +239,7 @@ function rendermodesPage(searchTerm = "") {
 
 
 /* =========================================================
-   OPEN GAME DETAILS
+   OPEN DETAILS
    ========================================================= */
 
 function openGameDetails(gameId) {
@@ -257,80 +254,53 @@ function openGameDetails(gameId) {
 
 
     if (modalTitle) {
-        modalTitle.textContent =
-            game.name || "";
+        modalTitle.textContent = game.name || "";
     }
-
 
     if (modalCategory) {
-        modalCategory.textContent =
-            game.category || "";
+        modalCategory.textContent = game.category || "";
     }
-
 
     if (modalPlatform) {
-        modalPlatform.textContent =
-            game.platform || "";
+        modalPlatform.textContent = game.platform || "";
     }
-
 
     if (modalDescription) {
-        modalDescription.textContent =
-            game.description || "";
+        modalDescription.textContent = game.description || "";
     }
-
 
     if (modalVersion) {
-        modalVersion.textContent =
-            game.version || "";
+        modalVersion.textContent = game.version || "";
     }
-
 
     if (modalSize) {
-        modalSize.textContent =
-            game.size || "";
+        modalSize.textContent = game.size || "";
     }
-
 
     if (modalFile) {
-        modalFile.textContent =
-            game.fileName || "";
+        modalFile.textContent = game.fileName || "";
     }
-
 
     if (modalImage) {
-
-        modalImage.src =
-            game.image || "";
-
-        modalImage.alt =
-            game.name || "";
+        modalImage.src = game.image || "";
+        modalImage.alt = game.name || "";
     }
 
-
     if (modalDownload) {
-
         modalDownload.onclick = () => {
             downloadGame(game.id);
         };
     }
 
-
     gameModal.classList.add("active");
+    gameModal.setAttribute("aria-hidden", "false");
 
-    gameModal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-    document.body.classList.add(
-        "modal-open"
-    );
+    document.body.classList.add("modal-open");
 }
 
 
 /* =========================================================
-   CLOSE GAME DETAILS
+   CLOSE DETAILS
    ========================================================= */
 
 function closeGameDetails() {
@@ -340,20 +310,14 @@ function closeGameDetails() {
     }
 
     gameModal.classList.remove("active");
+    gameModal.setAttribute("aria-hidden", "true");
 
-    gameModal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-    document.body.classList.remove(
-        "modal-open"
-    );
+    document.body.classList.remove("modal-open");
 }
 
 
 /* =========================================================
-   DOWNLOAD MODE
+   DOWNLOAD
    ========================================================= */
 
 function downloadGame(gameId) {
@@ -363,28 +327,16 @@ function downloadGame(gameId) {
     );
 
     if (!game) {
-
-        showToast(
-            "Game not found."
-        );
-
+        showToast("Game not found.");
         return;
     }
-
 
     if (!game.fileId) {
-
-        showToast(
-            "Download file is not available."
-        );
-
+        showToast("Download file is not available.");
         return;
     }
 
-
-    const downloadURL =
-        getDownloadURL(game);
-
+    const downloadURL = getDownloadURL(game);
 
     window.open(
         downloadURL,
@@ -392,10 +344,7 @@ function downloadGame(gameId) {
         "noopener,noreferrer"
     );
 
-
-    showToast(
-        `Downloading ${game.name}...`
-    );
+    showToast(`Downloading ${game.name}...`);
 }
 
 
@@ -409,71 +358,40 @@ function showToast(message) {
         return;
     }
 
-    toastMessage.textContent =
-        message;
+    toastMessage.textContent = message;
 
     toast.classList.add("show");
 
-    clearTimeout(
-        showToast.timeout
-    );
+    clearTimeout(showToast.timeout);
 
-    showToast.timeout =
-        setTimeout(() => {
-
-            toast.classList.remove(
-                "show"
-            );
-
-        }, 3000);
+    showToast.timeout = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000);
 }
 
 
 /* =========================================================
-   SEARCH
+   SEARCH SETUP
    ========================================================= */
 
 function setupSearch() {
 
     if (headerSearch) {
-
-        headerSearch.addEventListener(
-            "input",
-            () => {
-
-                const value =
-                    headerSearch.value;
-
-                renderHomemodes(
-                    value
-                );
-
-            }
-        );
+        headerSearch.addEventListener("input", () => {
+            renderHomemodes(headerSearch.value);
+        });
     }
 
-
     if (modesSearch) {
-
-        modesSearch.addEventListener(
-            "input",
-            () => {
-
-                const value =
-                    modesSearch.value;
-
-                rendermodesPage(
-                    value
-                );
-
-            }
-        );
+        modesSearch.addEventListener("input", () => {
+            rendermodesPage(modesSearch.value);
+        });
     }
 }
 
 
 /* =========================================================
-   MODAL
+   MODAL SETUP
    ========================================================= */
 
 function setupModal() {
@@ -482,38 +400,19 @@ function setupModal() {
         return;
     }
 
-
-    const closeButtons =
-        gameModal.querySelectorAll(
-            ".modal-close, .modal-overlay"
-        );
-
-
-    closeButtons.forEach(
-        (button) => {
-
-            button.addEventListener(
-                "click",
-                closeGameDetails
-            );
-
-        }
+    const closeButtons = gameModal.querySelectorAll(
+        ".modal-close, .modal-overlay"
     );
 
+    closeButtons.forEach((button) => {
+        button.addEventListener("click", closeGameDetails);
+    });
 
-    gameModal.addEventListener(
-        "click",
-        (event) => {
-
-            if (
-                event.target ===
-                gameModal
-            ) {
-                closeGameDetails();
-            }
-
+    gameModal.addEventListener("click", (event) => {
+        if (event.target === gameModal) {
+            closeGameDetails();
         }
-    );
+    });
 }
 
 
@@ -523,50 +422,21 @@ function setupModal() {
 
 function setupMobileMenu() {
 
-    if (
-        !mobileMenuBtn ||
-        !navMenu
-    ) {
+    if (!mobileMenuBtn || !navMenu) {
         return;
     }
 
+    mobileMenuBtn.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        mobileMenuBtn.classList.toggle("active");
+    });
 
-    mobileMenuBtn.addEventListener(
-        "click",
-        () => {
-
-            navMenu.classList.toggle(
-                "active"
-            );
-
-            mobileMenuBtn.classList.toggle(
-                "active"
-            );
-
-        }
-    );
-
-
-    navMenu
-        .querySelectorAll("a")
-        .forEach((link) => {
-
-            link.addEventListener(
-                "click",
-                () => {
-
-                    navMenu.classList.remove(
-                        "active"
-                    );
-
-                    mobileMenuBtn.classList.remove(
-                        "active"
-                    );
-
-                }
-            );
-
+    navMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+            navMenu.classList.remove("active");
+            mobileMenuBtn.classList.remove("active");
         });
+    });
 }
 
 
@@ -576,170 +446,68 @@ function setupMobileMenu() {
 
 function setupNavigation() {
 
-    const navLinks =
-        document.querySelectorAll(
-            ".nav-link"
-        );
+    const navLinks = document.querySelectorAll(".nav-link");
 
-    const homeSection =
-        document.getElementById(
-            "home"
-        );
-
-    const modesSection =
-        document.getElementById(
-            "modes"
-        );
-
-    const modesPage =
-        document.getElementById(
-            "modesPage"
-        );
-
+    const homeSection = document.getElementById("home");
+    const modesSection = document.getElementById("Modes");
+    const modesPage = document.getElementById("ModesPage");
 
     navLinks.forEach((link) => {
 
-        link.addEventListener(
-            "click",
-            (event) => {
+        link.addEventListener("click", (event) => {
 
-                const href =
-                    link.getAttribute(
-                        "href"
-                    );
+            const href = link.getAttribute("href");
 
+            navLinks.forEach((item) => item.classList.remove("active"));
+            link.classList.add("active");
 
-                navLinks.forEach(
-                    (item) => {
-                        item.classList.remove(
-                            "active"
-                        );
-                    }
-                );
-
-                link.classList.add(
-                    "active"
-                );
-
-
-                if (href === "#modes") {
-
-                    event.preventDefault();
-
-                    if (homeSection) {
-                        homeSection.style.display =
-                            "none";
-                    }
-
-                    if (modesSection) {
-                        modesSection.style.display =
-                            "none";
-                    }
-
-                    if (modesPage) {
-                        modesPage.classList.add(
-                            "active"
-                        );
-                    }
-
-                    rendermodesPage();
-
-                    window.scrollTo({
-                        top: 0,
-                        behavior: "smooth"
-                    });
-
-                }
-
-                else if (href === "#home") {
-
-                    event.preventDefault();
-
-                    if (modesPage) {
-                        modesPage.classList.remove(
-                            "active"
-                        );
-                    }
-
-                    if (homeSection) {
-                        homeSection.style.display =
-                            "block";
-                    }
-
-                    if (modesSection) {
-                        modesSection.style.display =
-                            "block";
-                    }
-
-                    window.scrollTo({
-                        top: 0,
-                        behavior: "smooth"
-                    });
-
-                }
-
-            }
-        );
-
-    });
-
-
-    const homeLink =
-        document.getElementById(
-            "homeLink"
-        );
-
-
-    if (homeLink) {
-
-        homeLink.addEventListener(
-            "click",
-            (event) => {
+            if (href === "#Modes") {
 
                 event.preventDefault();
 
-                if (modesPage) {
-                    modesPage.classList.remove(
-                        "active"
-                    );
-                }
+                if (homeSection) homeSection.style.display = "none";
+                if (modesSection) modesSection.style.display = "none";
+                if (modesPage) modesPage.classList.add("active");
 
-                if (homeSection) {
-                    homeSection.style.display =
-                        "block";
-                }
+                rendermodesPage();
 
-                if (modesSection) {
-                    modesSection.style.display =
-                        "block";
-                }
+                window.scrollTo({ top: 0, behavior: "smooth" });
 
-                navLinks.forEach(
-                    (item) => {
-                        item.classList.remove(
-                            "active"
-                        );
-                    }
-                );
+            } else if (href === "#home") {
 
-                const homeNav =
-                    document.querySelector(
-                        '.nav-link[href="#home"]'
-                    );
+                event.preventDefault();
 
-                if (homeNav) {
-                    homeNav.classList.add(
-                        "active"
-                    );
-                }
+                if (modesPage) modesPage.classList.remove("active");
+                if (homeSection) homeSection.style.display = "block";
+                if (modesSection) modesSection.style.display = "block";
 
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-
+                window.scrollTo({ top: 0, behavior: "smooth" });
             }
-        );
+        });
+    });
+
+    const homeLink = document.getElementById("homeLink");
+
+    if (homeLink) {
+
+        homeLink.addEventListener("click", (event) => {
+
+            event.preventDefault();
+
+            if (modesPage) modesPage.classList.remove("active");
+            if (homeSection) homeSection.style.display = "block";
+            if (modesSection) modesSection.style.display = "block";
+
+            navLinks.forEach((item) => item.classList.remove("active"));
+
+            const homeNav = document.querySelector(
+                '.nav-link[href="#home"]'
+            );
+
+            if (homeNav) homeNav.classList.add("active");
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
     }
 }
 
@@ -748,54 +516,78 @@ function setupNavigation() {
    ESCAPE KEY
    ========================================================= */
 
-document.addEventListener(
-    "keydown",
-    (event) => {
-
-        if (
-            event.key ===
-            "Escape"
-        ) {
-            closeGameDetails();
-        }
-
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        closeGameDetails();
     }
-);
+});
 
 
 /* =========================================================
    GLOBAL FUNCTIONS
    ========================================================= */
 
-window.openGameDetails =
-    openGameDetails;
+window.openGameDetails = openGameDetails;
+window.closeGameDetails = closeGameDetails;
+window.downloadGame = downloadGame;
 
-window.closeGameDetails =
-    closeGameDetails;
 
-window.downloadGame =
-    downloadGame;
+/* =========================================================
+   LOAD DATA FROM data.js
+   ========================================================= */
+
+function loadProducts() {
+
+    if (typeof PRODUCTS_DATA === "undefined") {
+
+        console.error(
+            "❌ data.js not loaded or PRODUCTS_DATA missing."
+        );
+
+        PRODUCTS = [];
+
+        return false;
+    }
+
+    if (!Array.isArray(PRODUCTS_DATA)) {
+
+        console.error(
+            "❌ PRODUCTS_DATA array nahi hai. data.js check karo."
+        );
+
+        PRODUCTS = [];
+
+        return false;
+    }
+
+    PRODUCTS = PRODUCTS_DATA;
+
+    console.log(
+        `✅ Loaded ${PRODUCTS.length} product(s) from data.js`
+    );
+
+    return true;
+}
 
 
 /* =========================================================
    INITIALIZE
    ========================================================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-        renderHomemodes();
+    loadProducts();
 
-        rendermodesPage();
+    renderHomemodes();
 
-        setupSearch();
+    rendermodesPage();
 
-        setupModal();
+    setupSearch();
 
-        setupMobileMenu();
+    setupModal();
 
-        setupNavigation();
+    setupMobileMenu();
 
-    }
-);
+    setupNavigation();
+
+});
