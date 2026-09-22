@@ -424,7 +424,8 @@ img {
 }
 
 
-/* =========================================================   GAME GRID
+/* =========================================================
+   GAME GRID
    ========================================================= */
 
 .game-grid {
@@ -489,7 +490,7 @@ img {
 
 
 /* =========================================================
-   DOWNLOAD COUNT (Sirf number - koi box nahi)
+   DOWNLOAD COUNT (Sirf number)
    ========================================================= */
 
 .download-count-row {
@@ -515,7 +516,7 @@ img {
 
 
 /* =========================================================
-   ACTION BUTTONS
+   ACTION BUTTONS (2 buttons)
    ========================================================= */
 
 .game-actions {
@@ -525,13 +526,18 @@ img {
 }
 
 .details-btn,
-.download-btn {
+.download-btn,
+.game-link-btn {
     width: 100%;
     min-height: 42px;
     padding: 8px 10px;
     border-radius: 8px;
     font-size: 11px;
     font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
     transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
 
@@ -557,31 +563,11 @@ img {
     border-color: var(--blue-dark);
 }
 
-.details-btn:active,
-.download-btn:active {
-    transform: scale(0.97);
-}
-
-.game-link-row {
-    margin-top: 9px;
-}
-
-/* Get Link button - Yellow background, BLACK text */
+/* Original Game button - Yellow + Black text */
 .game-link-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-height: 42px;
-    padding: 8px 10px;
     background: var(--yellow);
     color: var(--black);
     border: 1px solid var(--yellow);
-    border-radius: 8px;
-    font-size: 11px;
-    font-weight: 800;
-    text-decoration: none;
-    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
 
 .game-link-btn:hover {
@@ -590,6 +576,8 @@ img {
     color: var(--black);
 }
 
+.details-btn:active,
+.download-btn:active,
 .game-link-btn:active {
     transform: scale(0.97);
 }
@@ -1158,7 +1146,8 @@ img {
     }
 
     .details-btn,
-    .download-btn {
+    .download-btn,
+    .game-link-btn {
         min-height: 40px;
     }
 }
