@@ -83,7 +83,11 @@ function getDownloadURL(game) {
 
 
 /* =========================================================
-   GAME CARD (download count sirf number)
+   GAME CARD
+   Sirf 2 buttons:
+   1) Download Mode
+   2) Original Game  (link button)
+   Download button REMOVED
    ========================================================= */
 
 function createGameCard(game) {
@@ -130,31 +134,29 @@ function createGameCard(game) {
                         type="button"
                         onclick="openGameDetails(${game.id})"
                     >
-                        View Details
+                        Download Mode
                     </button>
 
-                    <button
-                        class="download-btn"
-                        type="button"
-                        onclick="downloadGame(${game.id})"
-                    >
-                        Download
-                    </button>
+                    ${hasLink ? `
+                        <a
+                            href="${escapeHTML(game.link)}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="game-link-btn"
+                        >
+                            Original Game
+                        </a>
+                    ` : `
+                        <button
+                            class="download-btn"
+                            type="button"
+                            onclick="downloadGame(${game.id})"
+                        >
+                            Download
+                        </button>
+                    `}
 
                 </div>
-
-                ${hasLink ? `
-                <div class="game-link-row">
-                    <a
-                        href="${escapeHTML(game.link)}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="game-link-btn"
-                    >
-                        Download Original Game
-                    </a>
-                </div>
-                ` : ""}
 
             </div>
 
@@ -324,7 +326,7 @@ function closeGameDetails() {
 
 
 /* =========================================================
-   DOWNLOAD
+   DOWNLOAD (sirf modal se call hoga)
    ========================================================= */
 
 function downloadGame(gameId) {
@@ -409,7 +411,7 @@ async function writeBin(data) {
 
 
 /* =========================================================
-   INITIALIZE COUNTS (downloads + visitors)
+   INITIALIZE COUNTS
    ========================================================= */
 
 async function initializeCounts() {
@@ -418,7 +420,6 @@ async function initializeCounts() {
 
         const data = await readBin();
 
-        // Downloads load karo
         const downloads = data.downloads || {};
 
         PRODUCTS.forEach((game) => {
@@ -426,25 +427,21 @@ async function initializeCounts() {
             updateCountUI(game.id, DOWNLOAD_COUNTS[game.id]);
         });
 
-        // Visitors handle karo
         let visitors = data.visitors || 0;
 
         const hasVisited = localStorage.getItem(VISITOR_STORAGE_KEY);
 
         if (!hasVisited) {
-            // Pehli visit → +1
-            visitors += 1;
 
+            visitors += 1;
             data.visitors = visitors;
 
-            // Save back to JSONBin
             await writeBin(data);
 
             localStorage.setItem(VISITOR_STORAGE_KEY, "1");
         }
 
         VISITOR_COUNT = visitors;
-
         updateVisitorUI(VISITOR_COUNT);
 
         console.log("✅ Counts loaded:", {
@@ -456,7 +453,6 @@ async function initializeCounts() {
 
         console.error("Initialize counts error:", error);
 
-        // Fallback: sab 0
         PRODUCTS.forEach((game) => {
             DOWNLOAD_COUNTS[game.id] = 0;
             updateCountUI(game.id, 0);
@@ -473,7 +469,6 @@ async function initializeCounts() {
 
 async function incrementDownloadCount(gameId) {
 
-    // Optimistic UI
     DOWNLOAD_COUNTS[gameId] =
         (DOWNLOAD_COUNTS[gameId] || 0) + 1;
 
@@ -788,7 +783,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     setupNavigation();
 
-    // JSONBin se counts load karo
     await initializeCounts();
 
 });
