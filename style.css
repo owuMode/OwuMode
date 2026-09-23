@@ -48,7 +48,7 @@ body.modal-open {
     overflow: hidden;
 }
 
-button, input {
+button, input, select {
     font: inherit;
 }
 
@@ -173,7 +173,7 @@ img {
 
 
 /* =========================================================
-   VISITOR COUNTER (Header)
+   VISITOR COUNTER
    ========================================================= */
 
 .visitor-counter {
@@ -198,7 +198,6 @@ img {
 
 
 /* Mobile menu */
-
 .mobile-menu-btn {
     display: none;
     width: 40px;
@@ -490,33 +489,42 @@ img {
 
 
 /* =========================================================
-   DOWNLOAD COUNT (Sirf number)
+   GAME META (Version + Download Count)
    ========================================================= */
 
-.download-count-row {
+.game-meta-row {
     display: flex;
     align-items: center;
-    gap: 5px;
+    justify-content: space-between;
+    gap: 8px;
     margin-bottom: 12px;
-    font-size: 13px;
-    color: var(--muted);
-    font-weight: 700;
 }
 
-.download-count-icon {
-    font-size: 12px;
+.game-version-badge {
+    display: inline-block;
+    padding: 3px 9px;
+    background: var(--blue-light);
     color: var(--blue);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
 }
 
 .download-count-number {
     font-weight: 900;
     color: var(--blue);
-    font-size: 14px;
+    font-size: 13px;
+}
+
+.download-count-number::before {
+    content: "⬇ ";
+    font-size: 11px;
+    opacity: 0.7;
 }
 
 
 /* =========================================================
-   ACTION BUTTONS (2 buttons)
+   ACTION BUTTONS
    ========================================================= */
 
 .game-actions {
@@ -563,7 +571,6 @@ img {
     border-color: var(--blue-dark);
 }
 
-/* Original Game button - Yellow + Black text */
 .game-link-btn {
     background: var(--yellow);
     color: var(--black);
@@ -773,12 +780,55 @@ img {
 }
 
 .modal-description {
-    margin-bottom: 25px;
+    margin-bottom: 22px;
     color: var(--muted);
     font-size: 13px;
     line-height: 1.7;
-    white-space: pre-line;   /* ← \n ko line break banata hai */
+    white-space: pre-line;
 }
+
+
+/* =========================================================
+   VERSION DROPDOWN
+   ========================================================= */
+
+.modal-version-select {
+    margin-bottom: 20px;
+}
+
+.modal-version-select .detail-label {
+    margin-bottom: 6px;
+}
+
+.modal-version-select select {
+    width: 100%;
+    height: 44px;
+    padding: 0 14px;
+    background: #f8faff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 700;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-version-select select:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(7, 87, 217, 0.1);
+}
+
+.modal-version-select select option {
+    padding: 8px;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   MODAL DETAILS
+   ========================================================= */
 
 .modal-details {
     display: grid;
@@ -907,7 +957,6 @@ img {
    ========================================================= */
 
 @media (max-width: 1100px) {
-
     .game-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
