@@ -118,7 +118,7 @@ function renderRequirements(game) {
             <ul>${minList}</ul>
         </div>
         <div class="req-box">
-            <h3>🚀 Recommended</h3>
+            <h3>Recommended</h3>
             <ul>${recList}</ul>
         </div>
     `;
