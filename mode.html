@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading... - OwuMode</title>
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mode.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-logo">O</span>
+                <span class="brand-name">OwuMode</span>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#Modes" class="nav-link">Modes</a>
+            </nav>
+            <div class="header-search">
+                <input type="search" id="headerSearch" placeholder="Search Modes..." autocomplete="off">
+            </div>
+            <div class="visitor-counter">
+                <span class="visitor-icon">👁</span>
+                <span class="visitor-number" id="visitorCount">0</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+
+    <!-- MAIN -->
+    <main class="details-main">
+        <div class="container">
+
+            <a href="index.html" class="back-btn">← Back to Modes</a>
+
+            <!-- Loading -->
+            <div id="detailsLoading" class="details-loading">
+                <div class="loading-spinner"></div>
+                <p>Loading mode details...</p>
+            </div>
+
+            <!-- Not found -->
+            <div id="detailsNotFound" class="details-loading" style="display: none;">
+                <h2>Mode not found</h2>
+                <p>Ye mode exist nahi karta ya link galat hai.</p>
+                <a href="index.html" class="btn-primary" style="margin-top:15px; display:inline-flex; padding:10px 20px; background:#0757d9; color:white; border-radius:8px;">Go Home</a>
+            </div>
+
+            <!-- Content -->
+            <div id="detailsContent" style="display: none;">
+
+                <!-- ============ HERO (Title + Image only) ============ -->
+                <section class="hero-details">
+
+                    <div class="hero-details-bg"></div>
+
+                    <div class="hero-details-content">
+
+                        <div class="app-icon-box">
+                            <img id="detailsImage" src="" alt="">
+                            <span class="app-icon-badge" id="detailsBadge">NEW</span>
+                        </div>
+
+                        <div class="app-main-info">
+
+                            <div class="breadcrumb">
+                                <span>Mods</span>
+                                <span class="sep">›</span>
+                                <span id="detailsCategory">Action</span>
+                            </div>
+
+                            <h1 id="detailsTitle">Loading...</h1>
+
+                            <div class="meta-row-simple">
+                                <span class="meta-chip" id="tagPlatform">🖥 Windows</span>
+                                <span class="meta-chip" id="tagSize">📦 40 MB</span>
+                                <span class="meta-chip" id="tagVersion">v1.1.0</span>
+                                <span class="meta-chip meta-chip-green">✓ Safe</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ============ MAIN LAYOUT (Description + Download + Sidebar) ============ -->
+                <div class="details-layout">
+
+                    <!-- LEFT: Content -->
+                    <div class="details-left">
+
+                        <!-- Description Card (with download inside) -->
+                        <div class="content-card">
+
+                            <h2 class="content-title">📄 Description</h2>
+
+                            <div class="rich-description" id="detailsDescription"></div>
+
+                            <!-- Download section INSIDE description -->
+                            <div class="download-section">
+
+                                <div class="download-top-row">
+                                    <span class="download-price-label">FREE</span>
+                                    <span class="download-latest-label" id="downloadLatestLabel">Latest v1.1.0</span>
+                                </div>
+
+                                <button class="btn-download-big" id="detailsDownload" type="button">
+                                    <span class="dl-icon">⬇</span>
+                                    <span class="dl-text">
+                                        <span class="dl-main">Download Now</span>
+                                        <span class="dl-sub" id="detailsSize">40 MB</span>
+                                    </span>
+                                </button>
+
+                                <div class="version-info-row">
+                                    <span class="version-info-label">Version:</span>
+                                    <span class="version-info-value" id="versionDisplay">v1.1.0 (Latest)</span>
+                                </div>
+
+                                <a id="detailsOriginalLink" class="btn-original" href="#" target="_blank" rel="noopener noreferrer">
+                                    🎮 Get Original Game
+                                </a>
+
+                                <div class="download-safe-row">
+                                    <span>✓ Virus Free</span>
+                                    <span>✓ No Ads</span>
+                                    <span>✓ Admin Required</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Requirements Card -->
+                        <div class="content-card">
+
+                            <h2 class="content-title">⚙ System Requirements</h2>
+
+                            <div class="req-grid" id="requirementsGrid">
+                                <!-- JS will fill -->
+                            </div>
+
+                        </div>
+
+
+                        <!-- Versions Card -->
+                        <div class="content-card">
+
+                            <h2 class="content-title">📋 All Versions</h2>
+
+                            <div id="versionsList" class="versions-grid"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RIGHT: Sidebar -->
+                    <aside class="details-right">
+
+                        <div class="sidebar-card">
+                            <h3>App Specs</h3>
+
+                            <div class="spec-list">
+                                <div class="spec-item">
+                                    <span class="spec-label">Developer</span>
+                                    <span class="spec-value">OwuMode</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">License</span>
+                                    <span class="spec-value spec-free">Free</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Platform</span>
+                                    <span class="spec-value" id="specPlatform">Windows</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Category</span>
+                                    <span class="spec-value" id="specCategory">Mod</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Version</span>
+                                    <span class="spec-value spec-blue" id="specVersion">v1.1.0</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Size</span>
+                                    <span class="spec-value" id="specSize">40 MB</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Updated</span>
+                                    <span class="spec-value" id="specDate">—</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Downloads</span>
+                                    <span class="spec-value spec-blue" id="detailsCount">0</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-card sidebar-help">
+                            <h3>❓ Need Help?</h3>
+                            <p>Follow the instructions in description carefully. For issues, contact us on Telegram.</p>
+                            <a href="https://t.me/owumode_files" target="_blank" class="btn-telegram">
+                                Join Telegram →
+                            </a>
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+
+    <div class="toast" id="toast">
+        <span id="toastMessage"></span>
+    </div>
+
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="brand-logo">O</span>
+                <span>OwuMode</span>
+            </div>
+            <p>© 2026 OwuMode. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <script src="data.js"></script>
+    <script src="mode.js"></script>
+</body>
+</html>
