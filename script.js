@@ -1,6 +1,5 @@
 /* =========================================================
    OwuMode - Main Script
-   JSONBin.io se counts load/save karta hai
    ========================================================= */
 
 let PRODUCTS = [];
@@ -11,7 +10,7 @@ let VISITOR_COUNT = 0;
 
 
 /* =========================================================
-   JSONBIN SETTINGS (aapki values)
+   JSONBIN SETTINGS
    ========================================================= */
 
 const JSONBIN_BIN_ID = "6ab26f19ffd5d1605322e359";
@@ -37,11 +36,10 @@ const modalTitle = document.getElementById("modalTitle");
 const modalCategory = document.getElementById("modalCategory");
 const modalPlatform = document.getElementById("modalPlatform");
 const modalDescription = document.getElementById("modalDescription");
-const modalVersion = document.getElementById("modalVersion");
-const modalSize = document.getElementById("modalSize");
 const modalFile = document.getElementById("modalFile");
 const modalImage = document.getElementById("modalImage");
 const modalDownload = document.getElementById("modalDownload");
+const versionSelect = document.getElementById("versionSelect");
 
 const headerSearch = document.getElementById("headerSearch");
 const modesSearch = document.getElementById("ModesSearch");
@@ -60,9 +58,7 @@ const visitorCountEl = document.getElementById("visitorCount");
    ========================================================= */
 
 function escapeHTML(value) {
-    if (value === null || value === undefined) {
-        return "";
-    }
+    if (value === null || value === undefined) return "";
 
     return String(value)
         .replace(/&/g, "&amp;")
@@ -74,20 +70,50 @@ function escapeHTML(value) {
 
 
 /* =========================================================
+   GET LATEST VERSION
+   ========================================================= */
+
+function getLatestVersion(game) {
+    if (!game.versions || game.versions.length === 0) {
+        return null;
+    }
+
+    let latest = game.versions.find(v => v.isLatest === true);
+
+    if (!latest) {
+        latest = [...game.versions].sort((a, b) =>
+            new Date(b.date || 0) - new Date(a.date || 0)
+        )[0];
+    }
+
+    return latest;
+}
+
+
+/* =========================================================
+   GET SORTED VERSIONS (latest pehle)
+   ========================================================= */
+
+function getSortedVersions(game) {
+    if (!game.versions || game.versions.length === 0) return [];
+
+    return [...game.versions].sort((a, b) =>
+        new Date(b.date || 0) - new Date(a.date || 0)
+    );
+}
+
+
+/* =========================================================
    DOWNLOAD URL
    ========================================================= */
 
-function getDownloadURL(game) {
-    return `https://drive.google.com/uc?export=download&id=${encodeURIComponent(game.fileId)}`;
+function getDownloadURL(fileId) {
+    return `https://drive.google.com/uc?export=download&id=${encodeURIComponent(fileId)}`;
 }
 
 
 /* =========================================================
    GAME CARD
-   Sirf 2 buttons:
-   1) Download Mode
-   2) Original Game  (link button)
-   Download button REMOVED
    ========================================================= */
 
 function createGameCard(game) {
@@ -99,6 +125,9 @@ function createGameCard(game) {
     const hasLink = game.link && game.link.trim() !== "";
 
     const downloadCount = DOWNLOAD_COUNTS[game.id] || 0;
+
+    const latestVersion = getLatestVersion(game);
+    const versionLabel = latestVersion ? latestVersion.version : "N/A";
 
     return `
         <article class="game-card">
@@ -115,16 +144,11 @@ function createGameCard(game) {
 
             <div class="game-info">
 
-                <h3 class="game-title">
-                    ${escapeHTML(game.name)}
-                </h3>
+                <h3 class="game-title">${escapeHTML(game.name)}</h3>
 
-                <div class="download-count-row">
-                    <span class="download-count-icon">Downloads :</span>
-                    <span
-                        class="download-count-number"
-                        id="count-${game.id}"
-                    >${downloadCount}</span>
+                <div class="game-meta-row">
+                    <span class="game-version-badge">${escapeHTML(versionLabel)}</span>
+                    <span class="download-count-number" id="count-${game.id}">${downloadCount}</span>
                 </div>
 
                 <div class="game-actions">
@@ -169,33 +193,19 @@ function createGameCard(game) {
    RENDER
    ========================================================= */
 
-function rendermodes(
-    modes,
-    container,
-    emptyElement = null
-) {
-    if (!container) {
-        return;
-    }
+function rendermodes(modes, container, emptyElement = null) {
+
+    if (!container) return;
 
     if (modes.length === 0) {
-
         container.innerHTML = "";
-
-        if (emptyElement) {
-            emptyElement.style.display = "block";
-        }
-
+        if (emptyElement) emptyElement.style.display = "block";
         return;
     }
 
-    if (emptyElement) {
-        emptyElement.style.display = "none";
-    }
+    if (emptyElement) emptyElement.style.display = "none";
 
-    container.innerHTML = modes
-        .map(createGameCard)
-        .join("");
+    container.innerHTML = modes.map(createGameCard).join("");
 }
 
 
@@ -204,11 +214,7 @@ function rendermodes(
    ========================================================= */
 
 function updateGameCount(count) {
-
-    if (!gameCount) {
-        return;
-    }
-
+    if (!gameCount) return;
     gameCount.textContent = count;
 }
 
@@ -218,28 +224,14 @@ function updateGameCount(count) {
    ========================================================= */
 
 function renderHomemodes(searchTerm = "") {
+    const term = searchTerm.trim().toLowerCase();
 
-    const term = searchTerm
-        .trim()
-        .toLowerCase();
-
-    const filteredmodes = PRODUCTS.filter((game) => {
-
-        return game.name
-            .toLowerCase()
-            .includes(term);
-
-    });
-
-    rendermodes(
-        filteredmodes,
-        gameGrid,
-        nomodes
+    const filteredmodes = PRODUCTS.filter((game) =>
+        game.name.toLowerCase().includes(term)
     );
 
-    updateGameCount(
-        filteredmodes.length
-    );
+    rendermodes(filteredmodes, gameGrid, nomodes);
+    updateGameCount(filteredmodes.length);
 }
 
 
@@ -248,23 +240,13 @@ function renderHomemodes(searchTerm = "") {
    ========================================================= */
 
 function rendermodesPage(searchTerm = "") {
+    const term = searchTerm.trim().toLowerCase();
 
-    const term = searchTerm
-        .trim()
-        .toLowerCase();
-
-    const filteredmodes = PRODUCTS.filter((game) => {
-
-        return game.name
-            .toLowerCase()
-            .includes(term);
-
-    });
-
-    rendermodes(
-        filteredmodes,
-        modesPageGrid
+    const filteredmodes = PRODUCTS.filter((game) =>
+        game.name.toLowerCase().includes(term)
     );
+
+    rendermodes(filteredmodes, modesPageGrid);
 }
 
 
@@ -274,30 +256,71 @@ function rendermodesPage(searchTerm = "") {
 
 function openGameDetails(gameId) {
 
-    const game = PRODUCTS.find(
-        (item) => item.id === gameId
-    );
+    const game = PRODUCTS.find((item) => item.id === gameId);
 
-    if (!game || !gameModal) {
-        return;
-    }
+    if (!game || !gameModal) return;
 
     if (modalTitle) modalTitle.textContent = game.name || "";
     if (modalCategory) modalCategory.textContent = game.category || "";
     if (modalPlatform) modalPlatform.textContent = game.platform || "";
     if (modalDescription) modalDescription.textContent = game.description || "";
-    if (modalVersion) modalVersion.textContent = game.version || "";
-    if (modalSize) modalSize.textContent = game.size || "";
-    if (modalFile) modalFile.textContent = game.fileName || "";
 
     if (modalImage) {
         modalImage.src = game.image || "";
         modalImage.alt = game.name || "";
     }
 
+    // ⭐ Version dropdown populate
+    if (versionSelect && game.versions && game.versions.length > 0) {
+
+        versionSelect.innerHTML = "";
+
+        const sorted = getSortedVersions(game);
+
+        sorted.forEach((v, idx) => {
+            const option = document.createElement("option");
+            option.value = idx;
+
+            const label = v.isLatest
+                ? `${v.version} (Latest) — ${v.size}`
+                : `${v.version} — ${v.size}`;
+
+            option.textContent = label;
+            versionSelect.appendChild(option);
+        });
+
+        versionSelect.selectedIndex = 0;
+
+        // Default file name dikhado
+        if (modalFile && sorted[0]) {
+            modalFile.textContent = sorted[0].fileName || "";
+        }
+
+        // Dropdown change par file name update
+        versionSelect.onchange = () => {
+            const idx = parseInt(versionSelect.value, 10);
+            const sel = sorted[idx];
+            if (sel && modalFile) {
+                modalFile.textContent = sel.fileName || "";
+            }
+        };
+    } else {
+        if (versionSelect) versionSelect.innerHTML = "";
+        if (modalFile) modalFile.textContent = "";
+    }
+
     if (modalDownload) {
         modalDownload.onclick = () => {
-            downloadGame(game.id);
+            const idx = versionSelect ? parseInt(versionSelect.value, 10) : 0;
+            const sorted = getSortedVersions(game);
+            const sel = sorted[idx];
+
+            if (!sel) {
+                showToast("No version available.");
+                return;
+            }
+
+            downloadGameVersion(game.id, sel.version);
         };
     }
 
@@ -313,10 +336,7 @@ function openGameDetails(gameId) {
    ========================================================= */
 
 function closeGameDetails() {
-
-    if (!gameModal) {
-        return;
-    }
+    if (!gameModal) return;
 
     gameModal.classList.remove("active");
     gameModal.setAttribute("aria-hidden", "true");
@@ -326,86 +346,81 @@ function closeGameDetails() {
 
 
 /* =========================================================
-   DOWNLOAD (sirf modal se call hoga)
+   DOWNLOAD SPECIFIC VERSION
    ========================================================= */
 
-function downloadGame(gameId) {
+function downloadGameVersion(gameId, versionNumber) {
 
-    const game = PRODUCTS.find(
-        (item) => item.id === gameId
-    );
+    const game = PRODUCTS.find((item) => item.id === gameId);
 
     if (!game) {
         showToast("Game not found.");
         return;
     }
 
-    if (!game.fileId) {
+    const version = (game.versions || []).find(v => v.version === versionNumber);
+
+    if (!version || !version.fileId) {
         showToast("Download file is not available.");
         return;
     }
 
-    const downloadURL = getDownloadURL(game);
+    const downloadURL = getDownloadURL(version.fileId);
 
-    window.open(
-        downloadURL,
-        "_blank",
-        "noopener,noreferrer"
-    );
+    window.open(downloadURL, "_blank", "noopener,noreferrer");
 
     incrementDownloadCount(gameId);
 
-    showToast(`Downloading ${game.name}...`);
+    showToast(`Downloading ${game.name} ${version.version}...`);
 }
 
 
 /* =========================================================
-   READ FROM JSONBIN
+   DOWNLOAD (Latest version - card ke liye)
+   ========================================================= */
+
+function downloadGame(gameId) {
+    const game = PRODUCTS.find(item => item.id === gameId);
+    if (!game) return;
+
+    const latest = getLatestVersion(game);
+    if (!latest) {
+        showToast("No version available.");
+        return;
+    }
+
+    downloadGameVersion(gameId, latest.version);
+}
+
+
+/* =========================================================
+   JSONBIN READ/WRITE
    ========================================================= */
 
 async function readBin() {
-
-    const response = await fetch(
-        `${JSONBIN_URL}/latest`,
-        {
-            method: "GET",
-            headers: {
-                "X-Master-Key": JSONBIN_API_KEY,
-                "X-Bin-Meta": "false"
-            }
+    const response = await fetch(`${JSONBIN_URL}/latest`, {
+        method: "GET",
+        headers: {
+            "X-Master-Key": JSONBIN_API_KEY,
+            "X-Bin-Meta": "false"
         }
-    );
+    });
 
-    if (!response.ok) {
-        throw new Error("Failed to read bin");
-    }
-
+    if (!response.ok) throw new Error("Failed to read bin");
     return await response.json();
 }
 
-
-/* =========================================================
-   WRITE TO JSONBIN
-   ========================================================= */
-
 async function writeBin(data) {
+    const response = await fetch(JSONBIN_URL, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "X-Master-Key": JSONBIN_API_KEY
+        },
+        body: JSON.stringify(data)
+    });
 
-    const response = await fetch(
-        JSONBIN_URL,
-        {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "X-Master-Key": JSONBIN_API_KEY
-            },
-            body: JSON.stringify(data)
-        }
-    );
-
-    if (!response.ok) {
-        throw new Error("Failed to write bin");
-    }
-
+    if (!response.ok) throw new Error("Failed to write bin");
     return await response.json();
 }
 
@@ -417,9 +432,7 @@ async function writeBin(data) {
 async function initializeCounts() {
 
     try {
-
         const data = await readBin();
-
         const downloads = data.downloads || {};
 
         PRODUCTS.forEach((game) => {
@@ -428,16 +441,12 @@ async function initializeCounts() {
         });
 
         let visitors = data.visitors || 0;
-
         const hasVisited = localStorage.getItem(VISITOR_STORAGE_KEY);
 
         if (!hasVisited) {
-
             visitors += 1;
             data.visitors = visitors;
-
             await writeBin(data);
-
             localStorage.setItem(VISITOR_STORAGE_KEY, "1");
         }
 
@@ -450,7 +459,6 @@ async function initializeCounts() {
         });
 
     } catch (error) {
-
         console.error("Initialize counts error:", error);
 
         PRODUCTS.forEach((game) => {
@@ -469,37 +477,25 @@ async function initializeCounts() {
 
 async function incrementDownloadCount(gameId) {
 
-    DOWNLOAD_COUNTS[gameId] =
-        (DOWNLOAD_COUNTS[gameId] || 0) + 1;
-
+    DOWNLOAD_COUNTS[gameId] = (DOWNLOAD_COUNTS[gameId] || 0) + 1;
     updateCountUI(gameId, DOWNLOAD_COUNTS[gameId]);
 
     try {
-
         const data = await readBin();
 
-        if (!data.downloads) {
-            data.downloads = {};
-        }
+        if (!data.downloads) data.downloads = {};
 
-        data.downloads[gameId] =
-            (data.downloads[gameId] || 0) + 1;
+        data.downloads[gameId] = (data.downloads[gameId] || 0) + 1;
 
         const saved = await writeBin(data);
-
-        const serverCount =
-            saved.record.downloads[gameId];
+        const serverCount = saved.record.downloads[gameId];
 
         DOWNLOAD_COUNTS[gameId] = serverCount;
-
         updateCountUI(gameId, serverCount);
 
-        console.log(
-            `✅ Download count saved for game ${gameId}: ${serverCount}`
-        );
+        console.log(`✅ Download count saved for game ${gameId}: ${serverCount}`);
 
     } catch (error) {
-
         console.error("Increment download error:", error);
     }
 }
@@ -512,24 +508,15 @@ async function incrementDownloadCount(gameId) {
 function updateCountUI(gameId, count) {
 
     const homeEl = document.getElementById(`count-${gameId}`);
-    if (homeEl) {
-        homeEl.textContent = Number(count).toLocaleString();
-    }
+    if (homeEl) homeEl.textContent = Number(count).toLocaleString();
 
-    const modesPageEl = document.querySelector(
-        `#modesPageGrid #count-${gameId}`
-    );
-    if (modesPageEl) {
-        modesPageEl.textContent = Number(count).toLocaleString();
-    }
+    const modesPageEl = document.querySelector(`#ModesPageGrid #count-${gameId}`);
+    if (modesPageEl) modesPageEl.textContent = Number(count).toLocaleString();
 }
 
-
 function updateVisitorUI(count) {
-
     if (visitorCountEl) {
-        visitorCountEl.textContent =
-            Number(count).toLocaleString();
+        visitorCountEl.textContent = Number(count).toLocaleString();
     }
 }
 
@@ -539,13 +526,9 @@ function updateVisitorUI(count) {
    ========================================================= */
 
 function showToast(message) {
-
-    if (!toast || !toastMessage) {
-        return;
-    }
+    if (!toast || !toastMessage) return;
 
     toastMessage.textContent = message;
-
     toast.classList.add("show");
 
     clearTimeout(showToast.timeout);
@@ -561,7 +544,6 @@ function showToast(message) {
    ========================================================= */
 
 function setupSearch() {
-
     if (headerSearch) {
         headerSearch.addEventListener("input", () => {
             renderHomemodes(headerSearch.value);
@@ -581,23 +563,16 @@ function setupSearch() {
    ========================================================= */
 
 function setupModal() {
+    if (!gameModal) return;
 
-    if (!gameModal) {
-        return;
-    }
-
-    const closeButtons = gameModal.querySelectorAll(
-        ".modal-close, .modal-overlay"
-    );
+    const closeButtons = gameModal.querySelectorAll(".modal-close, .modal-overlay");
 
     closeButtons.forEach((button) => {
         button.addEventListener("click", closeGameDetails);
     });
 
     gameModal.addEventListener("click", (event) => {
-        if (event.target === gameModal) {
-            closeGameDetails();
-        }
+        if (event.target === gameModal) closeGameDetails();
     });
 }
 
@@ -607,10 +582,7 @@ function setupModal() {
    ========================================================= */
 
 function setupMobileMenu() {
-
-    if (!mobileMenuBtn || !navMenu) {
-        return;
-    }
+    if (!mobileMenuBtn || !navMenu) return;
 
     mobileMenuBtn.addEventListener("click", () => {
         navMenu.classList.toggle("active");
@@ -639,7 +611,6 @@ function setupNavigation() {
     const modesPage = document.getElementById("ModesPage");
 
     navLinks.forEach((link) => {
-
         link.addEventListener("click", (event) => {
 
             const href = link.getAttribute("href");
@@ -648,7 +619,6 @@ function setupNavigation() {
             link.classList.add("active");
 
             if (href === "#Modes") {
-
                 event.preventDefault();
 
                 if (homeSection) homeSection.style.display = "none";
@@ -658,16 +628,12 @@ function setupNavigation() {
                 rendermodesPage();
 
                 PRODUCTS.forEach((game) => {
-                    updateCountUI(
-                        game.id,
-                        DOWNLOAD_COUNTS[game.id] || 0
-                    );
+                    updateCountUI(game.id, DOWNLOAD_COUNTS[game.id] || 0);
                 });
 
                 window.scrollTo({ top: 0, behavior: "smooth" });
 
             } else if (href === "#home") {
-
                 event.preventDefault();
 
                 if (modesPage) modesPage.classList.remove("active");
@@ -682,9 +648,7 @@ function setupNavigation() {
     const homeLink = document.getElementById("homeLink");
 
     if (homeLink) {
-
         homeLink.addEventListener("click", (event) => {
-
             event.preventDefault();
 
             if (modesPage) modesPage.classList.remove("active");
@@ -693,10 +657,7 @@ function setupNavigation() {
 
             navLinks.forEach((item) => item.classList.remove("active"));
 
-            const homeNav = document.querySelector(
-                '.nav-link[href="#home"]'
-            );
-
+            const homeNav = document.querySelector('.nav-link[href="#home"]');
             if (homeNav) homeNav.classList.add("active");
 
             window.scrollTo({ top: 0, behavior: "smooth" });
@@ -710,9 +671,7 @@ function setupNavigation() {
    ========================================================= */
 
 document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-        closeGameDetails();
-    }
+    if (event.key === "Escape") closeGameDetails();
 });
 
 
@@ -732,33 +691,20 @@ window.downloadGame = downloadGame;
 function loadProducts() {
 
     if (typeof PRODUCTS_DATA === "undefined") {
-
-        console.error(
-            "❌ data.js not loaded or PRODUCTS_DATA missing."
-        );
-
+        console.error("❌ data.js not loaded or PRODUCTS_DATA missing.");
         PRODUCTS = [];
-
         return false;
     }
 
     if (!Array.isArray(PRODUCTS_DATA)) {
-
-        console.error(
-            "❌ PRODUCTS_DATA array nahi hai."
-        );
-
+        console.error("❌ PRODUCTS_DATA array nahi hai.");
         PRODUCTS = [];
-
         return false;
     }
 
     PRODUCTS = PRODUCTS_DATA;
 
-    console.log(
-        `✅ Loaded ${PRODUCTS.length} product(s)`
-    );
-
+    console.log(`✅ Loaded ${PRODUCTS.length} product(s)`);
     return true;
 }
 
@@ -770,19 +716,12 @@ function loadProducts() {
 document.addEventListener("DOMContentLoaded", async () => {
 
     loadProducts();
-
     renderHomemodes();
-
     rendermodesPage();
-
     setupSearch();
-
     setupModal();
-
     setupMobileMenu();
-
     setupNavigation();
 
     await initializeCounts();
-
 });
