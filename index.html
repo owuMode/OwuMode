@@ -2,11 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OwuMode - Free Windows Modes</title>
     <link rel="icon" type="image/x-icon" href="icon.ico">
     <link rel="stylesheet" href="style.css">
@@ -15,7 +11,6 @@
 <body>
 
     <!-- ==================== HEADER ==================== -->
-
     <header class="site-header">
         <div class="container header-inner">
 
@@ -30,26 +25,15 @@
             </nav>
 
             <div class="header-search">
-                <input
-                    type="search"
-                    id="headerSearch"
-                    placeholder="Search Modes..."
-                    autocomplete="off"
-                >
+                <input type="search" id="headerSearch" placeholder="Search Modes..." autocomplete="off">
             </div>
 
-            <!-- Visitor Counter (sirf number) -->
             <div class="visitor-counter" title="Total Visitors">
                 <span class="visitor-icon">👁</span>
                 <span class="visitor-number" id="visitorCount">0</span>
             </div>
 
-            <button
-                class="mobile-menu-btn"
-                id="mobileMenuBtn"
-                type="button"
-                aria-label="Open menu"
-            >
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -60,11 +44,9 @@
 
 
     <!-- ==================== MAIN ==================== -->
-
     <main>
 
         <!-- ==================== HOME ==================== -->
-
         <section class="hero" id="home">
             <div class="container hero-inner">
 
@@ -76,13 +58,9 @@
                         <span>For Windows</span>
                     </h1>
 
-                    <p>
-                        Discover and download Windows Modes from OwuMode.
-                    </p>
+                    <p>Discover and download Windows Modes from OwuMode.</p>
 
-                    <a href="#Modes" class="hero-btn">
-                        Browse Modes
-                    </a>
+                    <a href="#Modes" class="hero-btn">Browse Modes</a>
                 </div>
 
                 <div class="hero-decoration">
@@ -113,7 +91,6 @@
 
 
         <!-- ==================== Modes ==================== -->
-
         <section class="Modes-section" id="Modes">
             <div class="container">
 
@@ -128,21 +105,12 @@
                     </div>
                 </div>
 
-                <div
-                    class="game-grid"
-                    id="gameGrid"
-                ></div>
+                <div class="game-grid" id="gameGrid"></div>
 
-                <div
-                    class="empty-state"
-                    id="noModes"
-                    style="display: none;"
-                >
+                <div class="empty-state" id="noModes" style="display: none;">
                     <div class="empty-icon">⌕</div>
                     <h3>No Modes found</h3>
-                    <p>
-                        Try searching with a different game name.
-                    </p>
+                    <p>Try searching with a different game name.</p>
                 </div>
 
             </div>
@@ -150,11 +118,7 @@
 
 
         <!-- ==================== Modes PAGE ==================== -->
-
-        <section
-            class="Modes-page"
-            id="ModesPage"
-        >
+        <section class="Modes-page" id="ModesPage">
             <div class="container">
 
                 <div class="Modes-page-header">
@@ -164,19 +128,11 @@
                     </div>
 
                     <div class="Modes-page-search">
-                        <input
-                            type="search"
-                            id="ModesSearch"
-                            placeholder="Search Modes..."
-                            autocomplete="off"
-                        >
+                        <input type="search" id="ModesSearch" placeholder="Search Modes..." autocomplete="off">
                     </div>
                 </div>
 
-                <div
-                    class="game-grid"
-                    id="ModesPageGrid"
-                ></div>
+                <div class="game-grid" id="ModesPageGrid"></div>
 
             </div>
         </section>
@@ -185,102 +141,51 @@
 
 
     <!-- ==================== GAME DETAILS MODAL ==================== -->
-
-    <div
-        class="modal"
-        id="gameModal"
-        aria-hidden="true"
-    >
+    <div class="modal" id="gameModal" aria-hidden="true">
 
         <div class="modal-overlay"></div>
 
         <div class="modal-container">
 
-            <button
-                class="modal-close"
-                type="button"
-                aria-label="Close"
-            >
+            <button class="modal-close" type="button" aria-label="Close">
                 &times;
             </button>
 
             <div class="modal-content">
 
                 <div class="modal-cover">
-                    <img
-                        id="modalImage"
-                        src=""
-                        alt=""
-                    >
+                    <img id="modalImage" src="" alt="">
                 </div>
 
                 <div class="modal-info">
 
-                    <span
-                        class="modal-category"
-                        id="modalCategory"
-                    ></span>
+                    <span class="modal-category" id="modalCategory"></span>
 
                     <h2 id="modalTitle"></h2>
 
-                    <p
-                        class="modal-description"
-                        id="modalDescription"
-                    ></p>
+                    <p class="modal-description" id="modalDescription"></p>
+
+                    <!-- ⭐ VERSION DROPDOWN -->
+                    <div class="modal-version-select">
+                        <label for="versionSelect" class="detail-label">Select Version</label>
+                        <select id="versionSelect"></select>
+                    </div>
 
                     <div class="modal-details">
 
                         <div class="modal-detail-item">
-                            <span class="detail-label">
-                                Platform
-                            </span>
-
-                            <span
-                                class="detail-value"
-                                id="modalPlatform"
-                            ></span>
+                            <span class="detail-label">Platform</span>
+                            <span class="detail-value" id="modalPlatform"></span>
                         </div>
 
                         <div class="modal-detail-item">
-                            <span class="detail-label">
-                                Version
-                            </span>
-
-                            <span
-                                class="detail-value"
-                                id="modalVersion"
-                            ></span>
-                        </div>
-
-                        <div class="modal-detail-item">
-                            <span class="detail-label">
-                                Size
-                            </span>
-
-                            <span
-                                class="detail-value"
-                                id="modalSize"
-                            ></span>
-                        </div>
-
-                        <div class="modal-detail-item">
-                            <span class="detail-label">
-                                File
-                            </span>
-
-                            <span
-                                class="detail-value"
-                                id="modalFile"
-                            ></span>
+                            <span class="detail-label">File</span>
+                            <span class="detail-value" id="modalFile"></span>
                         </div>
 
                     </div>
 
-                    <button
-                        class="modal-download-btn"
-                        id="modalDownload"
-                        type="button"
-                    >
+                    <button class="modal-download-btn" id="modalDownload" type="button">
                         Download Mode
                     </button>
 
@@ -294,17 +199,12 @@
 
 
     <!-- ==================== TOAST ==================== -->
-
-    <div
-        class="toast"
-        id="toast"
-    >
+    <div class="toast" id="toast">
         <span id="toastMessage"></span>
     </div>
 
 
     <!-- ==================== FOOTER ==================== -->
-
     <footer class="site-footer">
         <div class="container footer-inner">
 
@@ -313,9 +213,7 @@
                 <span>OwuMode</span>
             </div>
 
-            <p>
-                © 2026 OwuMode. All rights reserved.
-            </p>
+            <p>© 2026 OwuMode. All rights reserved.</p>
 
         </div>
     </footer>
