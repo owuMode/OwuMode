@@ -114,7 +114,7 @@ function renderRequirements(game) {
 
     requirementsGrid.innerHTML = `
         <div class="req-box">
-            <h3>🖥 Minimum</h3>
+            <h3>Minimum</h3>
             <ul>${minList}</ul>
         </div>
         <div class="req-box">
