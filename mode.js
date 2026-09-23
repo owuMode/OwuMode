@@ -154,7 +154,7 @@ function renderDetails(game) {
     if (detailsCategory) detailsCategory.textContent = game.category || "Mod";
     if (detailsTitle) detailsTitle.textContent = game.name || "";
     if (detailsDescription) detailsDescription.innerHTML = formatDescription(game.description || "");
-    if (tagPlatform) tagPlatform.textContent = "🖥 " + (game.platform || "Windows");
+    if (tagPlatform) tagPlatform.textContent =  (game.platform || "Windows");
 
     const downloadCount = DOWNLOAD_COUNTS[game.id] || 0;
     if (detailsCount) detailsCount.textContent = Number(downloadCount).toLocaleString();
@@ -166,7 +166,7 @@ function renderDetails(game) {
         const latest = sorted[0];
 
         if (detailsSize) detailsSize.textContent = latest.size || "";
-        if (tagSize) tagSize.textContent = "📦 " + (latest.size || "—");
+        if (tagSize) tagSize.textContent =  (latest.size || "—");
         if (tagVersion) tagVersion.textContent = latest.version || "—";
         if (downloadLatestLabel) downloadLatestLabel.textContent = "Latest " + (latest.version || "");
 
@@ -190,8 +190,8 @@ function renderDetails(game) {
                         ${v.isLatest ? '<span class="version-latest-badge">Latest</span>' : ''}
                     </div>
                     <div class="version-card-meta">
-                        <span>📅 ${formatDate(v.date)}</span>
-                        <span>📦 ${v.size}</span>
+                        <span>${formatDate(v.date)}</span>
+                        <span>${v.size}</span>
                     </div>
                     <div class="version-card-file">${v.fileName || ''}</div>
                     <button class="version-card-btn" onclick="downloadVersion(${idx})" type="button">
