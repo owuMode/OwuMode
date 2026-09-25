@@ -32,7 +32,7 @@ const PRODUCTS_DATA = [
                 version: "v2.9.1",
                 size: "38 MB",
                 fileName: "RoyalEnvoy3_ModMenu_v1.0.exe",
-                url: "https://t.me/owumode_files/2",
+                url: "https://t.me/owumode/3",
                 date: "2026-09-01",
                 isLatest: false
             },
@@ -40,7 +40,7 @@ const PRODUCTS_DATA = [
                 version: "v2.9.2",
                 size: "40 MB",
                 fileName: "RoyalEnvoy3_ModMenu_v1.1.exe",
-                url: "https://t.me/owumode_files/5",
+                url: "https://t.me/owumode/4",
                 date: "2026-09-23",
                 isLatest: true
             }
