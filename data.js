@@ -48,42 +48,4 @@ const PRODUCTS_DATA = [
     },
 
 
-    // ============================================
-    // NAYA MODE ADD KARNE KA EXAMPLE
-    // ============================================
-    // {
-    //     id: 2,
-    //     slug: "naya-game",
-    //     name: "Naya Game",
-    //     category: "modes",
-    //     platform: "Windows",
-    //     image: "https://...",
-    //     badge: "New",
-    //     link: "https://...",
-    
-    //     description: "Yahan description likh...",
-    
-    //     requirements: {
-    //         minimum: [
-    //             "OS: Windows 10",
-    //             "RAM: 4 GB"
-    //         ],
-    //         recommended: [
-    //             "OS: Windows 11",
-    //             "RAM: 8 GB"
-    //         ]
-    //     },
-    
-    //     versions: [
-    //         {
-    //             version: "v1.0.0",
-    //             size: "50 MB",
-    //             fileName: "NayaGame_v1.0.exe",
-    //             url: "https://t.me/owumode_files/10",
-    //             date: "2026-10-01",
-    //             isLatest: true
-    //         }
-    //     ]
-    // }
-
 ];
