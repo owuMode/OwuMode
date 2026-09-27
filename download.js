@@ -79,23 +79,19 @@ function renderLatestCard() {
 
                 <div class="dl-latest-info-row">
                     <span class="dl-info-item">
-                        <span class="dl-info-icon">📅</span>
                         ${formatDateLong(latest.date)}
                     </span>
                     <span class="dl-info-dot">·</span>
                     <span class="dl-info-item">
-                        <span class="dl-info-icon">💾</span>
                         ${escapeHTML(latest.size)}
                     </span>
                     <span class="dl-info-dot">·</span>
                     <span class="dl-info-item">
-                        <span class="dl-info-icon">🖥</span>
                         Windows x64
                     </span>
                 </div>
 
                 <div class="dl-latest-file">
-                    <span class="dl-file-label">📄 File:</span>
                     <code data-copy="${escapeHTML(latest.fileName)}">${escapeHTML(latest.fileName)}</code>
                 </div>
 
@@ -171,11 +167,9 @@ function renderAllVersions() {
 
                     <div class="dl-version-meta">
                         <span class="dl-meta-item">
-                            <span class="dl-meta-icon">📅</span>
                             ${formatDate(v.date)}
                         </span>
                         <span class="dl-meta-item">
-                            <span class="dl-meta-icon">💾</span>
                             ${escapeHTML(v.size)}
                         </span>
                     </div>
