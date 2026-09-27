@@ -382,7 +382,7 @@ img { max-width: 100%; display: block; }
     margin-left: auto;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
     padding: 7px 14px;
     background: var(--bg);
     border: 1px solid var(--border);
@@ -399,7 +399,11 @@ img { max-width: 100%; display: block; }
     background: var(--primary-light);
 }
 
-.visitor-icon { font-size: 13px; }
+.visitor-icon {
+    display: inline-flex;
+    align-items: center;
+    color: var(--primary);
+}
 
 .mobile-menu-btn {
     display: none;
@@ -656,7 +660,7 @@ img { max-width: 100%; display: block; }
 .hsf-cell.v { color: #ffcc00; }
 
 /* ═══════════════════════════════════════════════════════════
-   5. STATS BAR
+   5. STATS BAR (3-column, no Downloads)
    ═══════════════════════════════════════════════════════════ */
 
 .stats-bar {
@@ -667,7 +671,7 @@ img { max-width: 100%; display: block; }
 
 .stats-inner {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-5);
 }
 
@@ -748,6 +752,17 @@ img { max-width: 100%; display: block; }
     font-size: 26px;
     margin-bottom: var(--space-5);
     transition: transform var(--t-base);
+    color: var(--primary);
+}
+
+.feature-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .feature-card:hover .feature-icon {
@@ -1063,7 +1078,7 @@ img { max-width: 100%; display: block; }
 }
 
 .faq-item[open] summary::after {
-    content: "−";
+    content: "\2212";
     transform: rotate(180deg);
     background: var(--primary);
     color: var(--white);
@@ -1247,7 +1262,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* ═══════════════════════════════════════════════════════════
-   12. DOWNLOAD PAGE — REDESIGNED
+   12. DOWNLOAD PAGE
    ═══════════════════════════════════════════════════════════ */
 
 .dl-page { background: var(--bg); }
@@ -1401,8 +1416,6 @@ img { max-width: 100%; display: block; }
     border: 1px solid #f0d97a;
 }
 
-.dl-latest-badge-star { font-size: 13px; }
-
 .dl-latest-version {
     font-size: clamp(28px, 3.5vw, 40px);
     font-weight: var(--fw-black);
@@ -1429,7 +1442,6 @@ img { max-width: 100%; display: block; }
     gap: 5px;
 }
 
-.dl-info-icon { font-size: 14px; }
 .dl-info-dot { color: #cbd5e1; }
 
 .dl-latest-file {
@@ -1461,11 +1473,6 @@ img { max-width: 100%; display: block; }
     padding: 0;
     cursor: pointer;
     word-break: break-all;
-}
-
-.dl-latest-file code:hover {
-    color: var(--primary-dark);
-    text-decoration: underline;
 }
 
 .dl-checksum {
@@ -1540,23 +1547,9 @@ img { max-width: 100%; display: block; }
     overflow: hidden;
 }
 
-.dl-btn-primary::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.25) 50%, transparent 70%);
-    transform: translateX(-100%);
-    transition: transform 0.7s ease;
-    pointer-events: none;
-}
-
 .dl-btn-primary:hover {
     transform: translateY(-3px);
     box-shadow: 0 22px 50px rgba(76, 175, 80, 0.55);
-}
-
-.dl-btn-primary:hover::after {
-    transform: translateX(100%);
 }
 
 .dl-btn-icon {
@@ -1626,8 +1619,10 @@ img { max-width: 100%; display: block; }
 }
 
 .dl-latest-trust span::before {
+    content: "\2713";
     color: var(--green);
     margin-right: 4px;
+    font-weight: var(--fw-black);
 }
 
 .dl-content-section { padding: 0 0 var(--space-12); }
@@ -1780,8 +1775,6 @@ img { max-width: 100%; display: block; }
     align-items: center;
     gap: 5px;
 }
-
-.dl-meta-icon { font-size: 13px; }
 
 .dl-version-file {
     font-family: 'JetBrains Mono', Consolas, monospace;
@@ -1991,14 +1984,13 @@ img { max-width: 100%; display: block; }
 }
 
 .dl-req-list li::before {
-    content: "✓";
+    content: "\2713";
     position: absolute;
     left: 0;
     color: var(--green);
     font-weight: var(--fw-black);
 }
 
-/* ─── Share Grid ─── */
 .dl-share-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -2035,9 +2027,7 @@ img { max-width: 100%; display: block; }
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.dl-share-btn:hover svg {
-    transform: scale(1.1);
-}
+.dl-share-btn:hover svg { transform: scale(1.1); }
 
 .dl-share-twitter:hover  { background: #000000; }
 .dl-share-telegram:hover { background: #229ED9; }
@@ -2045,7 +2035,6 @@ img { max-width: 100%; display: block; }
 .dl-share-whatsapp:hover { background: #25D366; }
 .dl-share-copy:hover     { background: var(--green); }
 
-/* ─── Help Card ─── */
 .dl-panel-help {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     border: none;
@@ -2161,7 +2150,7 @@ img { max-width: 100%; display: block; }
 }
 
 .changelog-list-items li::before {
-    content: "▸";
+    content: "\25B8";
     position: absolute;
     left: 6px;
     color: var(--primary);
@@ -2581,7 +2570,7 @@ pre { position: relative; }
 .cv-whatsnew-list li:last-child { border-bottom: none; }
 
 .cv-whatsnew-list li::before {
-    content: "✦";
+    content: "\2726";
     position: absolute;
     left: 4px;
     color: var(--primary);
@@ -2718,9 +2707,7 @@ body.cv-low-end * { animation-duration: 0.01s !important; }
     .features-grid { grid-template-columns: repeat(2, 1fr); }
     .how-grid { grid-template-columns: 1fr; }
     .screenshots-grid { grid-template-columns: 1fr 1fr; }
-    .stats-inner { grid-template-columns: repeat(2, 1fr); }
-    .stat-item:nth-child(2) { border-right: none; }
-    .stat-item:nth-child(-n+2) { border-bottom: 1px solid var(--border); padding-bottom: var(--space-4); }
+    .stats-inner { grid-template-columns: repeat(3, 1fr); }
     .footer-inner { grid-template-columns: 1fr 1fr; }
     .docs-layout { grid-template-columns: 1fr; }
     .docs-sidebar { position: static; }
@@ -2768,12 +2755,14 @@ body.cv-low-end * { animation-duration: 0.01s !important; }
         justify-content: flex-start;
     }
     .dl-version-btn { min-width: 100%; }
+    .stats-inner { grid-template-columns: 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: var(--space-4); }
+    .stat-item:last-child { border-bottom: none; }
 }
 
 @media (max-width: 520px) {
     .hero h1 { font-size: 34px; }
     .hero-shot { display: none; }
-    .stats-inner { grid-template-columns: 1fr 1fr; }
     .footer-inner { grid-template-columns: 1fr; text-align: center; }
     .footer-brand { justify-content: center; }
     .hero-actions { justify-content: center; }
