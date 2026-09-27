@@ -296,7 +296,7 @@
             <div class="cv-whatsnew-modal" role="dialog" aria-modal="true">
                 <button class="cv-whatsnew-close" aria-label="Close">×</button>
 
-                <div class="cv-whatsnew-badge">🎉 What's New</div>
+                <div class="cv-whatsnew-badge">What's New</div>
                 <h3 class="cv-whatsnew-title">${version.version}</h3>
                 <p class="cv-whatsnew-sub">Released ${new Date(version.date).toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" })}</p>
 
