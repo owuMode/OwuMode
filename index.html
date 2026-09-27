@@ -69,7 +69,12 @@
             </nav>
 
             <div class="visitor-counter">
-                <span class="visitor-icon">👁</span>
+                <span class="visitor-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </span>
                 <span id="visitorCount">0</span>
             </div>
 
@@ -90,19 +95,19 @@
                 <div class="hero-content">
                     <span class="hero-label" id="heroLabel" data-i18n="hero.label">v1.0.0 — Latest Release</span>
                     <h1>
-                        <span data-i18n="hero.title.line1">Find & Verify</span>
+                        <span data-i18n="hero.title.line1">Find &amp; Verify</span>
                         <span data-i18n="hero.title.line2">Pointer Chains</span>
                     </h1>
-                    <p data-i18n="hero.desc">A modern pointer chain verifier & memory scanner for Windows. Dark UI, five scanning modes, auto-update — free, no ads.</p>
+                    <p data-i18n="hero.desc">A modern pointer chain verifier and memory scanner for Windows. Dark UI, five scanning modes, auto-update — free, no ads.</p>
                     <div class="hero-actions">
-                        <a href="download.html" class="hero-btn" data-i18n="hero.btn.download">⬇ Download Free</a>
-                        <a href="docs.html" class="hero-btn-secondary" data-i18n="hero.btn.docs">View Docs →</a>
+                        <a href="download.html" class="hero-btn" data-i18n="hero.btn.download">Download Free</a>
+                        <a href="docs.html" class="hero-btn-secondary" data-i18n="hero.btn.docs">View Docs &rarr;</a>
                     </div>
                 </div>
 
                 <div class="hero-shot-wrap">
                     <div class="hero-shot">
-                        <img src="screenshot-1.png" alt="ChainVerifier screenshot"
+                        <img src="Screenshot-1.png" alt="ChainVerifier screenshot"
                              onerror="this.style.display='none'; this.parentNode.querySelector('.hero-shot-fallback').classList.add('show');">
                         <div class="hero-shot-fallback">
                             <div class="hsf-bar">
@@ -111,7 +116,9 @@
                                 <span class="hsf-dot g"></span>
                                 <span style="margin-left:10px;color:#7a8ea3;">ChainVerifier.exe</span>
                             </div>
-                            <div class="hsf-row hd"><span>Chain</span><span>Match</span><span>Value</span></div>
+                            <div class="hsf-row hd">
+                                <span>Chain</span><span>Match</span><span>Value</span>
+                            </div>
                             <div class="hsf-row">
                                 <span class="hsf-cell b">game.exe+0x89D244</span>
                                 <span class="hsf-cell g">YES</span>
@@ -125,7 +132,12 @@
                             <div class="hsf-row">
                                 <span class="hsf-cell b">game.exe+0xE2944</span>
                                 <span style="color:#ff7777;">NO</span>
-                                <span class="hsf-cell v">—</span>
+                                <span class="hsf-cell v">&mdash;</span>
+                            </div>
+                            <div class="hsf-row">
+                                <span class="hsf-cell b">game.exe+0x7635C</span>
+                                <span class="hsf-cell g">YES</span>
+                                <span class="hsf-cell v">999</span>
                             </div>
                         </div>
                     </div>
@@ -134,7 +146,7 @@
             </div>
         </section>
 
-        <!-- STATS -->
+        <!-- STATS (Downloads removed) -->
         <section class="stats-bar">
             <div class="container stats-inner">
                 <div class="stat-item">
@@ -144,10 +156,6 @@
                 <div class="stat-item">
                     <div class="stat-value" id="statSize">44 MB</div>
                     <div class="stat-label" data-i18n="stat.size">Download Size</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="statDownloads">0</div>
-                    <div class="stat-label" data-i18n="stat.downloads">Downloads</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value">100%</div>
@@ -191,18 +199,18 @@
                 <div class="how-grid">
                     <div class="how-card">
                         <span class="how-number">1</span>
-                        <h3>Download & Extract</h3>
+                        <h3>Download &amp; Extract</h3>
                         <p>Grab the ZIP from the download page and extract it anywhere. ChainVerifier is fully portable.</p>
                     </div>
                     <div class="how-card">
                         <span class="how-number">2</span>
                         <h3>Run as Administrator</h3>
-                        <p>Right-click <code data-copy="ChainVerifier.exe">ChainVerifier.exe</code> → <b>Run as Administrator</b>.</p>
+                        <p>Right-click <code data-copy="ChainVerifier.exe">ChainVerifier.exe</code> and select <b>Run as Administrator</b>.</p>
                     </div>
                     <div class="how-card">
                         <span class="how-number">3</span>
-                        <h3>Attach & Verify</h3>
-                        <p>Open <b>Tools → Attach to Process</b>, pick your target, enter an address, and click <b>Verify All Chains</b>.</p>
+                        <h3>Attach &amp; Verify</h3>
+                        <p>Open <b>Tools &rarr; Attach to Process</b>, pick your target, enter an address, and click <b>Verify All Chains</b>.</p>
                     </div>
                 </div>
             </div>
@@ -217,7 +225,7 @@
                         <p data-i18n="cta.desc">Download the latest ChainVerifier — free, virus-free, no registration required.</p>
                     </div>
                     <div class="cta-right">
-                        <a href="download.html" class="cta-btn" data-i18n="cta.download">⬇ Download Now</a>
+                        <a href="download.html" class="cta-btn" data-i18n="cta.download">Download Now</a>
                         <a href="docs.html" class="cta-btn-secondary" data-i18n="cta.docs">Read Docs</a>
                     </div>
                 </div>
@@ -227,9 +235,10 @@
         <!-- FAQ PREVIEW -->
         <section class="section section-alt">
             <div class="container">
-                <div class="section-header" style="text-align:center; margin-left:auto; margin-right:auto;">
+                <div class="section-header centered">
                     <span class="section-label">FAQ</span>
                     <h2 class="section-title">Frequently Asked Questions</h2>
+                    <p class="section-desc">Quick answers to the most common questions.</p>
                 </div>
                 <div class="faq-grid" id="faqGrid"></div>
             </div>
@@ -248,7 +257,7 @@
                         <span class="brand-logo">C</span>
                         <span>ChainVerifier</span>
                     </div>
-                    <p class="footer-about">Modern pointer chain verifier & memory scanner for Windows. Built by OwuMode.</p>
+                    <p class="footer-about">Modern pointer chain verifier and memory scanner for Windows. Built by OwuMode.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Product</h4>
@@ -272,11 +281,10 @@
                     <ul>
                         <li><a href="privacy.html">Privacy Policy</a></li>
                         <li><a href="terms.html">Terms</a></li>
-                        <li><a href="https://github.com/owuMode/ChainVerifier" target="_blank" rel="noopener">Source Code</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">© 2026 ChainVerifier · Built by OwuMode</div>
+            <div class="footer-bottom">&copy; 2026 ChainVerifier &middot; Built by OwuMode</div>
         </div>
     </footer>
 
