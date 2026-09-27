@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - ChainVerifier</title>
+    <meta name="description" content="Frequently asked questions about ChainVerifier — installation, admin rights, antivirus, updates, and usage.">
+    <meta name="theme-color" content="#1f6aa5">
+    <link rel="canonical" href="https://owumode.store/faq.html">
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="icon.ico">
+    <link rel="apple-touch-icon" href="icon.ico">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Is ChainVerifier free?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes — completely free. No ads, no registration, no hidden fees."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do I need to run it as Administrator?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. To attach to other processes and read/write their memory, Windows requires admin privileges."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I update to a new version?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "ChainVerifier checks GitHub on startup and shows a dialog when an update is available."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-logo"><img src="logo.png" alt="ChainVerifier" onerror="this.parentNode.textContent='C';"></span>
+                <span class="brand-name">ChainVerifier</span>
+                <span class="brand-version" id="headerVersion">v1.0.0</span>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link" data-i18n="nav.home">Home</a>
+                <a href="download.html" class="nav-link" data-i18n="nav.download">Download</a>
+                <a href="docs.html" class="nav-link" data-i18n="nav.docs">Docs</a>
+                <a href="changelog.html" class="nav-link" data-i18n="nav.changelog">Changelog</a>
+                <a href="faq.html" class="nav-link active" data-i18n="nav.faq">FAQ</a>
+            </nav>
+            <div class="visitor-counter">
+                <span class="visitor-icon">👁</span>
+                <span id="visitorCount">0</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container">
+            <div class="section-header" style="text-align:center; margin-left:auto; margin-right:auto;">
+                <span class="section-label">Help Center</span>
+                <h1 class="section-title">Frequently Asked Questions</h1>
+                <p class="section-desc" style="margin-left:auto; margin-right:auto;">Common questions about ChainVerifier.</p>
+            </div>
+
+            <div class="faq-grid" id="faqGrid"></div>
+        </div>
+    </main>
+
+    <div class="toast" id="toast"><span id="toastMessage"></span></div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div>
+                    <div class="footer-brand">
+                        <span class="brand-logo">C</span>
+                        <span>ChainVerifier</span>
+                    </div>
+                    <p class="footer-about">Modern pointer chain verifier & memory scanner for Windows. Built by OwuMode.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="download.html">Download</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="changelog.html">Changelog</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://github.com/owuMode/ChainVerifier" target="_blank" rel="noopener">GitHub</a></li>
+                        <li><a href="https://github.com/owuMode/ChainVerifier/issues" target="_blank" rel="noopener">Report Issue</a></li>
+                        <li><a href="https://t.me/owumode" target="_blank" rel="noopener">Telegram</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">© 2026 ChainVerifier · Built by OwuMode</div>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="i18n.js"></script>
+    <script src="ui-kit.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const el = document.getElementById("faqGrid");
+            const latest = APP_VERSIONS.find(v => v.isLatest);
+            if (latest && document.getElementById("headerVersion")) {
+                document.getElementById("headerVersion").textContent = latest.version;
+            }
+
+            if (el) {
+                el.innerHTML = APP_FAQ.map((item, i) => `
+                    <details class="faq-item" ${i === 0 ? "open" : ""}>
+                        <summary>${item.q}</summary>
+                        <div class="faq-body">${item.a}</div>
+                    </details>
+                `).join("");
+            }
+        });
+
+        document.getElementById("mobileMenuBtn").addEventListener("click", () => {
+            document.getElementById("navMenu").classList.toggle("active");
+        });
+
+        (async () => {
+            try {
+                const r = await fetch("https://api.jsonbin.io/v3/b/6ab26f19ffd5d1605322e359/latest", {
+                    headers: { "X-Master-Key": "$2a$10$RLbYDBBgLAt9fbfPwm4ORe5LBvZF82w/VcDM0PcHeLnNwNt02r/gu", "X-Bin-Meta": "false" }
+                });
+                const d = await r.json();
+                const v = d.visitors || 0;
+                const el = document.getElementById("visitorCount");
+                if (el && typeof window.cvAnimateNumber === "function") {
+                    window.cvAnimateNumber(el, v, 900);
+                } else if (el) {
+                    el.textContent = Number(v).toLocaleString();
+                }
+            } catch (e) {}
+        })();
+    </script>
+</body>
+</html>

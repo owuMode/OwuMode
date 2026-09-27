@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - ChainVerifier</title>
+    <meta name="description" content="Complete documentation for ChainVerifier — installation, attach process, verify chains, all scan modes, tools, and shortcuts.">
+    <meta name="theme-color" content="#1f6aa5">
+    <link rel="canonical" href="https://owumode.store/docs.html">
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="icon.ico">
+    <link rel="apple-touch-icon" href="icon.ico">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-logo"><img src="logo.png" alt="ChainVerifier" onerror="this.parentNode.textContent='C';"></span>
+                <span class="brand-name">ChainVerifier</span>
+                <span class="brand-version" id="headerVersion">v1.0.0</span>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link" data-i18n="nav.home">Home</a>
+                <a href="download.html" class="nav-link" data-i18n="nav.download">Download</a>
+                <a href="docs.html" class="nav-link active" data-i18n="nav.docs">Docs</a>
+                <a href="changelog.html" class="nav-link" data-i18n="nav.changelog">Changelog</a>
+                <a href="faq.html" class="nav-link" data-i18n="nav.faq">FAQ</a>
+            </nav>
+            <div class="visitor-counter">
+                <span class="visitor-icon">👁</span>
+                <span id="visitorCount">0</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container">
+            <div class="docs-layout">
+
+                <aside class="docs-sidebar">
+                    <h4>Contents</h4>
+                    <ul>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#install">Installation</a></li>
+                        <li><a href="#attach">Attach to Process</a></li>
+                        <li><a href="#chains">Managing Chains</a></li>
+                        <li><a href="#verify">Verify Chains</a></li>
+                        <li><a href="#scans">Scan Modes</a></li>
+                        <li><a href="#tools">Tools</a></li>
+                        <li><a href="#save">Save & Load</a></li>
+                        <li><a href="#settings">Settings</a></li>
+                        <li><a href="#shortcuts">Keyboard Shortcuts</a></li>
+                    </ul>
+                </aside>
+
+                <article class="docs-content">
+
+                    <section id="overview">
+                        <h1>ChainVerifier Documentation</h1>
+                        <p>ChainVerifier is a Windows tool for finding, verifying, and managing pointer chains in any running process. It's designed to be fast, clean, and reliable — whether you're a beginner following a pointer chain tutorial or a reverse engineer working on a complex target.</p>
+
+                        <div class="info-box">
+                            💡 <b>New to pointer chains?</b> A pointer chain is a sequence of memory addresses where each address contains a pointer to the next one, ending at the actual value you want. ChainVerifier lets you define these chains and resolve them live.
+                        </div>
+                    </section>
+
+                    <section id="install">
+                        <h2>Installation</h2>
+                        <ol>
+                            <li>Download the latest ZIP from the <a href="download.html" style="color:var(--primary);font-weight:700;">download page</a></li>
+                            <li>Extract the folder anywhere — no installer needed</li>
+                            <li>Right-click <code data-copy="ChainVerifier.exe">ChainVerifier.exe</code> → <b>Run as Administrator</b></li>
+                        </ol>
+                        <div class="warn-box">
+                            ⚠ <b>Do not</b> move the EXE out of its folder — it needs the <code data-copy="_internal">_internal\</code> directory alongside it to run.
+                        </div>
+                    </section>
+
+                    <section id="attach">
+                        <h2>Attach to Process</h2>
+                        <p>Before doing anything, you need to attach to a target process.</p>
+                        <ol>
+                            <li>Click <b>Tools → Attach to Process...</b> or click the <b>Browse...</b> button in the top bar</li>
+                            <li>Search for your target by name or PID</li>
+                            <li>Double-click the process (or select + click <b>Attach</b>)</li>
+                        </ol>
+                        <p>Once attached, the process name and base address appear in the top bar. If the target process closes, ChainVerifier auto-detaches.</p>
+                    </section>
+
+                    <section id="chains">
+                        <h2>Managing Chains</h2>
+                        <p>Chains live in the <b>Chains Editor</b> at the bottom of the main window.</p>
+                        <ul>
+                            <li><b>Add</b> — enter base offset, offsets list, and value type</li>
+                            <li><b>Edit</b> — double-click a chain or select + click Edit</li>
+                            <li><b>Delete</b> — remove a single chain</li>
+                            <li><b>Clear All</b> — remove every chain</li>
+                        </ul>
+                        <h3>Chain fields</h3>
+                        <ul>
+                            <li><b>Name</b> — auto-generated or custom</li>
+                            <li><b>Base Offset</b> — hex offset from module base (e.g. <code data-copy="0x89D244">0x89D244</code>)</li>
+                            <li><b>Offsets</b> — comma-separated hex offsets, e.g. <code data-copy="0x140, 0x20, 0x3C">0x140, 0x20, 0x3C</code></li>
+                            <li><b>Value Type</b> — int32, int64, float, double, or pointer</li>
+                        </ul>
+                    </section>
+
+                    <section id="verify">
+                        <h2>Verify Chains</h2>
+                        <p>The primary feature — resolve all your chains against a target address.</p>
+                        <ol>
+                            <li>Enter the <b>Target</b> address in the top bar (e.g. <code data-copy="0x7A5950">0x7A5950</code>)</li>
+                            <li>Click <b>Verify All Chains</b></li>
+                            <li>Results table shows: Final Address, Match (YES/NO), Value, Status</li>
+                        </ol>
+                        <p>Matching chains highlight in green. Double-click any value in the results to edit it live in memory. Double-click a Description cell to add notes.</p>
+                        <div class="info-box">
+                            💡 Use <b>Edit → Delete All Error Chains</b> after verifying to quickly remove chains that failed to resolve.
+                        </div>
+                    </section>
+
+                    <section id="scans">
+                        <h2>🕵️ Scan Modes</h2>
+
+                        <h3>AOB Pattern Scan</h3>
+                        <p>Search memory for byte patterns with wildcards. Supports <code data-copy="??">??</code> for unknown bytes.</p>
+                        <pre><code data-copy="48 8B ?? 05 ?? ?? ?? ??">48 8B ?? 05 ?? ?? ?? ??</code></pre>
+
+                        <h3>Range Scan</h3>
+                        <p>Find all values within a numeric range. Useful for health, ammo, coordinates.</p>
+
+                        <h3>Unknown Value Scan</h3>
+                        <p>First scan snapshots memory. Next scan filters with changed/unchanged/increased/decreased. Great for finding values without knowing them.</p>
+
+                        <h3>String Scan</h3>
+                        <p>Search for ASCII or UTF-16 strings in memory. Case-sensitive toggle available.</p>
+
+                        <h3>Pointer Scan</h3>
+                        <p>Find multi-level pointer chains that point to a target address. Configure max level (1–7) and max offset.</p>
+                    </section>
+
+                    <section id="tools">
+                        <h2>🛠️ Tools</h2>
+
+                        <h3>Freeze Values</h3>
+                        <p>Lock values in place with a background writer thread. Add addresses + values, and ChainVerifier writes them continuously so the game/target can't change them.</p>
+
+                        <h3>Hex Viewer / Editor</h3>
+                        <p>Inspect and edit raw bytes at any address. Write bytes in hex format.</p>
+                        <pre><code data-copy="48 8B 05 90">48 8B 05 90</code></pre>
+
+                        <h3>Import Cheat Engine Pointer Map</h3>
+                        <p>Load <code data-copy=".sqlite">.sqlite</code> files exported from Cheat Engine. ChainVerifier auto-detects format and imports all pointer chains in one go.</p>
+
+                        <h3>Export Results</h3>
+                        <p>Save verification results as CSV, JSON, or TXT via <b>File → Export Results...</b></p>
+                    </section>
+
+                    <section id="save">
+                        <h2> Save & Load</h2>
+                        <p>Chain files use the <code data-copy=".owu">.owu</code> extension — encrypted with XOR + SHA-256 checksum + zlib compression.</p>
+                        <ul>
+                            <li><b>File → New</b> — start fresh</li>
+                            <li><b>File → Open</b> — load a .owu file</li>
+                            <li><b>File → Save / Save As</b> — save your chains and current results</li>
+                            <li><b>Recent Files</b> — quick access to recently used files</li>
+                        </ul>
+                    </section>
+
+                    <section id="settings">
+                        <h2>⚙ Settings</h2>
+                        <p>Access settings via the <b>Settings</b> menu. Sections include:</p>
+                        <ul>
+                            <li><b>General</b> — startup behavior, language, updates</li>
+                            <li><b>Appearance</b> — fonts, colors, themes, layout</li>
+                            <li><b>Behavior</b> — live update interval, confirmations</li>
+                            <li><b>Performance</b> — threads, buffer size, scan mode</li>
+                            <li><b>Hotkeys</b> — global keyboard shortcuts</li>
+                            <li><b>File & Logs</b> — auto-save, log rotation</li>
+                            <li><b>Advanced</b> — cache size, undo history, debug</li>
+                        </ul>
+                    </section>
+
+                    <section id="shortcuts">
+                        <h2>⌨ Keyboard Shortcuts</h2>
+                        <ul>
+                            <li><code data-copy="Ctrl+N">Ctrl+N</code> — New file</li>
+                            <li><code data-copy="Ctrl+O">Ctrl+O</code> — Open file</li>
+                            <li><code data-copy="Ctrl+S">Ctrl+S</code> — Save</li>
+                            <li><code data-copy="Ctrl+Shift+S">Ctrl+Shift+S</code> — Save As</li>
+                            <li><code data-copy="Ctrl+Z">Ctrl+Z</code> — Undo</li>
+                            <li><code data-copy="Ctrl+Y">Ctrl+Y</code> — Redo</li>
+                            <li><code data-copy="Ctrl+U">Ctrl+U</code> — Check for updates</li>
+                        </ul>
+                    </section>
+
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+    <div class="toast" id="toast"><span id="toastMessage"></span></div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div>
+                    <div class="footer-brand">
+                        <span class="brand-logo">C</span>
+                        <span>ChainVerifier</span>
+                    </div>
+                    <p class="footer-about">Modern pointer chain verifier & memory scanner for Windows. Built by OwuMode.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="download.html">Download</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="changelog.html">Changelog</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://github.com/owuMode/ChainVerifier" target="_blank" rel="noopener">GitHub</a></li>
+                        <li><a href="https://github.com/owuMode/ChainVerifier/issues" target="_blank" rel="noopener">Report Issue</a></li>
+                        <li><a href="https://t.me/owumode" target="_blank" rel="noopener">Telegram</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">© 2026 ChainVerifier · Built by OwuMode</div>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="i18n.js"></script>
+    <script src="ui-kit.js"></script>
+    <script>
+        document.getElementById("mobileMenuBtn").addEventListener("click", () => {
+            document.getElementById("navMenu").classList.toggle("active");
+        });
+
+        (async () => {
+            try {
+                const r = await fetch("https://api.jsonbin.io/v3/b/6ab26f19ffd5d1605322e359/latest", {
+                    headers: { "X-Master-Key": "$2a$10$RLbYDBBgLAt9fbfPwm4ORe5LBvZF82w/VcDM0PcHeLnNwNt02r/gu", "X-Bin-Meta": "false" }
+                });
+                const d = await r.json();
+                const v = d.visitors || 0;
+                const el = document.getElementById("visitorCount");
+                if (el && typeof window.cvAnimateNumber === "function") {
+                    window.cvAnimateNumber(el, v, 900);
+                } else if (el) {
+                    el.textContent = Number(v).toLocaleString();
+                }
+            } catch (e) {}
+        })();
+
+        // Update header version
+        (() => {
+            if (typeof APP_VERSIONS === "undefined") return;
+            const latest = APP_VERSIONS.find(v => v.isLatest) || APP_VERSIONS[0];
+            if (latest && document.getElementById("headerVersion")) {
+                document.getElementById("headerVersion").textContent = latest.version;
+            }
+        })();
+    </script>
+</body>
+</html>
