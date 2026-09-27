@@ -3,86 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>OwuMode - Free Game Modes</title>
-    
-    <meta name="description" content="OwuMode - Download free Windows game mods, mod menus, and hacks. Virus-free files, direct download links, no ads. Latest versions available.">
-    <meta name="keywords" content="OwuMode, free game mods, windows mods, mod menus, game hacks , bypass">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>ChainVerifier — Free Pointer Chain Verifier & Memory Scanner for Windows</title>
+    <meta name="title" content="ChainVerifier — Free Pointer Chain Verifier & Memory Scanner for Windows">
+    <meta name="description" content="ChainVerifier is a free, powerful pointer chain verifier and memory scanner for Windows. Modern dark UI, AOB/range/pointer scans, hex editor, freeze values. No ads, virus-free download.">
+    <meta name="keywords" content="ChainVerifier, pointer chain verifier, memory scanner, cheat engine alternative, AOB scan, pointer scan, hex editor, freeze values">
     <meta name="author" content="OwuMode">
-    
-    <link rel="icon" type="image/x-icon" href="/icon.ico">
-    <link rel="shortcut icon" type="image/x-icon" href="/icon.ico">
-    <link rel="apple-touch-icon" href="/icon.ico">
-    
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#1f6aa5">
+
+    <link rel="canonical" href="https://owumode.store/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://owumode.store/">
+    <meta property="og:title" content="ChainVerifier — Free Pointer Chain Verifier for Windows">
+    <meta property="og:description" content="Free, powerful pointer chain verifier & memory scanner for Windows.">
+    <meta property="og:image" content="preview.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ChainVerifier — Free Windows Tool">
+    <meta name="twitter:description" content="Free pointer chain verifier & memory scanner.">
+    <meta name="twitter:image" content="preview.png">
+
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="icon.ico">
+    <link rel="apple-touch-icon" href="icon.ico">
+
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "ChainVerifier",
+        "operatingSystem": "Windows 10, Windows 11",
+        "applicationCategory": "UtilitiesApplication",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "softwareVersion": "1.0.0",
+        "description": "Free pointer chain verifier and memory scanner for Windows.",
+        "downloadUrl": "https://owumode.store/download.html",
+        "author": { "@type": "Organization", "name": "OwuMode" }
+    }
+    </script>
 </head>
 
 <body>
 
-    <!-- ==================== HEADER ==================== -->
+    <!-- HEADER -->
     <header class="site-header">
         <div class="container header-inner">
-
             <a href="index.html" class="brand">
-                <span class="brand-logo">O</span>
-                <span class="brand-name">OwuMode</span>
+                <span class="brand-logo"><img src="logo.png" alt="ChainVerifier" onerror="this.parentNode.textContent='C';"></span>
+                <span class="brand-name">ChainVerifier</span>
+                <span class="brand-version" id="headerVersion">v1.0.0</span>
             </a>
 
             <nav class="nav-menu" id="navMenu">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="index.html#Modes" class="nav-link">Modes</a>
+                <a href="index.html" class="nav-link active" data-i18n="nav.home">Home</a>
+                <a href="download.html" class="nav-link" data-i18n="nav.download">Download</a>
+                <a href="docs.html" class="nav-link" data-i18n="nav.docs">Docs</a>
+                <a href="changelog.html" class="nav-link" data-i18n="nav.changelog">Changelog</a>
+                <a href="faq.html" class="nav-link" data-i18n="nav.faq">FAQ</a>
             </nav>
 
-            <div class="header-search">
-                <input type="search" id="headerSearch" placeholder="Search Modes..." autocomplete="off">
-            </div>
-
-            <div class="visitor-counter" title="Total Visitors">
+            <div class="visitor-counter">
                 <span class="visitor-icon">👁</span>
-                <span class="visitor-number" id="visitorCount">0</span>
+                <span id="visitorCount">0</span>
             </div>
 
-            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open menu">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Menu">
+                <span></span><span></span><span></span>
             </button>
-
         </div>
     </header>
 
-
-    <!-- ==================== MAIN ==================== -->
     <main>
 
-        <!-- Hero -->
+        <!-- HERO -->
         <section class="hero">
+            <div class="hero-grid-overlay"></div>
+            <div class="hero-particles" id="heroParticles"></div>
             <div class="container hero-inner">
 
                 <div class="hero-content">
-                    <span class="hero-label">OwuMode Modes</span>
-                    <h1>Game Modes <span>For Windows</span></h1>
-                    <p>Discover and download Windows Modes from OwuMode.</p>
-                    <a href="#Modes" class="hero-btn">Browse Modes</a>
+                    <span class="hero-label" id="heroLabel" data-i18n="hero.label">v1.0.0 — Latest Release</span>
+                    <h1>
+                        <span data-i18n="hero.title.line1">Find & Verify</span>
+                        <span data-i18n="hero.title.line2">Pointer Chains</span>
+                    </h1>
+                    <p data-i18n="hero.desc">A modern pointer chain verifier & memory scanner for Windows. Dark UI, five scanning modes, auto-update — free, no ads.</p>
+                    <div class="hero-actions">
+                        <a href="download.html" class="hero-btn" data-i18n="hero.btn.download">⬇ Download Free</a>
+                        <a href="docs.html" class="hero-btn-secondary" data-i18n="hero.btn.docs">View Docs →</a>
+                    </div>
                 </div>
 
-                <div class="hero-decoration">
-                    <div class="controller">
-                        <div class="controller-left">
-                            <span class="dpad-up"></span>
-                            <span class="dpad-down"></span>
-                            <span class="dpad-left"></span>
-                            <span class="dpad-right"></span>
-                        </div>
-                        <div class="controller-center">
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="controller-right">
-                            <span class="button-y">Y</span>
-                            <span class="button-x">X</span>
-                            <span class="button-a">A</span>
-                            <span class="button-b">B</span>
+                <div class="hero-shot-wrap">
+                    <div class="hero-shot">
+                        <img src="screenshot-1.png" alt="ChainVerifier screenshot"
+                             onerror="this.style.display='none'; this.parentNode.querySelector('.hero-shot-fallback').classList.add('show');">
+                        <div class="hero-shot-fallback">
+                            <div class="hsf-bar">
+                                <span class="hsf-dot r"></span>
+                                <span class="hsf-dot y"></span>
+                                <span class="hsf-dot g"></span>
+                                <span style="margin-left:10px;color:#7a8ea3;">ChainVerifier.exe</span>
+                            </div>
+                            <div class="hsf-row hd"><span>Chain</span><span>Match</span><span>Value</span></div>
+                            <div class="hsf-row">
+                                <span class="hsf-cell b">game.exe+0x89D244</span>
+                                <span class="hsf-cell g">YES</span>
+                                <span class="hsf-cell v">42</span>
+                            </div>
+                            <div class="hsf-row">
+                                <span class="hsf-cell b">game.exe+0x7D6C</span>
+                                <span class="hsf-cell g">YES</span>
+                                <span class="hsf-cell v">128</span>
+                            </div>
+                            <div class="hsf-row">
+                                <span class="hsf-cell b">game.exe+0xE2944</span>
+                                <span style="color:#ff7777;">NO</span>
+                                <span class="hsf-cell v">—</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -90,54 +134,155 @@
             </div>
         </section>
 
-        <!-- Modes Grid -->
-        <section class="Modes-section" id="Modes">
+        <!-- STATS -->
+        <section class="stats-bar">
+            <div class="container stats-inner">
+                <div class="stat-item">
+                    <div class="stat-value" id="statVersion">v1.0.0</div>
+                    <div class="stat-label" data-i18n="stat.latest">Latest</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statSize">44 MB</div>
+                    <div class="stat-label" data-i18n="stat.size">Download Size</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statDownloads">0</div>
+                    <div class="stat-label" data-i18n="stat.downloads">Downloads</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label" data-i18n="stat.free">100% Free</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="section section-alt">
             <div class="container">
-
                 <div class="section-header">
-                    <div>
-                        <span class="section-label">OwuMode</span>
-                        <h2>Modes</h2>
+                    <span class="section-label">Features</span>
+                    <h2 class="section-title">Everything You Need in One Tool</h2>
+                    <p class="section-desc">From simple value scans to multi-level pointer chains — ChainVerifier handles it all in a clean, dark interface.</p>
+                </div>
+                <div class="features-grid" id="featuresGrid"></div>
+            </div>
+        </section>
+
+        <!-- SCREENSHOTS -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Screenshots</span>
+                    <h2 class="section-title">See It in Action</h2>
+                    <p class="section-desc">Click any screenshot to view full-size.</p>
+                </div>
+                <div class="screenshots-grid" id="screenshotsGrid"></div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Quick Start</span>
+                    <h2 class="section-title">Up and Running in 3 Steps</h2>
+                    <p class="section-desc">No installer, no setup wizard — just download, extract, and verify.</p>
+                </div>
+                <div class="how-grid">
+                    <div class="how-card">
+                        <span class="how-number">1</span>
+                        <h3>Download & Extract</h3>
+                        <p>Grab the ZIP from the download page and extract it anywhere. ChainVerifier is fully portable.</p>
                     </div>
-                    <div class="game-count">
-                        <span id="gameCount">0</span> Modes
+                    <div class="how-card">
+                        <span class="how-number">2</span>
+                        <h3>Run as Administrator</h3>
+                        <p>Right-click <code data-copy="ChainVerifier.exe">ChainVerifier.exe</code> → <b>Run as Administrator</b>.</p>
+                    </div>
+                    <div class="how-card">
+                        <span class="how-number">3</span>
+                        <h3>Attach & Verify</h3>
+                        <p>Open <b>Tools → Attach to Process</b>, pick your target, enter an address, and click <b>Verify All Chains</b>.</p>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="game-grid" id="gameGrid"></div>
-
-                <div class="empty-state" id="noModes" style="display: none;">
-                    <div class="empty-icon">⌕</div>
-                    <h3>No Modes found</h3>
-                    <p>Try searching with a different game name.</p>
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-card">
+                    <div class="cta-left">
+                        <h2 data-i18n="cta.title">Ready to try it?</h2>
+                        <p data-i18n="cta.desc">Download the latest ChainVerifier — free, virus-free, no registration required.</p>
+                    </div>
+                    <div class="cta-right">
+                        <a href="download.html" class="cta-btn" data-i18n="cta.download">⬇ Download Now</a>
+                        <a href="docs.html" class="cta-btn-secondary" data-i18n="cta.docs">Read Docs</a>
+                    </div>
                 </div>
+            </div>
+        </section>
 
+        <!-- FAQ PREVIEW -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-header" style="text-align:center; margin-left:auto; margin-right:auto;">
+                    <span class="section-label">FAQ</span>
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                </div>
+                <div class="faq-grid" id="faqGrid"></div>
             </div>
         </section>
 
     </main>
 
+    <div class="toast" id="toast"><span id="toastMessage"></span></div>
 
-    <!-- ==================== TOAST ==================== -->
-    <div class="toast" id="toast">
-        <span id="toastMessage"></span>
-    </div>
-
-
-    <!-- ==================== FOOTER ==================== -->
+    <!-- FOOTER -->
     <footer class="site-footer">
-        <div class="container footer-inner">
-            <div class="footer-brand">
-                <span class="brand-logo">O</span>
-                <span>OwuMode</span>
+        <div class="container">
+            <div class="footer-inner">
+                <div>
+                    <div class="footer-brand">
+                        <span class="brand-logo">C</span>
+                        <span>ChainVerifier</span>
+                    </div>
+                    <p class="footer-about">Modern pointer chain verifier & memory scanner for Windows. Built by OwuMode.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="download.html">Download</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="changelog.html">Changelog</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://github.com/owuMode/ChainVerifier" target="_blank" rel="noopener">GitHub</a></li>
+                        <li><a href="https://github.com/owuMode/ChainVerifier/issues" target="_blank" rel="noopener">Report Issue</a></li>
+                        <li><a href="https://t.me/owumode" target="_blank" rel="noopener">Telegram</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="https://github.com/owuMode/ChainVerifier" target="_blank" rel="noopener">Source Code</a></li>
+                    </ul>
+                </div>
             </div>
-            <p>© 2026 OwuMode. All rights reserved.</p>
+            <div class="footer-bottom">© 2026 ChainVerifier · Built by OwuMode</div>
         </div>
     </footer>
 
-
     <script src="data.js"></script>
+    <script src="i18n.js"></script>
+    <script src="ui-kit.js"></script>
     <script src="script.js"></script>
-
 </body>
 </html>
