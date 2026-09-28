@@ -141,7 +141,7 @@
                 ${v.url ? `
                     <div class="changelog-actions">
                         <a href="${escapeHtml(v.url)}" target="_blank" rel="noopener" class="changelog-download">
-                            ⬇ Download ${escapeHtml(v.version)}
+                            Download ${escapeHtml(v.version)}
                         </a>
                     </div>
                 ` : ""}
