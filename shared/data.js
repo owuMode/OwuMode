@@ -32,7 +32,7 @@ const APP_FEATURES = [
     {
         icon: "chain",
         title: "Chain Verification",
-        desc: "Add unlimited pointer chains and resolve them live against any running process. Batch verify 5000+ chains in under 1 second with the C++ backend. Color-coded match / no-match / error results with per-chain descriptions."
+        desc: "Add unlimited pointer chains and resolve them live against any running process. Batch verify millions of chains in under 1 second with the C++ backend. Color-coded match / no-match / error results with per-chain descriptions."
     },
     {
         icon: "search",
@@ -93,7 +93,7 @@ const APP_VERSIONS = [
 
         changelog: [
             "Full C++ backend for pointer scanning and chain verification",
-            "Batch verify — 5000+ chains in under 1 second",
+            "Batch verify — millions of chains chains in under 1 second",
             "Single portable EXE — no _internal folder required",
             "Custom dark-themed UI with modern design",
             "Bulk freeze with visual indicator",
