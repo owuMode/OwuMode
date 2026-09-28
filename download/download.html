@@ -22,12 +22,13 @@
             <a href="../index.html" class="brand">
                 <span class="brand-logo"><img src="../logo.png" alt="ChainVerifier" onerror="this.parentNode.textContent='C';"></span>
                 <span class="brand-name">ChainVerifier</span>
-                <span class="brand-version" id="headerVersion">v1.0.0</span>
+                <span class="brand-version" id="headerVersion">v2.0.0</span>
             </a>
             <nav class="nav-menu" id="navMenu">
                 <a href="../index.html" class="nav-link" data-i18n="nav.home">Home</a>
                 <a href="download.html" class="nav-link active" data-i18n="nav.download">Download</a>
                 <a href="../docs/docs.html" class="nav-link" data-i18n="nav.docs">Docs</a>
+                <a href="../docs/manual.html" class="nav-link" data-i18n="nav.manual">Manual</a>
                 <a href="../changelog/changelog.html" class="nav-link" data-i18n="nav.changelog">Changelog</a>
                 <a href="../faq/faq.html" class="nav-link" data-i18n="nav.faq">FAQ</a>
             </nav>
@@ -48,16 +49,16 @@
             <div class="container dl-hero-inner">
                 <div class="dl-hero-tag">
                     <span class="dl-hero-tag-dot"></span>
-                    Latest Release — <span id="heroVersion">v1.0.0</span>
+                    Latest Release — <span id="heroVersion">v2.0.0</span>
                 </div>
                 <h1 class="dl-hero-title">Download ChainVerifier</h1>
                 <p class="dl-hero-desc">
-                    Free pointer chain verifier & memory scanner for Windows. No ads, no registration — just extract and run.
+                    Free pointer chain verifier & memory scanner for Windows. Single portable EXE — no installer, no Python, no _internal folder. Just extract and run.
                 </p>
                 <div class="dl-hero-meta">
                     <span class="dl-meta-chip"><b>Windows 10/11</b></span>
-                    <span class="dl-meta-chip"><b>44 MB</b> ZIP</span>
-                    <span class="dl-meta-chip">Updated <b id="heroDate">23 Sep 2026</b></span>
+                    <span class="dl-meta-chip"><b>42 MB</b> ZIP</span>
+                    <span class="dl-meta-chip">Updated <b id="heroDate">28 Sep 2026</b></span>
                     <span class="dl-meta-chip dl-meta-chip-green">✓ Free & Virus-Free</span>
                 </div>
             </div>
@@ -105,8 +106,8 @@
                                 <div class="install-step">
                                     <div class="install-step-num">2</div>
                                     <div class="install-step-body">
-                                        <h4>Extract anywhere</h4>
-                                        <p>Right-click the ZIP → Extract All. Recommended: <code data-copy="C:\Program Files\ChainVerifier\">C:\Program Files\ChainVerifier\</code></p>
+                                        <h4>Extract the EXE</h4>
+                                        <p>Right-click the ZIP → Extract All. You only need the single <code data-copy="ChainVerifier.exe">ChainVerifier.exe</code> inside — no other files required.</p>
                                     </div>
                                 </div>
                                 <div class="install-step">
@@ -128,7 +129,7 @@
                             <div class="install-warning">
                                 <span class="install-warning-icon">⚠</span>
                                 <div>
-                                    <b>Important:</b> Do not move the EXE out of its folder — it needs the <code data-copy="_internal">_internal\</code> directory alongside it.
+                                    <b>Note:</b> v2.0.0 is a single portable EXE. There is no <code data-copy="_internal">_internal</code> folder — just extract <code data-copy="ChainVerifier.exe">ChainVerifier.exe</code> anywhere and run it.
                                 </div>
                             </div>
                         </div>
@@ -150,7 +151,7 @@
                         <div class="dl-panel dl-panel-help">
                             <h3 class="dl-help-title">Need Help?</h3>
                             <p class="dl-help-desc">Having trouble? Reach out on Telegram or open an issue on GitHub.</p>
-                            <a href="https://t.me/owumode" target="_blank" rel="noopener" class="dl-help-btn">Join Telegram</a>
+                            <a href="https://t.me/owumode_chat" target="_blank" rel="noopener" class="dl-help-btn">Join Telegram</a>
                             <a href="https://github.com/owuMode/ChainVerifier/issues" target="_blank" rel="noopener" class="dl-help-btn dl-help-btn-secondary">Report Issue</a>
                         </div>
 
@@ -192,7 +193,6 @@
             <!-- Body -->
             <div class="dl-modal-body">
 
-                <!-- File being downloaded -->
                 <div class="dl-modal-file">
                     <div class="dl-modal-file-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -202,16 +202,15 @@
                         </svg>
                     </div>
                     <div class="dl-modal-file-info">
-                        <div class="dl-modal-file-name" id="dlModalFileName">ChainVerifier-v1.0.0-Windows-x64.zip</div>
+                        <div class="dl-modal-file-name" id="dlModalFileName">ChainVerifier_v2.0.0.zip</div>
                         <div class="dl-modal-file-meta">
-                            <span id="dlModalFileVersion">v1.0.0</span>
+                            <span id="dlModalFileVersion">v2.0.0</span>
                             <span class="dl-modal-file-dot">·</span>
-                            <span id="dlModalFileSize">44 MB</span>
+                            <span id="dlModalFileSize">42 MB</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Agreement text -->
                 <div class="dl-modal-text">
                     <p>By downloading ChainVerifier, you acknowledge and agree that:</p>
                     <ul>
@@ -222,7 +221,6 @@
                     </ul>
                 </div>
 
-                <!-- Warning box -->
                 <div class="dl-modal-warning">
                     <div class="dl-modal-warning-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -236,7 +234,6 @@
                     </div>
                 </div>
 
-                <!-- Checkbox -->
                 <label class="dl-modal-checkbox" for="dlModalAgree">
                     <input type="checkbox" id="dlModalAgree">
                     <span class="dl-modal-checkbox-box">
@@ -286,6 +283,7 @@
                     <ul>
                         <li><a href="download.html">Download</a></li>
                         <li><a href="../docs/docs.html">Documentation</a></li>
+                        <li><a href="../docs/manual.html">User Manual</a></li>
                         <li><a href="../changelog/changelog.html">Changelog</a></li>
                         <li><a href="../faq/faq.html">FAQ</a></li>
                     </ul>
@@ -295,7 +293,7 @@
                     <ul>
                         <li><a href="https://github.com/owuMode/ChainVerifier" target="_blank" rel="noopener">GitHub</a></li>
                         <li><a href="https://github.com/owuMode/ChainVerifier/issues" target="_blank" rel="noopener">Report Issue</a></li>
-                        <li><a href="https://t.me/owumode" target="_blank" rel="noopener">Telegram</a></li>
+                        <li><a href="https://t.me/owumode_chat" target="_blank" rel="noopener">Telegram</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
