@@ -1,9 +1,8 @@
 /* =========================================================
-   ChainVerifier — Changelog Page Styles
-   (Self-contained — style.css ke bina bhi kaam karega)
+   ChainVerifier — Changelog Page Styles (Compact)
    ========================================================= */
 
-/* ─── Fallback variables (agar style.css load na ho) ─── */
+/* ─── Fallback variables ─── */
 :root {
     --primary: #1f6aa5;
     --primary-dark: #15568a;
@@ -16,85 +15,85 @@
     --border: #d8e2ec;
     --white: #ffffff;
     --bg: #f4f7fb;
-    --radius-md: 10px;
-    --radius-lg: 14px;
+    --radius-md: 8px;
+    --radius-lg: 10px;
     --radius-full: 999px;
-    --space-2: 8px;
-    --space-3: 12px;
-    --space-4: 16px;
-    --space-5: 20px;
-    --space-6: 24px;
-    --space-7: 32px;
-    --space-8: 40px;
-    --space-9: 50px;
-    --text-xs: 11px;
-    --text-sm: 12.5px;
-    --text-base: 14px;
-    --text-md: 15px;
-    --text-lg: 17px;
+    --space-2: 6px;
+    --space-3: 10px;
+    --space-4: 14px;
+    --space-5: 18px;
+    --space-6: 22px;
+    --space-7: 28px;
+    --text-xs: 10.5px;
+    --text-sm: 12px;
+    --text-base: 13px;
+    --text-md: 14px;
+    --text-lg: 15px;
     --fw-bold: 700;
     --fw-black: 900;
     --t-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-    --shadow-glow-blue: 0 15px 40px rgba(31, 106, 165, 0.30);
+    --shadow-glow-blue: 0 8px 20px rgba(31, 106, 165, 0.18);
 }
 
 /* ─── Changelog List ─── */
 .changelog-list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 12px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-/* ─── Changelog Item (Card) ─── */
+/* ─── Changelog Item (Compact Card) ─── */
 .changelog-item {
     background: #ffffff;
     border: 1px solid #d8e2ec;
-    border-radius: 14px;
-    padding: 24px 32px;
+    border-radius: 10px;
+    padding: 16px 20px;
     transition: all 0.15s ease;
-    box-shadow: 0 4px 15px rgba(15, 40, 80, 0.06);
+    box-shadow: 0 2px 6px rgba(15, 40, 80, 0.04);
 }
 
 .changelog-item:hover {
     border-color: #1f6aa5;
-    box-shadow: 0 15px 40px rgba(31, 106, 165, 0.30);
-    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(31, 106, 165, 0.15);
+    transform: translateY(-1px);
 }
 
 /* ─── Head (version + date) ─── */
 .changelog-head {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid #d8e2ec;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eef3fc;
     flex-wrap: wrap;
 }
 
 .changelog-version {
-    padding: 7px 16px;
+    padding: 4px 12px;
     background: #1f6aa5;
     color: #ffffff;
-    border-radius: 10px;
-    font-size: 15px;
+    border-radius: 6px;
+    font-size: 13px;
     font-weight: 900;
     letter-spacing: 0.2px;
 }
 
 .version-latest-badge {
-    padding: 4px 11px;
+    padding: 3px 9px;
     background: #ffd21f;
     color: #0f1419;
     border-radius: 999px;
-    font-size: 10px;
+    font-size: 9.5px;
     font-weight: 900;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
 }
 
 .changelog-date {
     color: #6b7a8a;
-    font-size: 12.5px;
+    font-size: 11.5px;
     font-weight: 700;
 }
 
@@ -103,44 +102,48 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px 16px;
 }
 
 .changelog-list-items li {
-    padding: 8px 0 8px 24px;
+    padding: 3px 0 3px 16px;
     color: #1e2a35;
-    font-size: 14px;
-    line-height: 1.7;
+    font-size: 12.5px;
+    line-height: 1.5;
     position: relative;
+    break-inside: avoid;
 }
 
 .changelog-list-items li::before {
     content: "\25B8";
     position: absolute;
-    left: 6px;
+    left: 0;
     color: #1f6aa5;
     font-weight: 900;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 /* ─── Download button ─── */
 .changelog-actions {
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid #d8e2ec;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #eef3fc;
     display: flex;
-    gap: 12px;
+    gap: 8px;
     flex-wrap: wrap;
 }
 
 .changelog-download {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 20px;
+    gap: 6px;
+    padding: 7px 14px;
     background: #1f6aa5;
     color: #ffffff;
-    border-radius: 10px;
-    font-size: 12.5px;
+    border-radius: 6px;
+    font-size: 11.5px;
     font-weight: 900;
     transition: all 0.15s ease;
     text-decoration: none;
@@ -148,20 +151,20 @@
 
 .changelog-download:hover {
     background: #15568a;
-    transform: translateY(-2px);
-    box-shadow: 0 15px 40px rgba(31, 106, 165, 0.30);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(31, 106, 165, 0.25);
 }
 
 /* ─── Loading spinner ─── */
 .changelog-loading {
-    padding: 50px 20px;
+    padding: 40px 20px;
     text-align: center;
 }
 
 .changelog-loading-spinner {
-    width: 44px;
-    height: 44px;
-    margin: 0 auto 16px;
+    width: 36px;
+    height: 36px;
+    margin: 0 auto 14px;
     border: 3px solid #e6f0fa;
     border-top-color: #1f6aa5;
     border-radius: 50%;
@@ -174,6 +177,23 @@
 
 .changelog-loading-text {
     color: #6b7a8a;
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 700;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 720px) {
+    .changelog-list-items {
+        grid-template-columns: 1fr;
+    }
+    .changelog-item {
+        padding: 14px 16px;
+    }
+    .changelog-version {
+        font-size: 12px;
+        padding: 3px 10px;
+    }
+    .changelog-list-items li {
+        font-size: 12px;
+    }
 }
