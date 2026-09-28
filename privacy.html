@@ -316,7 +316,6 @@
             background: var(--bg);
         }
 
-        /* ─── CONTACT CARD (FIXED) ─── */
         .legal-contact-card {
             background: linear-gradient(135deg, #0f2d4d 0%, #15568a 55%, #1f6aa5 100%);
             color: #fff;
@@ -356,7 +355,6 @@
             z-index: 2;
         }
 
-        /* ─── BUTTON — FIXED with !important ─── */
         .legal-contact-btn {
             display: inline-flex !important;
             align-items: center;
@@ -453,12 +451,13 @@
             <a href="index.html" class="brand">
                 <span class="brand-logo"><img src="logo.png" alt="ChainVerifier" onerror="this.parentNode.textContent='C';"></span>
                 <span class="brand-name">ChainVerifier</span>
-                <span class="brand-version">v1.0.0</span>
+                <span class="brand-version">v2.0.0</span>
             </a>
             <nav class="nav-menu" id="navMenu">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="download/download.html" class="nav-link">Download</a>
                 <a href="docs/docs.html" class="nav-link">Docs</a>
+                <a href="docs/manual.html" class="nav-link">Manual</a>
                 <a href="changelog/changelog.html" class="nav-link">Changelog</a>
                 <a href="faq/faq.html" class="nav-link">FAQ</a>
             </nav>
@@ -514,11 +513,11 @@
                         </div>
                         <div class="legal-meta-item">
                             <span class="legal-meta-label">Version</span>
-                            <span class="legal-meta-value">1.0</span>
+                            <span class="legal-meta-value">2.0</span>
                         </div>
                         <div class="legal-meta-item">
                             <span class="legal-meta-label">Applies To</span>
-                            <span class="legal-meta-value">ChainVerifier + owumode.store</span>
+                            <span class="legal-meta-value">ChainVerifier v2.0.0+ and owumode.store</span>
                         </div>
                     </div>
 
@@ -578,6 +577,16 @@
                                     <td>Fetch latest version info</td>
                                     <td>GitHub (public data)</td>
                                 </tr>
+                                <tr>
+                                    <td>Local log files</td>
+                                    <td>Diagnostic troubleshooting on your machine</td>
+                                    <td>Your computer only</td>
+                                </tr>
+                                <tr>
+                                    <td>Auto-save backups</td>
+                                    <td>Recover your chain files after a crash</td>
+                                    <td>Your computer only</td>
+                                </tr>
                             </tbody>
                         </table>
 
@@ -597,6 +606,7 @@
                             <li><strong>Visitor counter:</strong> To display a total visit count on the website — a vanity metric, nothing more.</li>
                             <li><strong>Language preference:</strong> To remember whether you selected English or Hindi, so you don't have to re-select on every page.</li>
                             <li><strong>Update checks:</strong> To notify you when a new version of ChainVerifier is available on GitHub.</li>
+                            <li><strong>Local logs:</strong> To help you (or us) diagnose issues if you report a bug and share your log file.</li>
                         </ul>
 
                         <p>We <strong>never</strong> use this data for:</p>
@@ -618,6 +628,12 @@
 
                         <h3>Your saved files (.owu)</h3>
                         <p>Chain files you save are stored locally wherever you choose. They are encrypted with XOR + SHA-256 + zlib compression. We have no access to these files and cannot recover them if lost.</p>
+
+                        <h3>Auto-save backups</h3>
+                        <p>The v2.0.0 auto-save feature creates timestamped backup copies of your chain files in your chosen save location. These backups are local-only and follow the same encryption. You can disable auto-save or adjust the interval in Settings → File &amp; Logs.</p>
+
+                        <h3>Local log files</h3>
+                        <p>ChainVerifier writes diagnostic log files to a local folder on your machine. These logs rotate automatically and never leave your computer unless you choose to share them when reporting a bug.</p>
 
                         <h3>Internet connections</h3>
                         <p>ChainVerifier makes network requests only when:</p>
@@ -701,7 +717,7 @@
                             <li><strong>Visitor counter:</strong> Kept indefinitely (it's just a cumulative number)</li>
                             <li><strong>Language preference:</strong> Stored in your browser until you clear it</li>
                             <li><strong>Server logs:</strong> Automatically deleted by hosting provider within 30 days</li>
-                            <li><strong>Local files:</strong> 100% under your control — you can delete them anytime</li>
+                            <li><strong>Local files (chains, backups, logs):</strong> 100% under your control — you can delete them anytime</li>
                         </ul>
                     </section>
 
@@ -770,7 +786,7 @@
                                     </svg>
                                     <span>Open an Issue on GitHub</span>
                                 </a>
-                                <a href="https://t.me/owumode" target="_blank" rel="noopener" class="legal-contact-btn">
+                                <a href="https://t.me/owumode_chat" target="_blank" rel="noopener" class="legal-contact-btn">
                                     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                         <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                                     </svg>
@@ -811,7 +827,7 @@
                     <ul>
                         <li><a href="https://github.com/owuMode/ChainVerifier" target="_blank" rel="noopener">GitHub</a></li>
                         <li><a href="https://github.com/owuMode/ChainVerifier/issues" target="_blank" rel="noopener">Report Issue</a></li>
-                        <li><a href="https://t.me/owumode" target="_blank" rel="noopener">Telegram</a></li>
+                        <li><a href="https://t.me/owumode_chat" target="_blank" rel="noopener">Telegram</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
