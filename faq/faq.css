@@ -1,0 +1,14 @@
+/* =========================================================
+   ChainVerifier — FAQ Page Styles
+   ========================================================= */
+
+/* FAQ page uses global .faq-grid / .faq-item from style.css.
+   Add any FAQ-specific overrides here if needed. */
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+    max-width: 880px;
+    margin: 0 auto;
+}
