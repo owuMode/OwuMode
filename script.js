@@ -1,5 +1,5 @@
 /* =========================================================
-   ChainVerifier — Home Page Logic (No Emoji)
+   ChainVerifier — Home Page Logic
    ========================================================= */
 
 const JSONBIN_BIN_ID = "6ab26f19ffd5d1605322e359";
@@ -19,10 +19,6 @@ const mobileMenuBtn = document.getElementById("mobileMenuBtn");
 const navMenu = document.getElementById("navMenu");
 
 
-/* ═════════════════════════════════════════════════════════
-   HELPERS
-   ═════════════════════════════════════════════════════════ */
-
 function escapeHTML(v) {
     if (v === null || v === undefined) return "";
     return String(v)
@@ -38,10 +34,6 @@ function getLatest() {
     return APP_VERSIONS.find(v => v.isLatest) || APP_VERSIONS[0];
 }
 
-
-/* ═════════════════════════════════════════════════════════
-   FEATURES (SVG icons instead of emoji)
-   ═════════════════════════════════════════════════════════ */
 
 const FEATURE_ICONS = {
     chain: `<svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
@@ -71,10 +63,6 @@ function renderFeatures() {
 }
 
 
-/* ═════════════════════════════════════════════════════════
-   SCREENSHOTS
-   ═════════════════════════════════════════════════════════ */
-
 function renderScreenshots() {
     if (!screenshotsGrid) return;
     if (typeof APP_INFO === "undefined" || !APP_INFO.screenshots) return;
@@ -95,10 +83,6 @@ function renderScreenshots() {
 }
 
 
-/* ═════════════════════════════════════════════════════════
-   FAQ PREVIEW (first 4)
-   ═════════════════════════════════════════════════════════ */
-
 function renderFaq() {
     if (!faqGrid) return;
     if (typeof APP_FAQ === "undefined" || !APP_FAQ.length) return;
@@ -112,10 +96,6 @@ function renderFaq() {
 }
 
 
-/* ═════════════════════════════════════════════════════════
-   STATS
-   ═════════════════════════════════════════════════════════ */
-
 function updateStats() {
     const latest = getLatest();
     if (!latest) return;
@@ -125,10 +105,6 @@ function updateStats() {
     if (statSize) statSize.textContent = latest.size || "—";
 }
 
-
-/* ═════════════════════════════════════════════════════════
-   HERO PARTICLES (lightweight)
-   ═════════════════════════════════════════════════════════ */
 
 function initHeroParticles() {
     if (window._CV_LOW_END) {
@@ -153,10 +129,6 @@ function initHeroParticles() {
     }
 }
 
-
-/* ═════════════════════════════════════════════════════════
-   JSONBIN — Visitors only (no download count)
-   ═════════════════════════════════════════════════════════ */
 
 async function readBin() {
     const r = await fetch(`${JSONBIN_URL}/latest`, {
@@ -203,19 +175,11 @@ async function initializeCounts() {
 }
 
 
-/* ═════════════════════════════════════════════════════════
-   MOBILE MENU
-   ═════════════════════════════════════════════════════════ */
-
 function setupMobileMenu() {
     if (!mobileMenuBtn || !navMenu) return;
     mobileMenuBtn.addEventListener("click", () => navMenu.classList.toggle("active"));
 }
 
-
-/* ═════════════════════════════════════════════════════════
-   INIT
-   ═════════════════════════════════════════════════════════ */
 
 document.addEventListener("DOMContentLoaded", async () => {
     updateStats();
