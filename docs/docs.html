@@ -22,7 +22,7 @@
             <a href="../index.html" class="brand">
                 <span class="brand-logo"><img src="../logo.png" alt="ChainVerifier" onerror="this.parentNode.textContent='C';"></span>
                 <span class="brand-name">ChainVerifier</span>
-                <span class="brand-version" id="headerVersion">v1.0.0</span>
+                <span class="brand-version" id="headerVersion">v2.0.0</span>
             </a>
             <nav class="nav-menu" id="navMenu">
                 <a href="../index.html" class="nav-link" data-i18n="nav.home">Home</a>
@@ -53,7 +53,7 @@
             <h1>ChainVerifier User Guide</h1>
             <p>Everything you need to install, configure, and master ChainVerifier — from first launch to advanced pointer chain verification.</p>
             <div class="docs-hero-meta">
-                <span class="docs-hero-chip">Version 1.0.0</span>
+                <span class="docs-hero-chip">Version 2.0.0</span>
                 <span class="docs-hero-chip">Windows 10 / 11 (64-bit)</span>
                 <span class="docs-hero-chip">Last updated: September 28, 2026</span>
             </div>
@@ -107,11 +107,13 @@
 
                         <h3>What ChainVerifier does</h3>
                         <ul>
-                            <li>Resolves pointer chains against a running process in real time</li>
+                            <li>Resolves pointer chains against a running process in real time using a full C++ backend</li>
+                            <li>Batch verifies 5000+ chains in under 1 second</li>
                             <li>Scans memory using five different search modes</li>
-                            <li>Provides tools for freezing values, editing hex, and importing Cheat Engine pointer maps</li>
-                            <li>Saves and loads chains in an encrypted format</li>
-                            <li>Auto-checks for updates from GitHub</li>
+                            <li>Provides tools for bulk freezing values, editing hex, and importing Cheat Engine pointer maps</li>
+                            <li>Saves and loads chains in an encrypted format with auto-save backups</li>
+                            <li>Auto-checks for updates from GitHub with Windows native notifications</li>
+                            <li>Global hotkeys (Ctrl+Alt+A / S / F / H) for fast workflow</li>
                         </ul>
 
                         <div class="docs-box docs-box-info">
@@ -174,39 +176,32 @@
                     <!-- 3. INSTALL -->
                     <section id="install">
                         <h2><span class="num">3</span> Installation</h2>
-                        <p>ChainVerifier is fully portable — there is no installer, no registry changes, no background services. Here is the complete process:</p>
+                        <p>ChainVerifier v2.0.0 ships as a <strong>single portable EXE</strong> — there is no installer, no registry changes, no background services, and no Python runtime required. Here is the complete process:</p>
 
                         <div class="docs-steps">
                             <div class="docs-step">
                                 <span class="docs-step-num">1</span>
                                 <div class="docs-step-body">
                                     <h4>Download the ZIP</h4>
-                                    <p>Go to the <a href="../download/download.html">download page</a> and click the latest version. The ZIP is around 44 MB.</p>
+                                    <p>Go to the <a href="../download/download.html">download page</a> and click the latest version (v2.0.0). The ZIP is around 42 MB.</p>
                                 </div>
                             </div>
                             <div class="docs-step">
                                 <span class="docs-step-num">2</span>
                                 <div class="docs-step-body">
-                                    <h4>Extract the folder</h4>
-                                    <p>Right-click the downloaded ZIP and choose <strong>Extract All</strong>. Recommended location: <code data-copy="C:\Program Files\ChainVerifier\">C:\Program Files\ChainVerifier\</code> — but any folder works.</p>
+                                    <h4>Extract the EXE</h4>
+                                    <p>Right-click the downloaded ZIP and choose <strong>Extract All</strong>. Inside you will find a single file: <code data-copy="ChainVerifier.exe">ChainVerifier.exe</code>. Extract it anywhere you like — Desktop, <code data-copy="C:\Program Files\ChainVerifier\">C:\Program Files\ChainVerifier\</code>, or a USB drive.</p>
                                 </div>
                             </div>
                             <div class="docs-step">
                                 <span class="docs-step-num">3</span>
                                 <div class="docs-step-body">
-                                    <h4>Verify folder contents</h4>
-                                    <p>After extraction you should see <code data-copy="ChainVerifier.exe">ChainVerifier.exe</code> and a folder named <code data-copy="_internal">_internal</code>. Both must stay together.</p>
+                                    <h4>Run as Administrator</h4>
+                                    <p>Right-click <code data-copy="ChainVerifier.exe">ChainVerifier.exe</code> and select <strong>Run as Administrator</strong>. Windows will show a UAC prompt — click Yes. If SmartScreen warns, click <strong>More info</strong> then <strong>Run anyway</strong>.</p>
                                 </div>
                             </div>
                             <div class="docs-step">
                                 <span class="docs-step-num">4</span>
-                                <div class="docs-step-body">
-                                    <h4>Run as Administrator</h4>
-                                    <p>Right-click <code data-copy="ChainVerifier.exe">ChainVerifier.exe</code> and select <strong>Run as Administrator</strong>. Windows will show a UAC prompt — click Yes.</p>
-                                </div>
-                            </div>
-                            <div class="docs-step">
-                                <span class="docs-step-num">5</span>
                                 <div class="docs-step-body">
                                     <h4>Optional: create a shortcut</h4>
                                     <p>Right-click the EXE → <strong>Send to → Desktop (create shortcut)</strong>. In the shortcut properties, tick "Run as administrator" for convenience.</p>
@@ -214,31 +209,32 @@
                             </div>
                         </div>
 
-                        <div class="docs-box docs-box-danger">
+                        <div class="docs-box docs-box-success">
                             <span class="docs-box-icon">
-                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                             </span>
-                            <div><strong>Do not move the EXE out of its folder.</strong> ChainVerifier depends on the <code data-copy="_internal">_internal</code> directory that sits next to it. Moving only the EXE will break the application.</div>
+                            <div><strong>Single portable EXE:</strong> v2.0.0 ships as one file. There is no <code data-copy="_internal">_internal</code> folder, no Python installation, and no other dependencies. Just extract and run.</div>
                         </div>
 
                         <div class="docs-box docs-box-info">
                             <span class="docs-box-icon">
                                 <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                             </span>
-                            <div><strong>Portable install:</strong> You can also place the ChainVerifier folder on a USB drive and run it from there. Chain files are saved wherever you choose — no system integration happens.</div>
+                            <div><strong>Portable install:</strong> You can place <code data-copy="ChainVerifier.exe">ChainVerifier.exe</code> on a USB drive and run it from there. Chain files are saved wherever you choose — no system integration happens.</div>
                         </div>
                     </section>
 
                     <!-- 4. FIRST LAUNCH -->
                     <section id="first-launch">
                         <h2><span class="num">4</span> First Launch</h2>
-                        <p>When you open ChainVerifier for the first time, you will see a dark-themed main window with several panels. Here is what happens automatically:</p>
+                        <p>When you open ChainVerifier for the first time, you will see a custom splash screen followed by a dark-themed main window with several panels. Here is what happens automatically:</p>
 
                         <h3>Automatic tasks on startup</h3>
                         <ol>
                             <li><strong>Hardware detection</strong> — ChainVerifier reads your CPU core count and available RAM, then auto-configures the optimal thread count and buffer size.</li>
-                            <li><strong>Update check</strong> — a silent request to GitHub checks if a newer version is available. If yes, a notification appears.</li>
+                            <li><strong>Update check</strong> — a silent request to GitHub checks if a newer version is available. If yes, a Windows native notification appears with the ChainVerifier logo.</li>
                             <li><strong>Settings load</strong> — if you have used ChainVerifier before, your preferences (theme, hotkeys, layout) are restored.</li>
+                            <li><strong>Auto-save timer</strong> — if enabled, background auto-save begins creating timestamped backups.</li>
                             <li><strong>Attach prompt</strong> — no process is attached yet. You will need to attach manually before doing anything.</li>
                         </ol>
 
@@ -256,14 +252,14 @@
                                     <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
                                 </div>
                                 <h4>Results panel</h4>
-                                <p>Center table where verification results appear — final addresses, match status, values, and descriptions.</p>
+                                <p>Center table where verification results appear — final addresses, match status, values, and descriptions. Changed values highlight in real time.</p>
                             </div>
                             <div class="docs-card">
                                 <div class="docs-card-icon">
                                     <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
                                 </div>
                                 <h4>Chains editor</h4>
-                                <p>Bottom panel where you add, edit, and delete pointer chains. Each chain has a name, base offset, offsets list, and value type.</p>
+                                <p>Bottom panel where you add, edit, and delete pointer chains. Multi-select supported for bulk operations.</p>
                             </div>
                             <div class="docs-card">
                                 <div class="docs-card-icon">
@@ -283,7 +279,7 @@
                         <h3>How to attach</h3>
                         <ol>
                             <li>Click <strong>Tools → Attach to Process...</strong> from the menu bar, or click the <strong>Browse...</strong> button in the top bar.</li>
-                            <li>A dialog opens showing all running processes with their name, PID, and architecture.</li>
+                            <li>A dialog opens showing all running processes with their name, PID, and architecture (32-bit / 64-bit auto-detected).</li>
                             <li>Type part of the name in the search box to filter, or scroll the list.</li>
                             <li>Double-click the process, or select it and click <strong>Attach</strong>.</li>
                         </ol>
@@ -324,8 +320,8 @@
                             <li><strong>Process name</strong> — the currently attached process (or "Not attached")</li>
                             <li><strong>Base address</strong> — the module base address in hex, used as anchor for chains</li>
                             <li><strong>Target address</strong> — input field for the address you want to verify against</li>
-                            <li><strong>Verify All Chains</strong> — main action button</li>
-                            <li><strong>Live update toggle</strong> — enables continuous re-verification</li>
+                            <li><strong>Verify All Chains</strong> — main action button (batch verifies 5000+ chains in under 1 second)</li>
+                            <li><strong>Live update toggle</strong> — enables continuous re-verification with highlight on change</li>
                         </ul>
 
                         <h3>Results panel</h3>
@@ -342,20 +338,20 @@
                                 <tr><td>Name</td><td>Chain name (auto-generated or custom)</td></tr>
                                 <tr><td>Final Address</td><td>Resolved memory address after following the chain</td></tr>
                                 <tr><td>Match</td><td>YES if the value matches the target, NO otherwise</td></tr>
-                                <tr><td>Value</td><td>The actual value read at the final address</td></tr>
+                                <tr><td>Value</td><td>The actual value read at the final address (highlights on change)</td></tr>
                                 <tr><td>Status</td><td>OK, Error, or Unresolved</td></tr>
                                 <tr><td>Description</td><td>Optional user-written notes</td></tr>
                             </tbody>
                         </table>
 
-                        <p>Matching chains highlight in green. Double-click any value to edit it in memory. Double-click a Description cell to add notes.</p>
+                        <p>Matching chains highlight in green. Double-click any value to edit it in memory. Double-click a Description cell to add notes. Multi-select rows for bulk delete.</p>
 
                         <h3>Chains editor</h3>
                         <p>The bottom panel manages your chain definitions:</p>
                         <ul>
                             <li><strong>Add</strong> — create a new chain with base offset, offsets list, and value type</li>
                             <li><strong>Edit</strong> — modify an existing chain</li>
-                            <li><strong>Delete</strong> — remove a single chain</li>
+                            <li><strong>Delete</strong> — remove a single chain or multiple selected chains</li>
                             <li><strong>Clear All</strong> — remove every chain (with confirmation)</li>
                         </ul>
 
@@ -471,6 +467,7 @@
                         <h3>Deleting chains</h3>
                         <ul>
                             <li><strong>Delete one:</strong> select the row, click <strong>Delete</strong></li>
+                            <li><strong>Delete multiple:</strong> hold Ctrl or Shift to multi-select rows, then click <strong>Delete</strong></li>
                             <li><strong>Delete all:</strong> click <strong>Clear All</strong> and confirm</li>
                             <li><strong>Delete errors only:</strong> after verifying, use <strong>Edit → Delete All Error Chains</strong> to remove all chains that failed to resolve</li>
                         </ul>
@@ -493,7 +490,7 @@
                     <!-- 8. VERIFY -->
                     <section id="verify">
                         <h2><span class="num">8</span> Verify Chains</h2>
-                        <p>Verification is the core feature — it resolves every chain against the current memory state and compares the resulting values to your expected values.</p>
+                        <p>Verification is the core feature — it resolves every chain against the current memory state and compares the resulting values to your expected values. The v2.0.0 C++ backend batch verifies 5000+ chains in under 1 second.</p>
 
                         <h3>How to verify</h3>
                         <ol>
@@ -528,7 +525,7 @@
                         </table>
 
                         <h3>Live update mode</h3>
-                        <p>Toggle <strong>Live update</strong> in the top bar to re-verify all chains continuously (default: every 200 ms). Useful when tracking values that change rapidly, like health or position.</p>
+                        <p>Toggle <strong>Live update</strong> in the top bar to re-verify all chains continuously. Values that change are highlighted in real time so you can spot dynamic values instantly.</p>
 
                         <h3>Editing values in place</h3>
                         <p>Double-click any value in the results table to open an inline editor. Type the new value and press Enter — ChainVerifier writes it directly to the target process memory.</p>
@@ -547,7 +544,7 @@
                     <!-- 9. SCANS -->
                     <section id="scans">
                         <h2><span class="num">9</span> Scan Modes</h2>
-                        <p>ChainVerifier provides five scan modes for different scenarios. Open the scan dialog with <strong>Tools → Scan</strong> or <strong>Ctrl+F</strong>.</p>
+                        <p>ChainVerifier provides five scan modes for different scenarios. Open the scan dialog with <strong>Tools → Scan</strong> or <strong>Ctrl+F</strong>. All scan modes auto-detect whether the target process is 32-bit or 64-bit.</p>
 
                         <h3>9.1 AOB Pattern Scan</h3>
                         <p>Find byte patterns anywhere in memory. Wildcards (<code data-copy="??">??</code>) match any byte.</p>
@@ -574,18 +571,20 @@
                         <p>Search for text strings in memory. Supports ASCII and UTF-16 (wide) strings.</p>
                         <p><strong>Use cases:</strong> finding player names, item names, chat messages, or configuration values.</p>
                         <p><strong>Options:</strong> case sensitivity, ASCII vs UTF-16, minimum length, whole-word matching.</p>
+                        <p><strong>v2.0.0 fix:</strong> UTF-16 string scan false positives have been eliminated.</p>
 
                         <h3>9.5 Pointer Scan</h3>
-                        <p>Find multi-level pointer chains that lead to a target address. This is the most powerful scan for building stable chains.</p>
+                        <p>Find multi-level pointer chains that lead to a target address. This is the most powerful scan for building stable chains. The v2.0.0 C++ backend supports chunked region scanning (1 MB chunks) and multi-threaded parallel scanning.</p>
                         <p><strong>How it works:</strong></p>
                         <ol>
                             <li>Enter the target address (usually found via a value scan).</li>
                             <li>Configure <strong>max level</strong> (1-7) — higher levels find longer chains but take longer.</li>
                             <li>Configure <strong>max offset</strong> — larger offsets cover more memory but produce more results.</li>
                             <li>Click <strong>Scan</strong>. ChainVerifier walks the pointer graph backward from the target.</li>
-                            <li>Results appear as suggested chains you can add to the editor with one click.</li>
+                            <li>Results appear as suggested chains. Use the <strong>Send to Chains</strong> button to add them to the editor in one click.</li>
                         </ol>
                         <p><strong>Use cases:</strong> building reliable chains for values whose direct address changes on every restart.</p>
+                        <p><strong>New in v2.0.0:</strong> static filter with <code>is_static</code> flag to only show chains anchored to static module addresses.</p>
 
                         <div class="docs-box docs-box-warn">
                             <span class="docs-box-icon">
@@ -601,7 +600,7 @@
                         <p>Beyond scanning and verification, ChainVerifier includes a set of built-in tools for working with process memory.</p>
 
                         <h3>10.1 Freeze Manager</h3>
-                        <p>Prevent a value from changing by continuously writing it back to memory in a background thread.</p>
+                        <p>Prevent a value from changing by continuously writing it back to memory in a background thread. v2.0.0 adds bulk freeze with a visual indicator and fixes an int64 precision loss bug.</p>
                         <p><strong>Use cases:</strong> infinite health, infinite ammo, frozen coordinates, testing.</p>
                         <p><strong>How to use:</strong></p>
                         <ol>
@@ -609,6 +608,7 @@
                             <li>Click <strong>Add</strong> and enter the address and the value to write.</li>
                             <li>Pick the value type.</li>
                             <li>Toggle the freeze switch to enable. The value stays locked until you disable it.</li>
+                            <li>Use bulk mode to freeze multiple addresses at once.</li>
                         </ol>
                         <p><strong>Performance notes:</strong> each frozen entry uses a small amount of CPU. Freezing hundreds of values simultaneously is not recommended.</p>
 
@@ -641,7 +641,7 @@
                     <!-- 11. SAVE -->
                     <section id="save">
                         <h2><span class="num">11</span> Save &amp; Load</h2>
-                        <p>Chain files use the <code data-copy=".owu">.owu</code> extension and are encrypted with XOR + SHA-256 checksum + zlib compression. They are portable and tamper-resistant.</p>
+                        <p>Chain files use the <code data-copy=".owu">.owu</code> extension and are encrypted with XOR + SHA-256 checksum + zlib compression. They are portable and tamper-resistant. v2.0.0 adds auto-save with timestamped backups and threaded file I/O so the UI never freezes.</p>
 
                         <h3>Creating a new file</h3>
                         <p><strong>File → New</strong> (or <strong>Ctrl+N</strong>) clears all chains and starts a fresh file.</p>
@@ -650,6 +650,7 @@
                         <ul>
                             <li><strong>File → Save</strong> (<strong>Ctrl+S</strong>) — saves to the current file</li>
                             <li><strong>File → Save As</strong> (<strong>Ctrl+Shift+S</strong>) — save to a new location</li>
+                            <li><strong>Auto-save</strong> — background timer creates timestamped backups automatically (configurable interval in Settings)</li>
                         </ul>
                         <p>The saved file contains: all chains, descriptions, current results snapshot, and application settings tied to the file.</p>
 
@@ -717,7 +718,6 @@
 
                         <h3>13.1 General</h3>
                         <ul>
-                            <li><strong>Language</strong> — English or Hindi</li>
                             <li><strong>Startup behavior</strong> — show attach dialog, restore last session, or open blank</li>
                             <li><strong>Auto-update check</strong> — enable or disable startup update check</li>
                             <li><strong>Confirm on exit</strong> — ask before closing if unsaved chains exist</li>
@@ -749,20 +749,22 @@
                         </ul>
 
                         <h3>13.5 Hotkeys</h3>
-                        <p>Rebind any keyboard shortcut. Default bindings are listed in section 14.</p>
+                        <p>Rebind any keyboard shortcut. Default bindings are listed in section 14. v2.0.0 adds global hotkeys (Ctrl+Alt+A / S / F / H) that work even when ChainVerifier is not focused.</p>
 
                         <h3>13.6 File &amp; Logs</h3>
                         <ul>
-                            <li><strong>Auto-save interval</strong> — save chain file every N minutes (0 = disabled)</li>
+                            <li><strong>Auto-save interval</strong> — save chain file every N minutes (0 = disabled). Creates timestamped backups.</li>
                             <li><strong>Log level</strong> — Error, Warn, Info, Debug</li>
                             <li><strong>Log rotation</strong> — max log file size, number of archives</li>
                             <li><strong>Log location</strong> — where diagnostic logs are written</li>
+                            <li><strong>Sound notifications</strong> — Windows default sounds on important events</li>
+                            <li><strong>Taskbar flash</strong> — flash taskbar on important events</li>
                         </ul>
 
                         <h3>13.7 Advanced</h3>
                         <ul>
                             <li><strong>Cache size</strong> — for scan result caching</li>
-                            <li><strong>Undo history depth</strong> — how many steps are remembered (default: 100)</li>
+                            <li><strong>Undo history depth</strong> — how many steps are remembered (C++ ring buffer, default: 100)</li>
                             <li><strong>Debug mode</strong> — extra logging and diagnostic output</li>
                             <li><strong>Reset all settings</strong> — restore defaults</li>
                         </ul>
@@ -841,6 +843,23 @@
                                 <tr><td><span class="docs-kbd">Esc</span></td><td>Close active dialog</td></tr>
                             </tbody>
                         </table>
+
+                        <h3>Global hotkeys (new in v2.0.0)</h3>
+                        <p>These work even when ChainVerifier is not the active window.</p>
+                        <table class="docs-table">
+                            <thead>
+                                <tr>
+                                    <th>Shortcut</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><span class="docs-kbd">Ctrl</span> <span class="docs-kbd">Alt</span> <span class="docs-kbd">A</span></td><td>Attach to process</td></tr>
+                                <tr><td><span class="docs-kbd">Ctrl</span> <span class="docs-kbd">Alt</span> <span class="docs-kbd">S</span></td><td>Open scan dialog</td></tr>
+                                <tr><td><span class="docs-kbd">Ctrl</span> <span class="docs-kbd">Alt</span> <span class="docs-kbd">F</span></td><td>Toggle freeze</td></tr>
+                                <tr><td><span class="docs-kbd">Ctrl</span> <span class="docs-kbd">Alt</span> <span class="docs-kbd">H</span></td><td>Open hex viewer</td></tr>
+                            </tbody>
+                        </table>
                     </section>
 
                     <!-- 15. TIPS -->
@@ -855,6 +874,7 @@
                             <li><strong>Use the pointer scanner to validate.</strong> After building a chain by hand, run a pointer scan to see if a shorter chain exists.</li>
                             <li><strong>Test after a restart.</strong> Restart the target process and re-verify. If your chain fails, it is not stable.</li>
                             <li><strong>Watch out for multi-threaded updates.</strong> Some games write values from multiple threads; freeze managers may fight with the game.</li>
+                            <li><strong>Use the static filter.</strong> In v2.0.0, enable the is_static filter in pointer scan to only see chains anchored to static module addresses.</li>
                         </ul>
 
                         <h3>Scanning efficiency</h3>
@@ -863,14 +883,16 @@
                             <li><strong>Use alignment.</strong> Most values are 4- or 8-byte aligned — enabling alignment cuts results by 50-90%.</li>
                             <li><strong>Increase scan depth gradually.</strong> Start at level 2, then retry with level 3 or 4 if needed.</li>
                             <li><strong>Close memory-heavy apps first.</strong> Browsers, IDEs, and VMs take RAM that scans need.</li>
+                            <li><strong>Use Send to Chains.</strong> In v2.0.0, pointer scan results have a Send to Chains button that adds them in one click.</li>
                         </ul>
 
                         <h3>Workflow</h3>
                         <ul>
-                            <li><strong>Save often.</strong> Enable auto-save in Settings → File &amp; Logs.</li>
+                            <li><strong>Save often.</strong> Enable auto-save in Settings → File &amp; Logs for automatic timestamped backups.</li>
                             <li><strong>Use descriptions.</strong> Six months from now, "Player Health (base game)" beats "Chain 047".</li>
                             <li><strong>Keep a backup of working chains.</strong> Export to JSON and store somewhere safe.</li>
                             <li><strong>Do not verify while the target is paused.</strong> Frozen processes may have stale values.</li>
+                            <li><strong>Use global hotkeys.</strong> Ctrl+Alt+A / S / F / H let you work without alt-tabbing back to ChainVerifier.</li>
                         </ul>
 
                         <div class="docs-box docs-box-success">
@@ -925,6 +947,14 @@
                             <li>Use a static module range instead of the whole heap</li>
                         </ul>
 
+                        <h3>Windows SmartScreen blocks ChainVerifier</h3>
+                        <p><strong>Cause:</strong> The EXE is unsigned and SmartScreen flags unknown publishers.</p>
+                        <p><strong>Fix:</strong></p>
+                        <ul>
+                            <li>Click <strong>More info</strong>, then <strong>Run anyway</strong></li>
+                            <li>Or right-click the EXE → Properties → check <strong>Unblock</strong> → OK</li>
+                        </ul>
+
                         <h3>Antivirus quarantines ChainVerifier</h3>
                         <p><strong>Cause:</strong> False positive — memory tools are frequently flagged.</p>
                         <p><strong>Fix:</strong></p>
@@ -947,11 +977,15 @@
                         <p><strong>Cause:</strong> No internet access, or GitHub API rate limit reached.</p>
                         <p><strong>Fix:</strong> Wait a few minutes and retry, or download manually from the <a href="../download/download.html">download page</a>.</p>
 
+                        <h3>Notifications do not appear</h3>
+                        <p><strong>Cause:</strong> Windows Focus Assist is enabled, or notifications are disabled for ChainVerifier.</p>
+                        <p><strong>Fix:</strong> Check Windows Settings → System → Notifications. The duration is OS-controlled (~3-5 seconds).</p>
+
                         <div class="docs-box docs-box-info">
                             <span class="docs-box-icon">
                                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                             </span>
-                            <div><strong>Still stuck?</strong> Open an issue on <a href="https://github.com/owuMode/ChainVerifier/issues" target="_blank" rel="noopener">GitHub</a> or ask in <a href="https://t.me/owumode" target="_blank" rel="noopener">Telegram</a>. Include your Windows version, ChainVerifier version, and a screenshot of the problem.</div>
+                            <div><strong>Still stuck?</strong> Open an issue on <a href="https://github.com/owuMode/ChainVerifier/issues" target="_blank" rel="noopener">GitHub</a> or ask in <a href="https://t.me/owumode_chat" target="_blank" rel="noopener">Telegram</a>. Include your Windows version, ChainVerifier version, and a screenshot of the problem.</div>
                         </div>
                     </section>
 
@@ -1040,7 +1074,7 @@
                         <h3>Community support (free)</h3>
                         <ul>
                             <li><strong>GitHub Issues</strong> — bug reports, feature requests, and questions: <a href="https://github.com/owuMode/ChainVerifier/issues" target="_blank" rel="noopener">github.com/owuMode/ChainVerifier/issues</a></li>
-                            <li><strong>Telegram</strong> — real-time chat with the developer and other users: <a href="https://t.me/owumode" target="_blank" rel="noopener">t.me/owumode</a></li>
+                            <li><strong>Telegram</strong> — real-time chat with the developer and other users: <a href="https://t.me/owumode_chat" target="_blank" rel="noopener">t.me/owumode</a></li>
                             <li><strong>FAQ</strong> — quick answers to common questions: <a href="../faq/faq.html">FAQ page</a></li>
                             <li><strong>Changelog</strong> — what is new in each version: <a href="../changelog/changelog.html">Changelog page</a></li>
                         </ul>
@@ -1102,6 +1136,7 @@
                     <ul>
                         <li><a href="../download/download.html">Download</a></li>
                         <li><a href="docs.html">Documentation</a></li>
+                        <a href="manual.html" class="nav-link" data-i18n="nav.manual">Manual</a>
                         <li><a href="../changelog/changelog.html">Changelog</a></li>
                         <li><a href="../faq/faq.html">FAQ</a></li>
                     </ul>
@@ -1111,7 +1146,7 @@
                     <ul>
                         <li><a href="https://github.com/owuMode/ChainVerifier" target="_blank" rel="noopener">GitHub</a></li>
                         <li><a href="https://github.com/owuMode/ChainVerifier/issues" target="_blank" rel="noopener">Report Issue</a></li>
-                        <li><a href="https://t.me/owumode" target="_blank" rel="noopener">Telegram</a></li>
+                        <li><a href="https://t.me/owumode_chat" target="_blank" rel="noopener">Telegram</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
