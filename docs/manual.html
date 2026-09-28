@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Manual - ChainVerifier</title>
+    <meta name="description" content="Complete user manual for ChainVerifier v2.0.0 — learn every feature, tool, and workflow in plain language.">
+    <meta name="theme-color" content="#1f6aa5">
+    <link rel="canonical" href="https://owumode.store/docs/manual.html">
+    <link rel="icon" type="image/x-icon" href="../icon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../icon.ico">
+    <link rel="apple-touch-icon" href="../icon.ico">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="docs.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="../index.html" class="brand">
+                <span class="brand-logo"><img src="../logo.png" alt="ChainVerifier" onerror="this.parentNode.textContent='C';"></span>
+                <span class="brand-name">ChainVerifier</span>
+                <span class="brand-version" id="headerVersion">v2.0.0</span>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="../index.html" class="nav-link" data-i18n="nav.home">Home</a>
+                <a href="../download/download.html" class="nav-link" data-i18n="nav.download">Download</a>
+                <a href="docs.html" class="nav-link" data-i18n="nav.docs">Docs</a>
+                <a href="manual.html" class="nav-link active" data-i18n="nav.manual">Manual</a>
+                <a href="../changelog/changelog.html" class="nav-link" data-i18n="nav.changelog">Changelog</a>
+                <a href="../faq/faq.html" class="nav-link" data-i18n="nav.faq">FAQ</a>
+            </nav>
+            <div class="visitor-counter">
+                <span class="visitor-icon">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </span>
+                <span id="visitorCount">0</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="docs-hero">
+        <div class="container docs-hero-inner">
+            <div class="docs-hero-badge">User Manual</div>
+            <h1>ChainVerifier User Manual</h1>
+            <p>A complete walkthrough of every feature in ChainVerifier — written for real users, not developers. If you have ever wondered what a button does or how a workflow fits together, this is the place to look.</p>
+            <div class="docs-hero-meta">
+                <span class="docs-hero-chip">Version 2.0.0</span>
+                <span class="docs-hero-chip">Updated September 28, 2026</span>
+                <span class="docs-hero-chip">For Windows 10 / 11 (64-bit)</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENT -->
+    <main class="section" style="padding-top: 50px;">
+        <div class="container">
+            <div class="docs-layout">
+
+                <!-- SIDEBAR -->
+                <aside class="docs-sidebar">
+                    <h4>Manual Contents</h4>
+                    <ul>
+                        <li><a href="#intro"><span class="docs-sidebar-num">1</span> Introduction</a></li>
+                        <li><a href="#getting-started"><span class="docs-sidebar-num">2</span> Getting Started</a></li>
+                        <li><a href="#main-window"><span class="docs-sidebar-num">3</span> The Main Window</a></li>
+                        <li><a href="#attaching"><span class="docs-sidebar-num">4</span> Attaching to a Process</a></li>
+                        <li><a href="#chains"><span class="docs-sidebar-num">5</span> Working with Chains</a></li>
+                        <li><a href="#verifying"><span class="docs-sidebar-num">6</span> Verifying Chains</a></li>
+                        <li><a href="#live-update"><span class="docs-sidebar-num">7</span> Live Value Updates</a></li>
+                        <li><a href="#freezing"><span class="docs-sidebar-num">8</span> Freezing Values</a></li>
+                        <li><a href="#scanning"><span class="docs-sidebar-num">9</span> Memory Scanning</a></li>
+                        <li><a href="#hex-editor"><span class="docs-sidebar-num">10</span> Hex Viewer &amp; Editor</a></li>
+                        <li><a href="#pointer-scan"><span class="docs-sidebar-num">11</span> Pointer Scan</a></li>
+                        <li><a href="#import"><span class="docs-sidebar-num">12</span> Importing Pointer Maps</a></li>
+                        <li><a href="#save-load"><span class="docs-sidebar-num">13</span> Saving &amp; Loading</a></li>
+                        <li><a href="#exporting"><span class="docs-sidebar-num">14</span> Exporting Results</a></li>
+                        <li><a href="#hotkeys"><span class="docs-sidebar-num">15</span> Hotkeys</a></li>
+                        <li><a href="#notifications"><span class="docs-sidebar-num">16</span> Notifications</a></li>
+                        <li><a href="#settings"><span class="docs-sidebar-num">17</span> Configuring the App</a></li>
+                        <li><a href="#updating"><span class="docs-sidebar-num">18</span> Keeping It Updated</a></li>
+                        <li><a href="#workflow"><span class="docs-sidebar-num">19</span> A Typical Workflow</a></li>
+                        <li><a href="#help"><span class="docs-sidebar-num">20</span> Where to Get Help</a></li>
+                    </ul>
+                </aside>
+
+                <!-- MAIN CONTENT -->
+                <article class="docs-content">
+
+                    <!-- 1. INTRODUCTION -->
+                    <section id="intro">
+                        <h2><span class="num">1</span> Introduction</h2>
+                        <p>ChainVerifier is a Windows tool that helps you find, verify, and manage pointer chains inside a running program. If you have ever tried to track a value like health, ammo, or currency in a game — and watched it move every time you restart — you already understand the problem this tool solves.</p>
+
+                        <h3>What a pointer chain is, in plain terms</h3>
+                        <p>A pointer chain is a step-by-step path through a program's memory. Instead of pointing directly at a value (which moves every time the program starts), a chain starts from a fixed anchor inside the program's executable and follows a series of offsets until it arrives at the value you care about. Because the anchor stays put, the chain keeps working after a restart.</p>
+
+                        <h3>What this manual covers</h3>
+                        <p>Every feature of ChainVerifier is described here in the order you will encounter it: from launching the app, to attaching to a process, to building and verifying chains, to scanning memory, to saving your work. If you are new to the tool, read sections one through eight in sequence. After that, feel free to jump to whichever topic interests you.</p>
+
+                        <div class="docs-box docs-box-info">
+                            <span class="docs-box-icon">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                            </span>
+                            <div><strong>Before you begin:</strong> ChainVerifier needs Administrator rights to read and write another program's memory. This is a Windows requirement, not a design choice. Without it, the app cannot attach to anything.</div>
+                        </div>
+                    </section>
+
+                    <!-- 2. GETTING STARTED -->
+                    <section id="getting-started">
+                        <h2><span class="num">2</span> Getting Started</h2>
+                        <p>Getting ChainVerifier running takes less than a minute. The app is fully portable — no installer, no background services, no changes to your system.</p>
+
+                        <h3>Step by step</h3>
+                        <div class="docs-steps">
+                            <div class="docs-step">
+                                <span class="docs-step-num">1</span>
+                                <div class="docs-step-body">
+                                    <h4>Download the ZIP</h4>
+                                    <p>Visit the download page and grab the latest version. The file is roughly 42 MB.</p>
+                                </div>
+                            </div>
+                            <div class="docs-step">
+                                <span class="docs-step-num">2</span>
+                                <div class="docs-step-body">
+                                    <h4>Extract the EXE</h4>
+                                    <p>Right-click the ZIP and choose Extract All. Inside you will find a single file called <code data-copy="ChainVerifier.exe">ChainVerifier.exe</code>. Place it wherever you like — Desktop, a dedicated folder, or even a USB stick.</p>
+                                </div>
+                            </div>
+                            <div class="docs-step">
+                                <span class="docs-step-num">3</span>
+                                <div class="docs-step-body">
+                                    <h4>Run as Administrator</h4>
+                                    <p>Right-click <code data-copy="ChainVerifier.exe">ChainVerifier.exe</code> and choose Run as Administrator. Windows may ask you to confirm — click Yes. If SmartScreen warns about an unknown publisher, click More info and then Run anyway.</p>
+                                </div>
+                            </div>
+                            <div class="docs-step">
+                                <span class="docs-step-num">4</span>
+                                <div class="docs-step-body">
+                                    <h4>You are ready</h4>
+                                    <p>The main window opens. From here, attach to a process and start building chains — both topics are covered in the sections that follow.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="docs-box docs-box-success">
+                            <span class="docs-box-icon">
+                                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            </span>
+                            <div><strong>Portable by design:</strong> The entire application lives in that one EXE. To uninstall, simply delete the file. No leftover registry entries, no background processes.</div>
+                        </div>
+                    </section>
+
+                    <!-- 3. THE MAIN WINDOW -->
+                    <section id="main-window">
+                        <h2><span class="num">3</span> The Main Window</h2>
+                        <p>When ChainVerifier opens, you are looking at a single window divided into a few clearly separated areas. Getting familiar with each one will make everything else feel natural.</p>
+
+                        <h3>The top bar</h3>
+                        <p>At the very top sits the process bar. It shows which program you are currently attached to (or "No process opened" if you have not attached yet), along with a Browse button, a Target address field, and a Value Type dropdown. The Target address is where you tell the app what to compare against during verification. The Value Type tells it how to interpret the data it reads.</p>
+
+                        <h3>The results table</h3>
+                        <p>Below the process bar is the Verification Results table. This is where chains appear after you verify them. Each row shows the chain name, a short description you can add yourself, the resolved address in memory, whether the value matched your target, the current value, and a status label. Chains that match are highlighted in green so you can spot them instantly.</p>
+
+                        <h3>The chains editor</h3>
+                        <p>Underneath the results sits the Chains Editor. This is where you actually define chains before verifying them. You can add, edit, or delete chains here, and every change is fully reversible using Undo.</p>
+
+                        <h3>The log panel</h3>
+                        <p>At the bottom of the window is a log panel. It records everything the app does — attachments, scans, writes, saves, and any errors. If something does not behave as expected, the log is usually the first place to look.</p>
+
+                        <h3>The menu bar</h3>
+                        <p>Across the top of the window you will find six menus: File, Edit, Scan, Tools, Settings, and Help. Each one groups related actions. Every option in the menu bar is also reachable through a keyboard shortcut, which is covered in section fifteen.</p>
+
+                        <div class="docs-box docs-box-info">
+                            <span class="docs-box-icon">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                            </span>
+                            <div><strong>You can hide what you do not need.</strong> The toolbar, status bar, and log panel can each be toggled from Settings, so you can tailor the layout to your screen and preference.</div>
+                        </div>
+                    </section>
+
+                    <!-- 4. ATTACHING -->
+                    <section id="attaching">
+                        <h2><span class="num">4</span> Attaching to a Process</h2>
+                        <p>Before ChainVerifier can do anything useful, it needs to attach to a running process. Attaching is simply opening a connection to another program so the tool can read and write its memory.</p>
+
+                        <h3>How to attach</h3>
+                        <ol>
+                            <li>Open the Tools menu and choose Attach to Process — or click the Browse button in the top bar.</li>
+                            <li>A dialog appears listing every running process along with its PID and, optionally, its icon.</li>
+                            <li>Use the search box at the top of the dialog to filter the list, or scroll through it manually.</li>
+                            <li>Double-click a process to attach, or select it and click Attach.</li>
+                        </ol>
+
+                        <h3>What happens next</h3>
+                        <p>Once attached, the top bar updates to show the process name and its base address. The status indicator switches to a green tone, and the log records the successful attachment. From this point on you can build chains, scan memory, and write values.</p>
+
+                        <h3>Detaching</h3>
+                        <p>To detach, open the Tools menu and choose Detach. You can also simply close the target program — ChainVerifier watches for this and detaches automatically within a second or so.</p>
+
+                        <div class="docs-box docs-box-warn">
+                            <span class="docs-box-icon">
+                                <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            </span>
+                            <div><strong>Some programs cannot be attached to.</strong> Games protected by kernel-level anti-cheat tools like Easy Anti-Cheat, BattlEye, or Vanguard block all external memory access. This is intentional, and there is no workaround.</div>
+                        </div>
+                    </section>
+
+                    <!-- 5. CHAINS -->
+                    <section id="chains">
+                        <h2><span class="num">5</span> Working with Chains</h2>
+                        <p>A chain is a definition — a recipe that tells ChainVerifier how to reach a value inside a process. Every chain has four key properties: a base offset from the module, a list of intermediate offsets, a value type, and (optionally) a description.</p>
+
+                        <h3>Adding a chain</h3>
+                        <ol>
+                            <li>Click the Add button in the Chains Editor.</li>
+                            <li>Optionally give the chain a name. If you leave it blank, the app generates one based on the base offset and offsets you entered.</li>
+                            <li>Enter the base offset in hexadecimal. A leading <code data-copy="0x">0x</code> is optional but recommended.</li>
+                            <li>Enter the offsets, separated by commas. Offsets may be positive or negative — for example, <code data-copy="0x46C, -0x10, 0xC">0x46C, -0x10, 0xC</code> is perfectly valid.</li>
+                            <li>Choose a value type from the dropdown: int32, int64, float, double, or pointer.</li>
+                            <li>Click Add. The chain appears in the editor and is ready to verify.</li>
+                        </ol>
+
+                        <h3>Editing a chain</h3>
+                        <p>Double-click any row in the chains editor, or select it and click Edit. Make your changes and save. The original value is preserved in the undo stack.</p>
+
+                        <h3>Deleting chains</h3>
+                        <p>You can delete a single chain, multiple chains at once, or clear the entire list. To delete multiple, hold Ctrl or Shift to select several rows first, then click Delete. To clear everything, use Clear All.</p>
+
+                        <h3>Names and descriptions</h3>
+                        <p>Chain names are useful when you have dozens of entries. A name like "Player Health" is far easier to recognize than "Chain 047". Descriptions go one step further — you can double-click the Description cell in the results table to add a note, and that note is saved with your file.</p>
+
+                        <div class="docs-box docs-box-success">
+                            <span class="docs-box-icon">
+                                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            </span>
+                            <div><strong>Shortcuts that save time:</strong> After verifying, you can remove every chain that failed by choosing Edit and then Delete All Error Chains. This is much faster than removing them one by one.</div>
+                        </div>
+                    </section>
+
+                    <!-- 6. VERIFYING -->
+                    <section id="verifying">
+                        <h2><span class="num">6</span> Verifying Chains</h2>
+                        <p>Verification is the core action of the whole application. When you verify, ChainVerifier walks every chain you have defined, follows each pointer in sequence, reads the value at the end, and compares it against your target.</p>
+
+                        <h3>How to run a verification</h3>
+                        <ol>
+                            <li>Make sure a process is attached.</li>
+                            <li>Enter the target address in the top bar. In most workflows this is the process base address, which ChainVerifier fills in for you.</li>
+                            <li>Click Verify All Chains, or press F5.</li>
+                            <li>Results appear within a fraction of a second. With the C++ backend, even thousands of chains resolve in under a second.</li>
+                        </ol>
+
+                        <h3>Understanding the results</h3>
+                        <p>Each row in the results table tells a small story. A status of MATCH means the chain resolved and the value equals your expected value. A status of no match means the chain resolved but the value differed. An ERROR status means the chain could not be resolved at all — usually because a pointer in the middle of the chain was null or invalid.</p>
+
+                        <h3>Editing values directly</h3>
+                        <p>Double-click any value in the results table. A small dialog opens where you can type a new number and write it straight into the process. This is useful when you want to test whether a chain is really pointing at the value you think it is.</p>
+
+                        <h3>Cleaning up</h3>
+                        <p>After a verification run, you often find that some chains worked and many did not. Instead of clearing them all, use the Edit menu and choose Delete All Error Chains. Only the failing entries are removed; every working chain stays in place.</p>
+                    </section>
+
+                    <!-- 7. LIVE UPDATE -->
+                    <section id="live-update">
+                        <h2><span class="num">7</span> Live Value Updates</h2>
+                        <p>Static verification shows you a snapshot. Live updates show you the value changing in real time.</p>
+
+                        <h3>How it works</h3>
+                        <p>After you verify a set of chains, ChainVerifier automatically starts a background timer that re-reads each value at a fixed interval. Any value that changes is highlighted briefly, so your eye is drawn to it even in a long list. The interval is configurable from Settings, and the highlight duration can be adjusted to taste.</p>
+
+                        <h3>When live updates help</h3>
+                        <p>Live updates are invaluable when you are hunting a value that moves — health draining over time, ammunition counter ticking down, coordinates shifting as you walk. Watching a value change in real time tells you immediately whether a chain is pointing at the right thing.</p>
+
+                        <div class="docs-box docs-box-info">
+                            <span class="docs-box-icon">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                            </span>
+                            <div><strong>The app is smart about pauses.</strong> If the attached program closes unexpectedly or the app is busy saving or loading, live updates stop automatically and resume when it is safe.</div>
+                        </div>
+                    </section>
+
+                    <!-- 8. FREEZING -->
+                    <section id="freezing">
+                        <h2><span class="num">8</span> Freezing Values</h2>
+                        <p>Freezing is the act of holding a value steady by continuously writing it back to memory. If a program keeps changing a number but you want it to stay at a specific figure, freezing is how you enforce that.</p>
+
+                        <h3>Two ways to freeze</h3>
+                        <p>ChainVerifier gives you two options. The first is the Freeze column in the results table — a small checkbox next to each row. Click it to lock the current value. The second is the Freeze Manager under the Tools menu, which lets you add any address manually, choose a value, and keep it frozen for as long as you like.</p>
+
+                        <h3>When to use each</h3>
+                        <p>The checkbox approach is best when you have already verified chains and simply want to hold their values. The Freeze Manager is more flexible — it works with any address, even ones that are not part of a verified chain.</p>
+
+                        <div class="docs-box docs-box-warn">
+                            <span class="docs-box-icon">
+                                <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            </span>
+                            <div><strong>Frozen values are not free.</strong> Each frozen entry consumes a small amount of CPU. Freezing a handful of values is fine; freezing hundreds simultaneously is not advisable.</div>
+                        </div>
+                    </section>
+
+                    <!-- 9. SCANNING -->
+                    <section id="scanning">
+                        <h2><span class="num">9</span> Memory Scanning</h2>
+                        <p>When you do not yet know where a value lives, scanning is how you find it. ChainVerifier offers five different scan modes, each suited to a slightly different problem.</p>
+
+                        <h3>Pattern scan</h3>
+                        <p>The pattern scanner searches for a sequence of bytes anywhere in the target's memory. Wildcards — written as <code data-copy="??">??</code> — match any byte, which is handy when part of the pattern changes between runs. This mode is used most often to find functions, signatures, or unique code blocks.</p>
+                        <pre><code data-copy="48 8B ?? 05 ?? ?? ?? ?? 48 85 C0">48 8B ?? 05 ?? ?? ?? ?? 48 85 C0</code></pre>
+
+                        <h3>Range scan</h3>
+                        <p>The range scanner finds every value that falls between a minimum and a maximum. If you know that health is somewhere around one hundred, for example, a range scan between ninety and one hundred and ten will narrow things down dramatically.</p>
+
+                        <h3>Unknown value scan</h3>
+                        <p>Sometimes you do not even know the starting value. The unknown value scanner takes a snapshot of memory, waits for you to change something in the target program, then filters the snapshot by what changed — increased, decreased, stayed the same, or matched a specific delta. Repeat the process a few times and you quickly isolate the value.</p>
+
+                        <h3>String scan</h3>
+                        <p>The string scanner looks for text in memory — player names, item labels, or configuration keywords. Both ASCII and UTF-16 (Unicode) strings are supported, so you can search the way the target program stores its text.</p>
+
+                        <h3>Pointer scan</h3>
+                        <p>The pointer scanner is the most powerful of the five and is covered on its own in section eleven, since it deserves a little more explanation.</p>
+                    </section>
+
+                    <!-- 10. HEX EDITOR -->
+                    <section id="hex-editor">
+                        <h2><span class="num">10</span> Hex Viewer &amp; Editor</h2>
+                        <p>Sometimes you want to look directly at raw bytes, without any interpretation. The Hex Viewer is exactly that — a window into memory at any address you choose.</p>
+
+                        <h3>Reading memory</h3>
+                        <p>Open the viewer from the Tools menu. Enter an address and click Go. The window shows the bytes in the familiar layout: hex on the left, ASCII on the right, sixteen bytes per line. Use the Prev and Next buttons to page forward and backward through memory.</p>
+
+                        <h3>Editing bytes</h3>
+                        <p>Below the display is a write field. Type a sequence of hex bytes — for example, <code data-copy="48 8B 05 90">48 8B 05 90</code> — and click Write. The bytes are written directly at the current address. This is useful when you need to patch a small instruction or revert an experiment.</p>
+
+                        <div class="docs-box docs-box-warn">
+                            <span class="docs-box-icon">
+                                <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            </span>
+                            <div><strong>Writes are immediate.</strong> Whatever you type is written the moment you click Write. There is no undo inside the hex editor — make sure the address and bytes are correct before committing.</div>
+                        </div>
+                    </section>
+
+                    <!-- 11. POINTER SCAN -->
+                    <section id="pointer-scan">
+                        <h2><span class="num">11</span> Pointer Scan</h2>
+                        <p>The pointer scan is how you discover chains that stay stable across restarts. Instead of searching for values, it walks backwards from a known address and finds the sequences of pointers that lead to it.</p>
+
+                        <h3>Running a pointer scan</h3>
+                        <ol>
+                            <li>Open the Pointer Scan dialog from the Scan menu.</li>
+                            <li>Enter the target address — typically the address of a value you already located with a range scan.</li>
+                            <li>Choose a maximum level. Level two or three is a good starting point; higher levels find longer chains but take longer to run.</li>
+                            <li>Set a maximum offset. A larger range finds more candidates but also produces more noise.</li>
+                            <li>Click Find Pointers. The scan runs on a background thread, so the interface stays responsive.</li>
+                        </ol>
+
+                        <h3>Sending results to your chains editor</h3>
+                        <p>When the scan finishes, select one or more results and click Send to Chains. Each selected chain is added to your editor, ready to verify. If you have already verified some chains and want to compare, you can run the pointer scan again after a restart to see which suggested chains survive.</p>
+
+                        <div class="docs-box docs-box-info">
+                            <span class="docs-box-icon">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                            </span>
+                            <div><strong>Static filter:</strong> In v2.0.0 you can restrict results to chains anchored at static module addresses. This dramatically reduces the number of candidates you need to test.</div>
+                        </div>
+                    </section>
+
+                    <!-- 12. IMPORTING -->
+                    <section id="import">
+                        <h2><span class="num">12</span> Importing Pointer Maps</h2>
+                        <p>If you have used Cheat Engine to build a pointer map, ChainVerifier can import it directly. The importer understands the standard SQLite format that Cheat Engine exports and detects its structure automatically.</p>
+
+                        <h3>How to import</h3>
+                        <ol>
+                            <li>In Cheat Engine, save your pointer map as an <code data-copy=".sqlite">.sqlite</code> file.</li>
+                            <li>In ChainVerifier, open the File menu and choose Import Pointer Scan, or use the Tools menu.</li>
+                            <li>Select the file. ChainVerifier reads it and shows you a preview of the chains it found.</li>
+                            <li>Choose how many to import — all of them, or only the first several thousand — and click Import to Chains.</li>
+                        </ol>
+
+                        <h3>What gets imported</h3>
+                        <p>Each pointer path becomes a chain with a module name, a base offset, and a list of intermediate offsets. You can verify them immediately, edit them, or delete the ones you do not need.</p>
+                    </section>
+
+                    <!-- 13. SAVE / LOAD -->
+                    <section id="save-load">
+                        <h2><span class="num">13</span> Saving &amp; Loading</h2>
+                        <p>ChainVerifier saves your work in a file format called <code data-copy=".owu">.owu</code>. These files are encrypted, checksummed, and compressed, so they are compact and portable. You can keep as many as you like and load them on any machine.</p>
+
+                        <h3>Save, Save As, and Auto-Save</h3>
+                        <p>Save writes to the current file; Save As lets you pick a new location. If you have enabled Auto-Save in Settings, the app also saves periodically in the background and keeps rolling backups — up to the number you specify — so a crash or power failure never costs you more than a few minutes of work.</p>
+
+                        <h3>Opening a file</h3>
+                        <p>Open a chain file from the File menu, or pick one from the Recent Files submenu. The chains, descriptions, and even the log from the previous session are restored, so you can pick up exactly where you left off.</p>
+
+                        <div class="docs-box docs-box-info">
+                            <span class="docs-box-icon">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            </span>
+                            <div><strong>Files are tied to your machine.</strong> Because the .owu format uses a key generated on your computer, a file you save here will not open on a different machine. To move chains between computers, use Export and then Import.</div>
+                        </div>
+                    </section>
+
+                    <!-- 14. EXPORTING -->
+                    <section id="exporting">
+                        <h2><span class="num">14</span> Exporting Results</h2>
+                        <p>When you want to share your results with someone else, document your work, or move chains between computers, use Export. The Export Results dialog is under the File menu.</p>
+
+                        <h3>Three formats</h3>
+                        <table class="docs-table">
+                            <thead>
+                                <tr>
+                                    <th>Format</th>
+                                    <th>Best used for</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CSV</td>
+                                    <td>Opening in Excel or any spreadsheet application</td>
+                                </tr>
+                                <tr>
+                                    <td>JSON</td>
+                                    <td>Sharing with other tools, backing up, or scripting</td>
+                                </tr>
+                                <tr>
+                                    <td>TXT</td>
+                                    <td>Reading as a plain report, or pasting into a document</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>What you can include</h3>
+                        <p>Before exporting, you choose which rows to include — everything, only matched chains, only error chains, or only the rows you have highlighted. This makes it easy to share just the subset that matters.</p>
+                    </section>
+
+                    <!-- 15. HOTKEYS -->
+                    <section id="hotkeys">
+                        <h2><span class="num">15</span> Hotkeys</h2>
+                        <p>ChainVerifier ships with a set of keyboard shortcuts for the most common actions. Every shortcut can be rebound in Settings under the Hotkeys section.</p>
+
+                        <h3>Within the app</h3>
+                        <table class="docs-table">
+                            <thead>
+                                <tr>
+                                    <th>Shortcut</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><span class="docs-kbd">Ctrl</span> <span class="docs-kbd">N</span></td><td>New chain file</td></tr>
+                                <tr><td><span class="docs-kbd">Ctrl</span> <span class="docs-kbd">O</span></td><td>Open a chain file</td></tr>
+                                <tr><td><span class="docs-kbd">Ctrl</span> <span class="docs-kbd">S</span></td><td>Save</td></tr>
+                                <tr><td><span class="docs-kbd">Ctrl</span> <span class="docs-kbd">Shift</span> <span class="docs-kbd">S</span></td><td>Save As</td></tr>
+                                <tr><td><span class="docs-kbd">F5</span></td><td>Verify all chains</td></tr>
+                                <tr><td><span class="docs-kbd">Ctrl</span> <span class="docs-kbd">F</span></td><td>Open the scan dialog</td></tr>
+                                <tr><td><span class="docs-kbd">Ctrl</span> <span class="docs-kbd">Z</span></td><td>Undo</td></tr>
+                                <tr><td><span class="docs-kbd">Ctrl</span> <span class="docs-kbd">Y</span></td><td>Redo</td></tr>
+                                <tr><td><span class="docs-kbd">Delete</span></td><td>Delete selected chains</td></tr>
+                                <tr><td><span class="docs-kbd">Ctrl</span> <span class="docs-kbd">H</span></td><td>Open the hex viewer</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h3>Global hotkeys</h3>
+                        <p>In addition to the shortcuts above, ChainVerifier supports four global hotkeys that work even when the app is not focused — useful when you want to trigger an action while looking at the target program. These are disabled by default and can be enabled in Settings.</p>
+                        <table class="docs-table">
+                            <thead>
+                                <tr>
+                                    <th>Shortcut</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><span class="docs-kbd">Ctrl</span> <span class="docs-kbd">Alt</span> <span class="docs-kbd">A</span></td><td>Attach to process</td></tr>
+                                <tr><td><span class="docs-kbd">Ctrl</span> <span class="docs-kbd">Alt</span> <span class="docs-kbd">S</span></td><td>Open scan dialog</td></tr>
+                                <tr><td><span class="docs-kbd">Ctrl</span> <span class="docs-kbd">Alt</span> <span class="docs-kbd">F</span></td><td>Open freeze manager</td></tr>
+                                <tr><td><span class="docs-kbd">Ctrl</span> <span class="docs-kbd">Alt</span> <span class="docs-kbd">H</span></td><td>Open hex viewer</td></tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- 16. NOTIFICATIONS -->
+                    <section id="notifications">
+                        <h2><span class="num">16</span> Notifications</h2>
+                        <p>ChainVerifier can keep you informed without pulling focus away from the target program. This is most useful when you are running long scans or waiting on a verification to finish.</p>
+
+                        <h3>What you can enable</h3>
+                        <ul>
+                            <li><strong>Windows toast notifications</strong> — a small popup appears in the corner of the screen when a scan completes or a chain matches. The notification shows the ChainVerifier icon.</li>
+                            <li><strong>Taskbar flashing</strong> — the app's button in the taskbar flashes to draw your attention when something important happens.</li>
+                            <li><strong>Sound</strong> — a short Windows sound plays when a match is found or a scan finishes. Each of these can be turned on or off independently.</li>
+                        </ul>
+
+                        <p>All four settings live under Settings, in the File &amp; Logs section. Notifications are intentionally lightweight and never interrupt your work.</p>
+                    </section>
+
+                    <!-- 17. SETTINGS -->
+                    <section id="settings">
+                        <h2><span class="num">17</span> Configuring the App</h2>
+                        <p>The Settings dialog is where you tailor ChainVerifier to fit your machine and your habits. It is organized into seven sections, each covering a distinct area of the app.</p>
+
+                        <h3>General</h3>
+                        <p>Startup behavior, window size memory, auto-attach, recent files limit, and whether to check for updates on launch.</p>
+
+                        <h3>Appearance</h3>
+                        <p>Fonts, sizes, color themes, table appearance, and which panels are visible. Six built-in themes are included, and every color can be adjusted individually if the presets do not suit you.</p>
+
+                        <h3>Behavior</h3>
+                        <p>How often live values refresh, how long a highlight lasts, when to confirm before closing or attaching, and what the default scan type and alignment should be.</p>
+
+                        <h3>Performance</h3>
+                        <p>Choose between preset performance modes — Battery Saver, Balanced, Performance, Extreme — or dive into individual settings like thread count, buffer size, and maximum results. The app detects your CPU and RAM automatically and offers sensible defaults.</p>
+
+                        <h3>Hotkeys</h3>
+                        <p>Rebind any keyboard shortcut, including the four global hotkeys.</p>
+
+                        <h3>File &amp; Logs</h3>
+                        <p>Auto-save interval, backup count, whether to log to a file, log level, log rotation, and notification settings.</p>
+
+                        <h3>Advanced</h3>
+                        <p>Cache size, undo history depth, thread pool size, scan algorithm, and diagnostic options. These are for experienced users who want to fine-tune the app's behavior.</p>
+                    </section>
+
+                    <!-- 18. UPDATING -->
+                    <section id="updating">
+                        <h2><span class="num">18</span> Keeping It Updated</h2>
+                        <p>ChainVerifier checks GitHub for new releases on startup. If a newer version exists, a small notification appears in the bottom-right corner of your screen.</p>
+
+                        <h3>To install an update</h3>
+                        <ol>
+                            <li>When the notification appears, click it (or open the Help menu and click Download Latest).</li>
+                            <li>Your browser opens the release page with the newest ZIP.</li>
+                            <li>Download and extract the new EXE. Because ChainVerifier is portable, you can simply replace the old file with the new one — your settings and saved chains remain where they are.</li>
+                        </ol>
+
+                        <h3>Manual check</h3>
+                        <p>You can also trigger a check at any time from the Help menu by selecting Check for Updates.</p>
+                    </section>
+
+                    <!-- 19. WORKFLOW -->
+                    <section id="workflow">
+                        <h2><span class="num">19</span> A Typical Workflow</h2>
+                        <p>If you are new to pointer chains, the sequence below is a good pattern to follow. It walks through the standard way most users approach a fresh target.</p>
+
+                        <div class="docs-steps">
+                            <div class="docs-step">
+                                <span class="docs-step-num">1</span>
+                                <div class="docs-step-body">
+                                    <h4>Attach to the target</h4>
+                                    <p>Launch the program you want to inspect, then attach to it in ChainVerifier.</p>
+                                </div>
+                            </div>
+                            <div class="docs-step">
+                                <span class="docs-step-num">2</span>
+                                <div class="docs-step-body">
+                                    <h4>Find the value</h4>
+                                    <p>Use a range scan, a string scan, or the unknown value scanner to locate the value you care about.</p>
+                                </div>
+                            </div>
+                            <div class="docs-step">
+                                <span class="docs-step-num">3</span>
+                                <div class="docs-step-body">
+                                    <h4>Run a pointer scan</h4>
+                                    <p>With the address in hand, use the pointer scanner to find chains that lead to it. Send promising results to the chains editor.</p>
+                                </div>
+                            </div>
+                            <div class="docs-step">
+                                <span class="docs-step-num">4</span>
+                                <div class="docs-step-body">
+                                    <h4>Verify and trim</h4>
+                                    <p>Verify your chains. Remove the ones that failed. Keep the ones that resolved correctly.</p>
+                                </div>
+                            </div>
+                            <div class="docs-step">
+                                <span class="docs-step-num">5</span>
+                                <div class="docs-step-body">
+                                    <h4>Restart and confirm</h4>
+                                    <p>Restart the target program, attach again, and verify once more. The chains that still work are the ones worth keeping.</p>
+                                </div>
+                            </div>
+                            <div class="docs-step">
+                                <span class="docs-step-num">6</span>
+                                <div class="docs-step-body">
+                                    <h4>Save and describe</h4>
+                                    <p>Save your file, add descriptions to the chains that survived, and export a copy as a backup.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="docs-box docs-box-success">
+                            <span class="docs-box-icon">
+                                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            </span>
+                            <div><strong>The golden rule:</strong> If a chain survives three consecutive restarts of the target program, it is almost certainly stable. If it fails even once, keep scanning.</div>
+                        </div>
+                    </section>
+
+                    <!-- 20. HELP -->
+                    <section id="help">
+                        <h2><span class="num">20</span> Where to Get Help</h2>
+                        <p>If this manual did not answer your question, there are several places to look next.</p>
+
+                        <h3>Community and support</h3>
+                        <ul>
+                            <li><strong>GitHub Issues</strong> — for bug reports, feature requests, or questions: <a href="https://github.com/owuMode/ChainVerifier/issues" target="_blank" rel="noopener">github.com/owuMode/ChainVerifier/issues</a></li>
+                            <li><strong>Telegram</strong> — real-time chat with the developer and other users: <a href="https://t.me/owumode_chat" target="_blank" rel="noopener">t.me/owumode</a></li>
+                            <li><strong>FAQ</strong> — quick answers to common questions: <a href="../faq/faq.html">FAQ page</a></li>
+                            <li><strong>Changelog</strong> — what has changed in each version: <a href="../changelog/changelog.html">Changelog page</a></li>
+                        </ul>
+
+                        <h3>When reporting a problem</h3>
+                        <p>To get help as quickly as possible, include the version of ChainVerifier shown in the header, your Windows version, what you were doing when the issue happened, and — if possible — a copy of the log panel output. The log usually shows exactly what went wrong.</p>
+
+                        <div class="docs-box docs-box-info">
+                            <span class="docs-box-icon">
+                                <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                            </span>
+                            <div>ChainVerifier is developed by a small team and improved with feedback from its users. If something is missing or unclear in this manual, letting us know is genuinely helpful.</div>
+                        </div>
+                    </section>
+
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+    <div class="toast" id="toast"><span id="toastMessage"></span></div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div>
+                    <div class="footer-brand">
+                        <span class="brand-logo">C</span>
+                        <span>ChainVerifier</span>
+                    </div>
+                    <p class="footer-about">Modern pointer chain verifier &amp; memory scanner for Windows. Built by OwuMode.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="../download/download.html">Download</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="manual.html">User Manual</a></li>
+                        <li><a href="../changelog/changelog.html">Changelog</a></li>
+                        <li><a href="../faq/faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://github.com/owuMode/ChainVerifier" target="_blank" rel="noopener">GitHub</a></li>
+                        <li><a href="https://github.com/owuMode/ChainVerifier/issues" target="_blank" rel="noopener">Report Issue</a></li>
+                        <li><a href="https://t.me/owumode_chat" target="_blank" rel="noopener">Telegram</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">© 2026 ChainVerifier · Built by OwuMode</div>
+        </div>
+    </footer>
+
+    <script src="../shared/data.js"></script>
+    <script src="../shared/i18n.js"></script>
+    <script src="../shared/ui-kit.js"></script>
+    <script src="docs.js"></script>
+</body>
+</html>
