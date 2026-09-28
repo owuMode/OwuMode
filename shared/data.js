@@ -93,7 +93,7 @@ const APP_VERSIONS = [
 
         changelog: [
             "Full C++ backend for pointer scanning and chain verification",
-            "Batch verify — millions of chains chains in under 1 second",
+            "Batch verify — millions of chains in under 1 second",
             "Single portable EXE — no _internal folder required",
             "Custom dark-themed UI with modern design",
             "Bulk freeze with visual indicator",
@@ -127,8 +127,8 @@ const APP_VERSIONS = [
         id: 1,
         version: "v1.0.0",
         size: "44 MB",
-        fileName: "ChainVerifier.zip",
-        url: "https://github.com/owuMode/ChainVerifier/releases/download/v1.0.0/ChainVerifier.zip",
+        fileName: "ChainVerifier-v1.0.0-Windows-x64.zip",
+        url: "https://github.com/owuMode/ChainVerifier/releases/download/v1.0.0/ChainVerifier-v1.0.0-Windows-x64.zip",
         releasePageUrl: "https://github.com/owuMode/ChainVerifier/releases/tag/v1.0.0",
         date: "2026-09-23",
         isLatest: false,
