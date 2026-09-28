@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - ChainVerifier</title>
+    <meta name="description" content="ChainVerifier Privacy Policy — how we handle your data, what we collect, and your rights. We do not collect personal information.">
+    <meta name="theme-color" content="#1f6aa5">
+    <link rel="canonical" href="https://owumode.store/privacy.html">
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="icon.ico">
+    <link rel="apple-touch-icon" href="icon.ico">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ─── Legal Page Specific Styles ─── */
+        .legal-hero {
+            background: linear-gradient(135deg, #0a1628 0%, #0d2038 50%, #0f2d4d 100%);
+            color: #fff;
+            padding: 60px 0 70px;
+            position: relative;
+            overflow: hidden;
+        }
+        .legal-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+            background-size: 48px 48px;
+            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+                    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+            pointer-events: none;
+        }
+        .legal-hero-inner {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .legal-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(76, 175, 80, 0.15);
+            border: 1px solid rgba(76, 175, 80, 0.4);
+            color: #6ee07a;
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .legal-hero-badge::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            background: #6ee07a;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #6ee07a;
+        }
+        .legal-hero h1 {
+            font-size: clamp(30px, 4.5vw, 46px);
+            font-weight: 900;
+            letter-spacing: -1.4px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+        .legal-hero p {
+            color: #b8c6d8;
+            font-size: 15px;
+            line-height: 1.7;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        .legal-hero-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 24px;
+            padding: 8px 18px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-full);
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #d8e8f8;
+        }
+
+        .legal-layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 40px;
+            align-items: start;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .legal-toc {
+            position: sticky;
+            top: 96px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+        .legal-toc h4 {
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .legal-toc ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .legal-toc a {
+            display: block;
+            padding: 7px 12px;
+            color: var(--text);
+            border-radius: 8px;
+            font-size: 12.5px;
+            font-weight: 700;
+            transition: all 0.15s ease;
+            line-height: 1.4;
+            text-decoration: none;
+        }
+        .legal-toc a:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+            transform: translateX(3px);
+        }
+
+        .legal-content {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 48px 56px;
+        }
+        .legal-content section {
+            padding-bottom: 32px;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+            scroll-margin-top: 90px;
+        }
+        .legal-content section:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        .legal-content h2 {
+            color: var(--black);
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: -0.6px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .legal-content h2 .num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 900;
+            flex-shrink: 0;
+            box-shadow: 0 6px 15px var(--primary-glow);
+        }
+        .legal-content h3 {
+            color: var(--black);
+            font-size: 17px;
+            font-weight: 900;
+            margin: 24px 0 12px;
+        }
+        .legal-content p {
+            color: var(--text);
+            font-size: 14.5px;
+            line-height: 1.85;
+            margin-bottom: 16px;
+        }
+        .legal-content ul, .legal-content ol {
+            padding-left: 24px;
+            color: var(--text);
+            font-size: 14.5px;
+            line-height: 1.9;
+            margin-bottom: 16px;
+        }
+        .legal-content li {
+            margin-bottom: 8px;
+        }
+        .legal-content strong {
+            color: var(--black);
+            font-weight: 800;
+        }
+        .legal-content a {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: underline;
+            text-decoration-color: rgba(31, 106, 165, 0.3);
+            text-underline-offset: 3px;
+            transition: all 0.15s ease;
+        }
+        .legal-content a:hover {
+            text-decoration-color: var(--primary);
+        }
+        .legal-content code {
+            padding: 3px 9px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', Consolas, monospace;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .legal-box {
+            padding: 18px 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-size: 14px;
+            line-height: 1.75;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+        .legal-box-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+        }
+        .legal-box-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2;
+            fill: none;
+            stroke: currentColor;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .legal-box-info {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            color: var(--text);
+        }
+        .legal-box-success {
+            background: #e8f8ec;
+            border-left: 4px solid var(--green);
+            color: #1e5c2a;
+        }
+        .legal-box-warn {
+            background: #fff8e1;
+            border-left: 4px solid var(--yellow);
+            color: #7a5a00;
+        }
+        .legal-box-danger {
+            background: #ffebee;
+            border-left: 4px solid var(--red);
+            color: #a02020;
+        }
+        .legal-box strong {
+            color: inherit;
+            font-weight: 900;
+        }
+
+        .legal-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13.5px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .legal-table th {
+            background: var(--bg);
+            color: var(--black);
+            font-weight: 900;
+            text-align: left;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .legal-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .legal-table tr:last-child td {
+            border-bottom: none;
+        }
+        .legal-table tr:hover td {
+            background: var(--bg);
+        }
+
+        /* ─── CONTACT CARD (FIXED) ─── */
+        .legal-contact-card {
+            background: linear-gradient(135deg, #0f2d4d 0%, #15568a 55%, #1f6aa5 100%);
+            color: #fff;
+            padding: 32px;
+            border-radius: 18px;
+            margin-top: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .legal-contact-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 85% 20%, rgba(76, 175, 80, 0.25) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .legal-contact-card h3 {
+            color: #ffffff !important;
+            font-size: 20px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+        }
+        .legal-contact-card p {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-size: 14px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        .legal-contact-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ─── BUTTON — FIXED with !important ─── */
+        .legal-contact-btn {
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 22px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1.5px solid rgba(255, 255, 255, 0.35);
+            color: #ffffff !important;
+            border-radius: 10px;
+            font-size: 13.5px;
+            font-weight: 900;
+            text-decoration: none !important;
+            transition: all 0.15s ease;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+            font-family: inherit;
+            line-height: 1.2;
+        }
+        .legal-contact-btn:hover {
+            background: rgba(255, 255, 255, 0.28);
+            border-color: rgba(255, 255, 255, 0.6);
+            color: #ffffff !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .legal-contact-btn svg {
+            flex-shrink: 0;
+            display: block;
+            width: 16px;
+            height: 16px;
+        }
+        .legal-contact-btn span {
+            display: inline-block;
+        }
+
+        .legal-contact-btn-primary {
+            background: #4caf50 !important;
+            border-color: #4caf50 !important;
+            color: #ffffff !important;
+        }
+        .legal-contact-btn-primary:hover {
+            background: #2e7d32 !important;
+            border-color: #2e7d32 !important;
+            color: #ffffff !important;
+        }
+
+        .legal-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+        .legal-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .legal-meta-label {
+            font-size: 10.5px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .legal-meta-value {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--black);
+        }
+
+        @media (max-width: 1024px) {
+            .legal-layout { grid-template-columns: 1fr; gap: 24px; }
+            .legal-toc { position: static; max-height: none; }
+            .legal-content { padding: 32px 28px; }
+        }
+        @media (max-width: 600px) {
+            .legal-content { padding: 24px 20px; }
+            .legal-content h2 { font-size: 22px; }
+            .legal-table { font-size: 12.5px; }
+            .legal-table th, .legal-table td { padding: 10px 12px; }
+            .legal-contact-links { flex-direction: column; }
+            .legal-contact-btn { width: 100%; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-logo"><img src="logo.png" alt="ChainVerifier" onerror="this.parentNode.textContent='C';"></span>
+                <span class="brand-name">ChainVerifier</span>
+                <span class="brand-version">v1.0.0</span>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="download/download.html" class="nav-link">Download</a>
+                <a href="docs/docs.html" class="nav-link">Docs</a>
+                <a href="changelog/changelog.html" class="nav-link">Changelog</a>
+                <a href="faq/faq.html" class="nav-link">FAQ</a>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="legal-hero">
+        <div class="container legal-hero-inner">
+            <div class="legal-hero-badge">Legal Document</div>
+            <h1>Privacy Policy</h1>
+            <p>Your privacy matters. This policy explains exactly what data ChainVerifier collects (spoiler: almost nothing), how it's used, and your rights.</p>
+            <div class="legal-hero-date">
+                <span>Last updated: September 28, 2026</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENT -->
+    <main class="section" style="padding-top: 50px;">
+        <div class="container">
+            <div class="legal-layout">
+
+                <!-- TABLE OF CONTENTS -->
+                <aside class="legal-toc">
+                    <h4>Contents</h4>
+                    <ul>
+                        <li><a href="#overview">1. Overview</a></li>
+                        <li><a href="#data-collect">2. Data We Collect</a></li>
+                        <li><a href="#data-use">3. How We Use Data</a></li>
+                        <li><a href="#desktop-app">4. Desktop Application</a></li>
+                        <li><a href="#website">5. Website & Cookies</a></li>
+                        <li><a href="#third-party">6. Third-Party Services</a></li>
+                        <li><a href="#retention">7. Data Retention</a></li>
+                        <li><a href="#security">8. Security</a></li>
+                        <li><a href="#children">9. Children's Privacy</a></li>
+                        <li><a href="#rights">10. Your Rights</a></li>
+                        <li><a href="#changes">11. Policy Changes</a></li>
+                        <li><a href="#contact">12. Contact Us</a></li>
+                    </ul>
+                </aside>
+
+                <!-- MAIN CONTENT -->
+                <article class="legal-content">
+
+                    <div class="legal-meta">
+                        <div class="legal-meta-item">
+                            <span class="legal-meta-label">Effective Date</span>
+                            <span class="legal-meta-value">September 28, 2026</span>
+                        </div>
+                        <div class="legal-meta-item">
+                            <span class="legal-meta-label">Version</span>
+                            <span class="legal-meta-value">1.0</span>
+                        </div>
+                        <div class="legal-meta-item">
+                            <span class="legal-meta-label">Applies To</span>
+                            <span class="legal-meta-value">ChainVerifier + owumode.store</span>
+                        </div>
+                    </div>
+
+                    <!-- 1. OVERVIEW -->
+                    <section id="overview">
+                        <h2><span class="num">1</span> Overview</h2>
+                        <p>ChainVerifier ("we", "our", "the app") is a free Windows desktop application developed by <strong>OwuMode</strong> and distributed through <strong>owumode.store</strong>. This Privacy Policy explains what information we collect, why we collect it, and how you can control it.</p>
+
+                        <div class="legal-box legal-box-success">
+                            <span class="legal-box-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </span>
+                            <div><strong>Short version:</strong> ChainVerifier does not collect, transmit, or sell any personal information. The desktop app works fully offline. The only data we receive is anonymous visitor counts on this website.</div>
+                        </div>
+
+                        <p>By using ChainVerifier or visiting owumode.store, you agree to the practices described in this policy. If you do not agree, please do not use the software or the website.</p>
+                    </section>
+
+                    <!-- 2. DATA WE COLLECT -->
+                    <section id="data-collect">
+                        <h2><span class="num">2</span> Data We Collect</h2>
+                        <p>We believe in minimal data collection. Here's exactly what we do and do not collect:</p>
+
+                        <h3>What we DO NOT collect</h3>
+                        <ul>
+                            <li><strong>No personal information</strong> — no names, emails, phone numbers, or addresses</li>
+                            <li><strong>No account data</strong> — no registration, no login, no user accounts</li>
+                            <li><strong>No payment info</strong> — the app is completely free, we never ask for payment details</li>
+                            <li><strong>No file contents</strong> — we never access the memory you scan, the chains you save, or the processes you attach to</li>
+                            <li><strong>No location data</strong> — no GPS, IP-based geolocation, or country tracking</li>
+                            <li><strong>No biometric data</strong> — no fingerprints, face data, or voice</li>
+                            <li><strong>No behavioral tracking</strong> — no heatmaps, no session recordings, no click tracking</li>
+                        </ul>
+
+                        <h3>What we DO collect (minimal)</h3>
+                        <table class="legal-table">
+                            <thead>
+                                <tr>
+                                    <th>Data Type</th>
+                                    <th>Purpose</th>
+                                    <th>Storage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Anonymous visitor count</td>
+                                    <td>Display total visits on the website</td>
+                                    <td>JSONBin.io (cloud)</td>
+                                </tr>
+                                <tr>
+                                    <td>Browser language preference</td>
+                                    <td>Remember if you chose EN or HI</td>
+                                    <td>Your browser (localStorage)</td>
+                                </tr>
+                                <tr>
+                                    <td>Update check (GitHub API)</td>
+                                    <td>Fetch latest version info</td>
+                                    <td>GitHub (public data)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="legal-box legal-box-info">
+                            <span class="legal-box-icon">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                            </span>
+                            <div>The visitor counter is a <strong>single number</strong>. It does not track individual users, IP addresses, or sessions. We cannot tell who visited or how many times you personally visited.</div>
+                        </div>
+                    </section>
+
+                    <!-- 3. HOW WE USE DATA -->
+                    <section id="data-use">
+                        <h2><span class="num">3</span> How We Use Data</h2>
+                        <p>The minimal data we collect is used only for these purposes:</p>
+                        <ul>
+                            <li><strong>Visitor counter:</strong> To display a total visit count on the website — a vanity metric, nothing more.</li>
+                            <li><strong>Language preference:</strong> To remember whether you selected English or Hindi, so you don't have to re-select on every page.</li>
+                            <li><strong>Update checks:</strong> To notify you when a new version of ChainVerifier is available on GitHub.</li>
+                        </ul>
+
+                        <p>We <strong>never</strong> use this data for:</p>
+                        <ul>
+                            <li>Advertising or marketing</li>
+                            <li>Profiling or behavioral analysis</li>
+                            <li>Selling or sharing with third parties</li>
+                            <li>Training AI or machine learning models</li>
+                        </ul>
+                    </section>
+
+                    <!-- 4. DESKTOP APP -->
+                    <section id="desktop-app">
+                        <h2><span class="num">4</span> Desktop Application</h2>
+                        <p>ChainVerifier is a <strong>fully offline desktop application</strong>. This section explains exactly how it handles your data.</p>
+
+                        <h3>Local processing only</h3>
+                        <p>All memory scanning, pointer chain verification, freezing, and hex editing happens <strong>entirely on your machine</strong>. No memory contents, addresses, or process data ever leave your computer.</p>
+
+                        <h3>Your saved files (.owu)</h3>
+                        <p>Chain files you save are stored locally wherever you choose. They are encrypted with XOR + SHA-256 + zlib compression. We have no access to these files and cannot recover them if lost.</p>
+
+                        <h3>Internet connections</h3>
+                        <p>ChainVerifier makes network requests only when:</p>
+                        <ul>
+                            <li>You click <strong>Check for Updates</strong> (or on startup, if auto-check is enabled)</li>
+                            <li>You manually open a link (GitHub, Telegram, etc.)</li>
+                        </ul>
+                        <p>These requests go only to <code>api.github.com</code> to fetch the latest release tag. No telemetry, no analytics, no crash reports are sent.</p>
+
+                        <h3>Administrator privileges</h3>
+                        <p>ChainVerifier requires Administrator rights <strong>only</strong> to read/write memory of other processes — a Windows requirement. These privileges are never used for any other purpose.</p>
+
+                        <div class="legal-box legal-box-success">
+                            <span class="legal-box-icon">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            </span>
+                            <div><strong>You can fully verify this yourself.</strong> ChainVerifier is distributed as readable Python and C++ code. You can monitor network activity with Wireshark, Fiddler, or Windows Resource Monitor to confirm the app only contacts GitHub.</div>
+                        </div>
+                    </section>
+
+                    <!-- 5. WEBSITE -->
+                    <section id="website">
+                        <h2><span class="num">5</span> Website &amp; Cookies</h2>
+                        <p>The owumode.store website is a static site. Here's how it handles data:</p>
+
+                        <h3>Cookies</h3>
+                        <p>We do <strong>not</strong> use cookies for tracking, advertising, or analytics. We use <code>localStorage</code> only for:</p>
+                        <ul>
+                            <li><strong>Language preference</strong> — remembers EN or HI selection</li>
+                            <li><strong>Visitor deduplication</strong> — prevents counting the same browser twice per session</li>
+                            <li><strong>"What's New" seen version</strong> — remembers which version popup you dismissed</li>
+                        </ul>
+
+                        <h3>Server logs</h3>
+                        <p>Like all websites, our hosting provider may keep standard server access logs (IP address, timestamp, requested URL, user agent). These logs are used only for security and abuse prevention, and are typically deleted within 30 days.</p>
+
+                        <h3>Do Not Track</h3>
+                        <p>Since we don't track you anyway, we honor all "Do Not Track" signals by default — no special handling needed.</p>
+                    </section>
+
+                    <!-- 6. THIRD-PARTY -->
+                    <section id="third-party">
+                        <h2><span class="num">6</span> Third-Party Services</h2>
+                        <p>We use a small number of third-party services. Each has its own privacy policy:</p>
+
+                        <table class="legal-table">
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Purpose</th>
+                                    <th>Data Shared</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>GitHub</strong></td>
+                                    <td>Hosting releases, source code, and update checks</td>
+                                    <td>Public IP (standard HTTP)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>JSONBin.io</strong></td>
+                                    <td>Storing anonymous visitor count</td>
+                                    <td>Anonymous number only</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Telegram</strong></td>
+                                    <td>Community support (only if you click the link)</td>
+                                    <td>Whatever Telegram collects</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>We do <strong>not</strong> use Google Analytics, Facebook Pixel, or any advertising trackers.</p>
+                    </section>
+
+                    <!-- 7. RETENTION -->
+                    <section id="retention">
+                        <h2><span class="num">7</span> Data Retention</h2>
+                        <p>Since we collect almost nothing, there's almost nothing to retain:</p>
+                        <ul>
+                            <li><strong>Visitor counter:</strong> Kept indefinitely (it's just a cumulative number)</li>
+                            <li><strong>Language preference:</strong> Stored in your browser until you clear it</li>
+                            <li><strong>Server logs:</strong> Automatically deleted by hosting provider within 30 days</li>
+                            <li><strong>Local files:</strong> 100% under your control — you can delete them anytime</li>
+                        </ul>
+                    </section>
+
+                    <!-- 8. SECURITY -->
+                    <section id="security">
+                        <h2><span class="num">8</span> Security</h2>
+                        <p>We take reasonable measures to protect the limited data we handle:</p>
+                        <ul>
+                            <li><strong>HTTPS everywhere</strong> — all website traffic and API calls use TLS encryption</li>
+                            <li><strong>No credentials stored</strong> — there are no user accounts, so no passwords to leak</li>
+                            <li><strong>Encrypted .owu files</strong> — your chains are protected with XOR + SHA-256 + zlib</li>
+                            <li><strong>Open source transparency</strong> — the app's network behavior is verifiable</li>
+                        </ul>
+                        <p>However, no system is 100% secure. Since we don't store personal data, a breach would expose almost nothing of value.</p>
+                    </section>
+
+                    <!-- 9. CHILDREN -->
+                    <section id="children">
+                        <h2><span class="num">9</span> Children's Privacy</h2>
+                        <p>ChainVerifier is not directed at children under 13 (or under 16 in the EU). We do not knowingly collect any data from children. If you believe a child has used the app, there is nothing for us to delete — we hold no personal data.</p>
+                    </section>
+
+                    <!-- 10. RIGHTS -->
+                    <section id="rights">
+                        <h2><span class="num">10</span> Your Rights</h2>
+                        <p>Depending on your location (GDPR, CCPA, etc.), you may have the following rights:</p>
+                        <ul>
+                            <li><strong>Right to access</strong> — you can request what data we hold about you (answer: virtually none)</li>
+                            <li><strong>Right to deletion</strong> — you can request deletion of your data (answer: nothing to delete)</li>
+                            <li><strong>Right to opt out</strong> — clear your browser's localStorage to remove all locally stored preferences</li>
+                            <li><strong>Right to portability</strong> — export your own .owu files anytime (they're on your disk)</li>
+                            <li><strong>Right to complain</strong> — contact your local data protection authority if you believe we've violated your rights</li>
+                        </ul>
+                        <div class="legal-box legal-box-info">
+                            <span class="legal-box-icon">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            </span>
+                            <div>Because we don't collect personal data, most rights are trivially satisfied — there's nothing to access, delete, or transfer.</div>
+                        </div>
+                    </section>
+
+                    <!-- 11. CHANGES -->
+                    <section id="changes">
+                        <h2><span class="num">11</span> Policy Changes</h2>
+                        <p>We may update this Privacy Policy from time to time. When we do:</p>
+                        <ul>
+                            <li>The <strong>"Last updated"</strong> date at the top will change</li>
+                            <li>Material changes will be announced in the <a href="changelog/changelog.html">Changelog</a></li>
+                            <li>Continued use after changes means you accept the new policy</li>
+                        </ul>
+                        <p>We recommend checking this page occasionally. Given how little data we handle, major changes are unlikely.</p>
+                    </section>
+
+                    <!-- 12. CONTACT -->
+                    <section id="contact">
+                        <h2><span class="num">12</span> Contact Us</h2>
+                        <p>Questions, concerns, or requests about this Privacy Policy? Reach out:</p>
+
+                        <div class="legal-contact-card">
+                            <h3>Get in touch</h3>
+                            <p>We respond to privacy inquiries within 7 days.</p>
+                            <div class="legal-contact-links">
+                                <a href="https://github.com/owuMode/ChainVerifier/issues" target="_blank" rel="noopener" class="legal-contact-btn legal-contact-btn-primary">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                    </svg>
+                                    <span>Open an Issue on GitHub</span>
+                                </a>
+                                <a href="https://t.me/owumode" target="_blank" rel="noopener" class="legal-contact-btn">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                                    </svg>
+                                    <span>Telegram Support</span>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div>
+                    <div class="footer-brand">
+                        <span class="brand-logo">C</span>
+                        <span>ChainVerifier</span>
+                    </div>
+                    <p class="footer-about">Modern pointer chain verifier &amp; memory scanner for Windows. Built by OwuMode.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="download/download.html">Download</a></li>
+                        <li><a href="docs/docs.html">Documentation</a></li>
+                        <li><a href="changelog/changelog.html">Changelog</a></li>
+                        <li><a href="faq/faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://github.com/owuMode/ChainVerifier" target="_blank" rel="noopener">GitHub</a></li>
+                        <li><a href="https://github.com/owuMode/ChainVerifier/issues" target="_blank" rel="noopener">Report Issue</a></li>
+                        <li><a href="https://t.me/owumode" target="_blank" rel="noopener">Telegram</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">© 2026 ChainVerifier · Built by OwuMode</div>
+        </div>
+    </footer>
+
+    <script src="shared/data.js"></script>
+    <script src="shared/i18n.js"></script>
+    <script src="shared/ui-kit.js"></script>
+    <script>
+        document.getElementById("mobileMenuBtn").addEventListener("click", () => {
+            document.getElementById("navMenu").classList.toggle("active");
+        });
+    </script>
+</body>
+</html>
