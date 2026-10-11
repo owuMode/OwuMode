@@ -79,6 +79,29 @@ const APP_FEATURES = [
 
 const APP_VERSIONS = [
     {
+        id: 3,
+        version: "v2.9.1",
+        size: "45 MB",
+        fileName: "ChainVerifier_v2.9.1-Windows-x64.zip",
+        url: "https://github.com/owuMode/ChainVerifier/releases/download/v2.9.1/ChainVerifier_v2.9.1-Windows-x64.zip",
+        releasePageUrl: "https://github.com/owuMode/ChainVerifier/releases/tag/v2.9.1",
+        date: "2026-10-11",
+        isLatest: true,
+
+        sha256: "",
+        vtUrl:  "",
+
+        changelog: [
+            "32-bit & 64-bit support — now works with both architectures",
+            "Faster startup — update check no longer freezes the interface",
+            "Fixed pointer verification failing on 32-bit processes",
+            "Fixed UI freeze during update check",
+            "General stability improvements",
+            "Improved build compatibility",
+            "Various internal fixes"
+        ]
+    },
+    {
         id: 2,
         version: "v2.0.0",
         size: "42 MB",
@@ -86,7 +109,7 @@ const APP_VERSIONS = [
         url: "https://github.com/owuMode/ChainVerifier/releases/download/v2.0.0/ChainVerifier_v2.0.0-Windows-x64.zip",
         releasePageUrl: "https://github.com/owuMode/ChainVerifier/releases/tag/v2.0.0",
         date: "2026-09-28",
-        isLatest: true,
+        isLatest: false,
 
         sha256: "",
         vtUrl:  "",
@@ -179,7 +202,7 @@ const APP_FAQ = [
     },
     {
         q: "Is it a single EXE? Do I need Python?",
-        a: "v2.0.0 ships as a single portable EXE. No Python installation, no _internal folder, no dependencies. Just extract the ZIP and run ChainVerifier.exe."
+        a: "Latest versions ship as a single portable EXE. No Python installation, no _internal folder, no dependencies. Just extract the ZIP and run ChainVerifier.exe."
     },
     {
         q: "Will it work on 32-bit Windows?",
